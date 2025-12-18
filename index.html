@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect | Smart Farming & Fresh Marketplace</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="fas fa-leaf me-2"></i>FarmConnect
+            </a>
+            <div class="navbar-nav ms-auto d-flex flex-row align-items-center">
+                <button class="btn btn-outline-success me-2" id="navLoginBtn">Sign In</button>
+                <button class="btn btn-success" id="navSignupBtn">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Smart Farming & Fresh Marketplace</h1>
+                    <h2 class="h1 fw-bold mb-4 text-success">Farm Smarter. Sell Direct.</h2>
+                    <p class="lead mb-4">The intelligent platform connecting farmers with buyers. Get weather alerts, market insights, and sell your produce directly to customers.</p>
+                    <div class="d-flex gap-3 mb-5">
+                        <button class="btn btn-success btn-lg px-4" id="heroFarmerBtn">
+                            <i class="fas fa-tractor me-2"></i>I'm a Farmer
+                        </button>
+                        <button class="btn btn-outline-success btn-lg px-4" id="heroBuyerBtn">
+                            <i class="fas fa-shopping-basket me-2"></i>I'm a Buyer
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="row stats-row">
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="stat-card">
+                                <h3 class="stat-number">10K+</h3>
+                                <p class="stat-label">Active Farmers</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="stat-card">
+                                <h3 class="stat-number">50K+</h3>
+                                <p class="stat-label">Products Listed</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="stat-card">
+                                <h3 class="stat-number">100K+</h3>
+                                <p class="stat-label">Orders Delivered</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="stat-card">
+                                <h3 class="stat-number">98%</h3>
+                                <p class="stat-label">Satisfaction Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         class="img-fluid rounded hero-image" alt="Farm landscape">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title mb-3">Everything You Need to Grow & Sell</h2>
+                <p class="section-subtitle">Powerful tools for farmers to optimize their operations and connect with buyers</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud-sun-rain"></i>
+                        </div>
+                        <h4>Weather Alerts</h4>
+                        <p>Real-time weather forecasts and climate alerts to protect your crops</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Community Forum</h4>
+                        <p>Connect with farmers, share tips, and get expert advice</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Market Insights</h4>
+                        <p>Live price updates and smart selling recommendations</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h4>Pest Detection</h4>
+                        <p>Early warnings and treatment suggestions for crop diseases</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container-fluid main-container">
+        <!-- User Type Selection -->
+        <section class="user-selection py-5">
+            <div class="container text-center">
+                <h2 class="mb-4">Get Started</h2>
+                <p class="lead mb-5">Choose how you want to use FarmConnect</p>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 mb-4">
+                        <div class="card user-card farmer-card h-100">
+                            <div class="card-body p-5">
+                                <i class="fas fa-tractor display-1 text-success mb-4"></i>
+                                <h3 class="card-title">Farmer</h3>
+                                <p class="card-text">Access weather alerts, market prices, expert advice, and community forums to optimize your farming operations.</p>
+                                <button class="btn btn-success btn-lg mt-4" id="selectFarmer">Continue as Farmer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <div class="card user-card buyer-card h-100">
+                            <div class="card-body p-5">
+                                <i class="fas fa-shopping-basket display-1 text-primary mb-4"></i>
+                                <h3 class="card-title">Buyer</h3>
+                                <p class="card-text">Shop fresh produce directly from farmers, get notified about deals, and order customizable meal kits.</p>
+                                <button class="btn btn-primary btn-lg mt-4" id="selectBuyer">Continue as Buyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Farmer Features -->
+        <section class="py-5" id="farmer-features">
+            <div class="container">
+                <h2 class="text-center mb-5">For Farmers</h2>
+                
+                <!-- Farmer Registration -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">1. Farmer Account Creation</h3>
+                            <p>Create your personalized account to access all farming tools, alerts, and recommendations tailored to your farm.</p>
+                            <div class="mt-4" id="farmerRegistration">
+                                <h5 class="mb-3">Create Your Farmer Account</h5>
+                                <form id="farmerSignupForm">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" class="form-control" placeholder="Full Name" id="farmerName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="email" class="form-control" placeholder="Email Address" id="farmerEmail" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" class="form-control" placeholder="Farm Name" id="farmName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <select class="form-select" id="farmType">
+                                                <option selected>Select Farm Type</option>
+                                                <option>Crop Farming</option>
+                                                <option>Livestock</option>
+                                                <option>Mixed Farming</option>
+                                                <option>Orchard</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Location/Region" id="farmLocation" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Create Password" id="farmerPassword" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Create Farmer Account</button>
+                                </form>
+                                <div class="alert alert-success mt-3 d-none" id="farmerAccountSuccess">
+                                    Account created successfully! You can now access all farmer features.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Farmer registration">
+                    </div>
+                </div>
+                
+                <!-- Weather Alerts -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">2. Weather & Climate Alerts</h3>
+                            <p>Receive timely SMS/notifications for critical weather changes to protect your crops and livestock.</p>
+                            <div class="mt-4">
+                                <h5>Current Weather Alerts</h5>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <strong>Heavy Rain Alert:</strong> Expected in your region tomorrow.
+                                </div>
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-temperature-high me-2"></i>
+                                    <strong>Heat Wave Warning:</strong> Temperatures expected to reach 40°C in 3 days.
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="smsAlerts" checked>
+                                    <label class="form-check-label" for="smsAlerts">
+                                        Receive SMS alerts for critical weather changes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Weather monitoring">
+                    </div>
+                </div>
+                
+                <!-- Market Prices -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">3. Market Price Updates</h3>
+                            <p>Access real-time market prices and get AI-powered suggestions on the best time to sell your produce.</p>
+                            <div class="mt-4">
+                                <h5>Today's Market Prices (per kg)</h5>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Current Price</th>
+                                            <th>Trend</th>
+                                            <th>Suggestion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="marketPricesTable">
+                                        <tr>
+                                            <td><strong>Tomatoes</strong></td>
+                                            <td>$2.50</td>
+                                            <td class="text-success">↗ up</td>
+                                            <td><span class="badge bg-info">Wait 1 week</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Potatoes</strong></td>
+                                            <td>$1.20</td>
+                                            <td class="text-warning">→ stable</td>
+                                            <td><span class="badge bg-info">Sell now</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Carrots</strong></td>
+                                            <td>$1.80</td>
+                                            <td class="text-danger">↘ down</td>
+                                            <td><span class="badge bg-info">Sell immediately</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Lettuce</strong></td>
+                                            <td>$3.00</td>
+                                            <td class="text-success">↗ up</td>
+                                            <td><span class="badge bg-info">Wait 3 days</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Market prices">
+                    </div>
+                </div>
+                
+                <!-- Community Forum -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">4. Community Forum</h3>
+                            <p>Ask questions, engage in discussions, and get advice from agricultural experts and fellow farmers.</p>
+                            <div class="mt-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="badge bg-success">Expert Answered</span>
+                                            <small class="text-muted">2 hours ago</small>
+                                        </div>
+                                        <h6>How to control aphids organically?</h6>
+                                        <p class="small">Dr. Green suggests: "Use a mixture of neem oil and soap solution..."</p>
+                                        <a href="#" class="btn btn-sm btn-outline-success">View Full Discussion</a>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="badge bg-info">Community Discussion</span>
+                                            <small class="text-muted">1 day ago</small>
+                                        </div>
+                                        <h6>Best irrigation practices for drought season</h6>
+                                        <p class="small">12 farmers shared their experiences and tips...</p>
+                                        <a href="#" class="btn btn-sm btn-outline-success">Join Discussion</a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success w-100 mt-3" id="askQuestionBtn">
+                                    <i class="fas fa-question-circle me-1"></i> Ask a Question
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <img src="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Farmers discussion">
+                    </div>
+                </div>
+                
+                <!-- Farming Tips -->
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">5. Farming Tips & Discussion</h3>
+                            <p>Share practical farming tips and collectively solve problems with the community.</p>
+                            <div class="mt-4">
+                                <h5>Top Farming Tips This Week</h5>
+                                <div class="list-group">
+                                    <div class="list-group-item border-0">
+                                        <h6><i class="fas fa-leaf text-success me-2"></i>Companion Planting</h6>
+                                        <p class="small mb-1">Plant marigolds alongside tomatoes to deter nematodes naturally.</p>
+                                        <small class="text-muted">Shared by Farmer John</small>
+                                    </div>
+                                    <div class="list-group-item border-0">
+                                        <h6><i class="fas fa-tint text-info me-2"></i>Water Conservation</h6>
+                                        <p class="small mb-1">Use drip irrigation in the early morning to reduce evaporation by 40%.</p>
+                                        <small class="text-muted">Shared by FarmTech Expert</small>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <textarea class="form-control mb-2" placeholder="Share your farming tip..." rows="2"></textarea>
+                                    <button class="btn btn-success btn-sm">Post Tip</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Farming tips">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buyer Features -->
+        <section class="py-5 bg-light" id="buyer-features">
+            <div class="container">
+                <h2 class="text-center mb-5">For Buyers</h2>
+                
+                <!-- Produce Marketplace -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">6. Fresh Produce Marketplace</h3>
+                            <p>Browse and purchase fresh produce directly from local farmers with transparent pricing and availability.</p>
+                            <div class="mt-4">
+                                <h5>Fresh Produce Available Now</h5>
+                                <div class="row" id="produceListing">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Organic Tomatoes</h6>
+                                                <p class="card-text text-muted small">By Green Valley Farm</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h5 mb-0">$2.75/kg</span>
+                                                    <span class="badge bg-success">4.8 ★</span>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-success w-100 mt-2 add-to-cart">
+                                                    <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Fresh Carrots</h6>
+                                                <p class="card-text text-muted small">By Sunny Acres</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h5 mb-0">$1.85/kg</span>
+                                                    <span class="badge bg-success">4.6 ★</span>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-success w-100 mt-2 add-to-cart">
+                                                    <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-primary" id="viewAllProduce">View All Produce</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Fresh produce">
+                    </div>
+                </div>
+                
+                <!-- Discount Notifications -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">7. Discount & Deal Notifications</h3>
+                            <p>Get notified about special discounts and bundle deals on fresh produce from local farmers.</p>
+                            <div class="mt-4">
+                                <h5>Active Discounts & Deals</h5>
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-percentage me-2"></i>Weekend Special: 20% off all organic vegetables</h6>
+                                    <p class="small mb-1">Valid until Sunday. Code: <strong>WEEKEND20</strong></p>
+                                    <small>From Green Valley Farm</small>
+                                </div>
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-gift me-2"></i>Family Bundle: Mixed vegetables + fruits</h6>
+                                    <p class="small mb-1">Save 15% when buying together. Only $25 for 5kg assortment.</p>
+                                    <small>From multiple local farms</small>
+                                </div>
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" id="discountAlerts" checked>
+                                    <label class="form-check-label" for="discountAlerts">
+                                        Notify me about new discounts and deals
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Discount deals">
+                    </div>
+                </div>
+                
+                <!-- Meal Kits -->
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">8. Pre-Prepared Meal Kits</h3>
+                            <p>Order convenient meal kits with fresh, locally sourced ingredients and easy-to-follow recipes.</p>
+                            <div class="mt-4">
+                                <h5>Popular Meal Kits</h5>
+                                <div class="row" id="mealKitListing">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h6>Vegetarian Delight</h6>
+                                                <p class="small">3 plant-based meals for 2</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h4 text-success">$34.99</span>
+                                                    <span class="badge bg-info">30 min</span>
+                                                </div>
+                                                <button class="btn btn-success w-100 mt-2">
+                                                    <i class="fas fa-utensils me-1"></i> Order Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h6>Protein Power Pack</h6>
+                                                <p class="small">High-protein meals for athletes</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h4 text-success">$42.99</span>
+                                                    <span class="badge bg-info">25 min</span>
+                                                </div>
+                                                <button class="btn btn-success w-100 mt-2">
+                                                    <i class="fas fa-utensils me-1"></i> Order Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Meal kits">
+                    </div>
+                </div>
+                
+                <!-- Customizable Meal Kits -->
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="card feature-block p-4 h-100">
+                            <h3 class="mb-3">9. Customizable Meal Kit Orders</h3>
+                            <p>Personalize your meal kits based on dietary preferences, portion sizes, and delivery schedules.</p>
+                            <div class="mt-4">
+                                <h5>Customize Your Meal Kit</h5>
+                                <form id="customMealForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Base Meal Kit</label>
+                                        <select class="form-select" id="baseMeal">
+                                            <option>Vegetarian Delight</option>
+                                            <option>Protein Power</option>
+                                            <option>Low-Carb Choice</option>
+                                            <option>Family Feast</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Dietary Preferences</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="vegetarian">
+                                                    <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="glutenFree">
+                                                    <label class="form-check-label" for="glutenFree">Gluten-Free</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="vegan">
+                                                    <label class="form-check-label" for="vegan">Vegan</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="dairyFree">
+                                                    <label class="form-check-label" for="dairyFree">Dairy-Free</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Portion Size</label>
+                                        <select class="form-select" id="portionSize">
+                                            <option>Single (1 serving)</option>
+                                            <option>Couple (2 servings)</option>
+                                            <option>Family (4 servings)</option>
+                                            <option>Large Family (6 servings)</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Preview Customized Kit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow" alt="Custom meal prep">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login/Signup Modal -->
+        <div class="modal fade" id="authModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title">Welcome to FarmConnect</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs mb-3" id="authTabs">
+                            <li class="nav-item w-50 text-center">
+                                <button class="nav-link active w-100" data-bs-target="#loginTab">Sign In</button>
+                            </li>
+                            <li class="nav-item w-50 text-center">
+                                <button class="nav-link w-100" data-bs-target="#signupTab">Sign Up</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content p-3">
+                            <div class="tab-pane active" id="loginTab">
+                                <h4 class="text-center mb-4">Sign In to Your Account</h4>
+                                <form id="loginForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" placeholder="Enter your password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100 btn-lg">Sign In</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="signupTab">
+                                <h4 class="text-center mb-4">Create New Account</h4>
+                                <form id="signupForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">I am a:</label>
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check flex-grow-1 text-center">
+                                                <input class="form-check-input" type="radio" name="userType" id="farmerType" value="farmer" checked>
+                                                <label class="form-check-label" for="farmerType">Farmer</label>
+                                            </div>
+                                            <div class="form-check flex-grow-1 text-center">
+                                                <input class="form-check-input" type="radio" name="userType" id="buyerType" value="buyer">
+                                                <label class="form-check-label" for="buyerType">Buyer</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter your full name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" placeholder="Create a password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100 btn-lg">Create Account</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-4">
+                        <i class="fas fa-leaf me-2"></i>FarmConnect
+                    </h4>
+                    <p>Connecting local farmers with conscious consumers for a sustainable food ecosystem.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">For Farmers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#farmer-features" class="text-decoration-none">Weather Alerts</a></li>
+                        <li><a href="#farmer-features" class="text-decoration-none">Market Prices</a></li>
+                        <li><a href="#farmer-features" class="text-decoration-none">Expert Forum</a></li>
+                        <li><a href="#farmer-features" class="text-decoration-none">Selling Tools</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">For Buyers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#buyer-features" class="text-decoration-none">Fresh Produce</a></li>
+                        <li><a href="#buyer-features" class="text-decoration-none">Meal Kits</a></li>
+                        <li><a href="#buyer-features" class="text-decoration-none">Discounts</a></li>
+                        <li><a href="#buyer-features" class="text-decoration-none">Custom Orders</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <p><i class="fas fa-envelope me-2"></i> support@farmconnect.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (800) 123-4567</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook
+                                <!-- ... rest of your HTML ... -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // FarmConnect Platform - Main JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the application
+            console.log('FarmConnect Platform initialized');
+            
+            // Check if user is logged in (simulated)
+            const userType = localStorage.getItem('userType') || null;
+            if (userType) {
+                updateUIForUser(userType);
+            }
+            
+            // Setup all event listeners
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Navigation buttons
+            document.getElementById('navLoginBtn').addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('authModal'));
+                modal.show();
+            });
+            
+            document.getElementById('navSignupBtn').addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('authModal'));
+                document.querySelector('#authTabs .nav-link[data-bs-target="#signupTab"]').click();
+                modal.show();
+            });
+            
+            // Hero section buttons
+            document.getElementById('heroFarmerBtn').addEventListener('click', function() {
+                scrollToSection('farmer-features');
+            });
+            
+            document.getElementById('heroBuyerBtn').addEventListener('click', function() {
+                scrollToSection('buyer-features');
+            });
+            
+            // User selection
+            document.getElementById('selectFarmer').addEventListener('click', function() {
+                setUserType('farmer');
+                scrollToSection('farmer-features');
+            });
+            
+            document.getElementById('selectBuyer').addEventListener('click', function() {
+                setUserType('buyer');
+                scrollToSection('buyer-features');
+            });
+            
+            // Farmer registration form
+            document.getElementById('farmerSignupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const successAlert = document.getElementById('farmerAccountSuccess');
+                successAlert.classList.remove('d-none');
+                localStorage.setItem('userType', 'farmer');
+                localStorage.setItem('isLoggedIn', 'true');
+                updateUIForUser('farmer');
+                setTimeout(() => {
+                    successAlert.classList.add('d-none');
+                    e.target.reset();
+                    showNotification('Farmer account created successfully!', 'success');
+                }, 3000);
+            });
+            
+            // Custom meal form
+            document.getElementById('customMealForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Custom meal kit ordered successfully!', 'success');
+                e.target.reset();
+            });
+            
+            // Ask question button
+            document.getElementById('askQuestionBtn').addEventListener('click', function() {
+                const question = prompt('What farming question would you like to ask our experts?');
+                if (question && question.trim() !== '') {
+                    showNotification('Question submitted to experts!', 'success');
+                }
+            });
+            
+            // View all produce button
+            document.getElementById('viewAllProduce').addEventListener('click', function() {
+                showNotification('Loading marketplace...', 'info');
+                setTimeout(() => alert('Full marketplace would open here.'), 500);
+            });
+            
+            // Weather alert checkbox
+            document.getElementById('smsAlerts').addEventListener('change', function() {
+                const enabled = this.checked;
+                const message = enabled ? 'SMS alerts enabled!' : 'SMS alerts disabled.';
+                showNotification(message, enabled ? 'success' : 'warning');
+                localStorage.setItem('smsAlerts', enabled);
+            });
+            
+            // Discount alerts checkbox
+            document.getElementById('discountAlerts').addEventListener('change', function() {
+                const enabled = this.checked;
+                const message = enabled ? 'Discount alerts enabled!' : 'Discount alerts disabled.';
+                showNotification(message, enabled ? 'success' : 'warning');
+                localStorage.setItem('discountAlerts', enabled);
+            });
+            
+            // Tab switching in modal
+            const authTabButtons = document.querySelectorAll('#authTabs button');
+            authTabButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-bs-target');
+                    const tabPanes = document.querySelectorAll('.tab-pane');
+                    
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('show', 'active');
+                        if (pane.id === target.substring(1)) {
+                            pane.classList.add('show', 'active');
+                        }
+                    });
+                    
+                    authTabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('authModal'));
+                modal.hide();
+                localStorage.setItem('isLoggedIn', 'true');
+                updateUIForUser('user');
+                showNotification('Login successful!', 'success');
+            });
+            
+            // Signup form
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userType = document.querySelector('input[name="userType"]:checked').value;
+                const modal = bootstrap.Modal.getInstance(document.getElementById('authModal'));
+                modal.hide();
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userType', userType);
+                updateUIForUser(userType);
+                showNotification(`Welcome as a ${userType}!`, 'success');
+            });
+            
+            // Add to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.closest('.card').querySelector('.card-title').textContent;
+                    showNotification(`${product} added to cart!`, 'success');
+                });
+            });
+            
+            // Order meal kit buttons
+            document.querySelectorAll('.btn-success').forEach(button => {
+                if (button.textContent.includes('Order Now')) {
+                    button.addEventListener('click', function() {
+                        const meal = this.closest('.card').querySelector('h6').textContent;
+                        showNotification(`${meal} ordered! Delivery in 2-3 days.`, 'success');
+                    });
+                }
+            });
+        }
+
+        function updateUIForUser(userType) {
+            const loginBtn = document.getElementById('navLoginBtn');
+            const signupBtn = document.getElementById('navSignupBtn');
+            
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                loginBtn.textContent = 'Dashboard';
+                signupBtn.textContent = 'Logout';
+                signupBtn.onclick = function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userType');
+                    loginBtn.textContent = 'Sign In';
+                    signupBtn.textContent = 'Sign Up';
+                    signupBtn.onclick = function() {
+                        const modal = new bootstrap.Modal(document.getElementById('authModal'));
+                        document.querySelector('#authTabs .nav-link[data-bs-target="#signupTab"]').click();
+                        modal.show();
+                    };
+                    showNotification('Logged out.', 'info');
+                };
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function setUserType(type) {
+            localStorage.setItem('userType', type);
+            updateUIForUser(type);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification-alert`;
+            notification.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>${message}</span>
+                    <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Add CSS for notifications
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+    </script>
+</body>
+</html>
