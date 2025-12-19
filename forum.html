@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum | FarmConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success" href="index.html">
+                <i class="fas fa-leaf me-2"></i>FarmConnect
+            </a>
+            <div class="navbar-nav ms-auto align-items-center">
+                <span class="nav-link me-3">
+                    <i class="fas fa-users me-1"></i> Community Forum
+                </span>
+                <a href="farmer-dashboard.html" class="btn btn-outline-success btn-sm me-2">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2><i class="fas fa-users text-success me-2"></i>Community Forum</h2>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newTopicModal">
+                        <i class="fas fa-plus me-1"></i> New Discussion
+                    </button>
+                </div>
+
+                <!-- Forum Categories -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Browse Categories</h5>
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4">
+                                <a href="#crop" class="text-decoration-none">
+                                    <div class="card category-card text-center p-3">
+                                        <i class="fas fa-seedling fa-2x text-success mb-2"></i>
+                                        <h6>Crop Farming</h6>
+                                        <small class="text-muted">125 discussions</small>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#livestock" class="text-decoration-none">
+                                    <div class="card category-card text-center p-3">
+                                        <i class="fas fa-cow fa-2x text-success mb-2"></i>
+                                        <h6>Livestock</h6>
+                                        <small class="text-muted">89 discussions</small>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#market" class="text-decoration-none">
+                                    <div class="card category-card text-center p-3">
+                                        <i class="fas fa-chart-line fa-2x text-success mb-2"></i>
+                                        <h6>Market & Sales</h6>
+                                        <small class="text-muted">67 discussions</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Discussions -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Recent Discussions</h5>
+                        
+                        <!-- Discussion 1 -->
+                        <div class="discussion-item mb-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <span class="badge bg-success me-2">Expert Answered</span>
+                                    <span class="badge bg-info">Crop Farming</span>
+                                </div>
+                                <small class="text-muted">2 hours ago • 15 replies</small>
+                            </div>
+                            <h6>How to control aphids organically?</h6>
+                            <p class="text-muted mb-2">I'm having trouble with aphids on my tomato plants. Any organic solutions?</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-user me-1"></i> John Smith • 
+                                        <i class="fas fa-eye ms-2 me-1"></i> 245 views
+                                    </small>
+                                </div>
+                                <a href="#discussion1" class="btn btn-sm btn-outline-success" data-bs-toggle="collapse">
+                                    View Discussion
+                                </a>
+                            </div>
+                            
+                            <!-- Expert Answer -->
+                            <div class="collapse mt-3" id="discussion1">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="bg-success rounded-circle p-2 me-3">
+                                                <i class="fas fa-user-md text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">Dr. Green - Agriculture Expert</h6>
+                                                <small class="text-muted">Certified Organic Farming Specialist</small>
+                                            </div>
+                                        </div>
+                                        <p class="mb-0">I recommend using a mixture of neem oil (2 tablespoons) and mild soap (1 teaspoon) in 1 liter of water. Spray early morning or late evening. Also consider planting marigolds nearby as they deter aphids naturally.</p>
+                                        <div class="mt-2">
+                                            <small class="text-muted">
+                                                <i class="fas fa-thumbs-up text-success me-1"></i> 42 farmers found this helpful
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <textarea class="form-control mb-2" placeholder="Add your reply..." rows="2"></textarea>
+                                    <button class="btn btn-sm btn-success">Post Reply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discussion 2 -->
+                        <div class="discussion-item mb-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <span class="badge bg-info me-2">Community</span>
+                                    <span class="badge bg-warning">Market & Sales</span>
+                                </div>
+                                <small class="text-muted">1 day ago • 12 replies</small>
+                            </div>
+                            <h6>Best irrigation practices for drought season</h6>
+                            <p class="text-muted mb-2">Looking for advice on water conservation during dry spells.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-user me-1"></i> Sarah Johnson • 
+                                        <i class="fas fa-eye ms-2 me-1"></i> 189 views
+                                    </small>
+                                </div>
+                                <a href="#discussion2" class="btn btn-sm btn-outline-success" data-bs-toggle="collapse">
+                                    View Discussion
+                                </a>
+                            </div>
+                            
+                            <div class="collapse mt-3" id="discussion2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6>Community Answers:</h6>
+                                        <div class="mb-3">
+                                            <strong>Farmer Mike:</strong> I use drip irrigation in the early morning. Reduces evaporation by 40%.
+                                        </div>
+                                        <div class="mb-3">
+                                            <strong>Organic Tom:</strong> Mulching helps retain soil moisture. Also consider drought-resistant crop varieties.
+                                        </div>
+                                        <div>
+                                            <strong>Green Valley Farm:</strong> We collect rainwater in barrels during rainy season for dry periods.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <textarea class="form-control mb-2" placeholder="Add your reply..." rows="2"></textarea>
+                                    <button class="btn btn-sm btn-success">Post Reply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discussion 3 -->
+                        <div class="discussion-item mb-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <span class="badge bg-danger me-2">Urgent</span>
+                                    <span class="badge bg-info">Pest Control</span>
+                                </div>
+                                <small class="text-muted">3 hours ago • 8 replies</small>
+                            </div>
+                            <h6>Whiteflies infestation in greenhouse</h6>
+                            <p class="text-muted mb-2">Need immediate help with whiteflies in my tomato greenhouse.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-user me-1"></i> Robert Chen • 
+                                        <i class="fas fa-eye ms-2 me-1"></i> 156 views
+                                    </small>
+                                </div>
+                                <a href="#discussion3" class="btn btn-sm btn-outline-success" data-bs-toggle="collapse">
+                                    View Discussion
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Discussion 4 -->
+                        <div class="discussion-item">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <span class="badge bg-success">Expert Answered</span>
+                                </div>
+                                <small class="text-muted">5 days ago • 24 replies</small>
+                            </div>
+                            <h6>Companion planting for better yields</h6>
+                            <p class="text-muted mb-2">What plants work best together in companion planting?</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-user me-1"></i> Maria Gonzalez • 
+                                        <i class="fas fa-eye ms-2 me-1"></i> 312 views
+                                    </small>
+                                </div>
+                                <a href="#discussion4" class="btn btn-sm btn-outline-success" data-bs-toggle="collapse">
+                                    View Discussion
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ask Expert -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-user-md text-success me-2"></i>Ask an Expert
+                        </h5>
+                        <p class="card-text">Get advice from certified agricultural experts.</p>
+                        <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#askExpertModal">
+                            <i class="fas fa-question-circle me-1"></i> Ask Question
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Top Contributors -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Top Contributors</h5>
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex align-items-center">
+                                <div class="bg-success rounded-circle p-2 me-3">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0">Dr. Green</h6>
+                                    <small class="text-muted">Expert • 245 answers</small>
+                                </div>
+                                <span class="badge bg-success">★★★★★</span>
+                            </div>
+                            <div class="list-group-item d-flex align-items-center">
+                                <div class="bg-primary rounded-circle p-2 me-3">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0">Farmer Mike</h6>
+                                    <small class="text-muted">Community • 189 answers</small>
+                                </div>
+                                <span class="badge bg-warning">★★★★☆</span>
+                            </div>
+                            <div class="list-group-item d-flex align-items-center">
+                                <div class="bg-info rounded-circle p-2 me-3">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0">Sarah Johnson</h6>
+                                    <small class="text-muted">Community • 156 answers</small>
+                                </div>
+                                <span class="badge bg-warning">★★★★☆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farming Tips -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-lightbulb text-warning me-2"></i>Weekly Farming Tips
+                        </h5>
+                        <div class="mt-3">
+                            <h6><i class="fas fa-leaf text-success me-2"></i>Companion Planting</h6>
+                            <p class="small">Plant marigolds alongside tomatoes to deter nematodes naturally.</p>
+                            <small class="text-muted">Shared by Farmer John</small>
+                        </div>
+                        <hr>
+                        <div class="mt-3">
+                            <h6><i class="fas fa-tint text-info me-2"></i>Water Conservation</h6>
+                            <p class="small">Use drip irrigation in early morning to reduce evaporation by 40%.</p>
+                            <small class="text-muted">Shared by FarmTech Expert</small>
+                        </div>
+                        <div class="mt-4">
+                            <textarea class="form-control mb-2" placeholder="Share your farming tip..." rows="2"></textarea>
+                            <button class="btn btn-sm btn-success">Share Tip</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forum Rules -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Forum Guidelines</h5>
+                        <ul class="small">
+                            <li>Be respectful to all members</li>
+                            <li>Share evidence-based information</li>
+                            <li>No spam or self-promotion</li>
+                            <li>Mark urgent questions appropriately</li>
+                            <li>Thank experts for their help</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Topic Modal -->
+    <div class="modal fade" id="newTopicModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Start New Discussion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newTopicForm">
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" placeholder="Enter discussion title" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" required>
+                                <option value="">Select category</option>
+                                <option>Crop Farming</option>
+                                <option>Livestock</option>
+                                <option>Market & Sales</option>
+                                <option>Weather & Climate</option>
+                                <option>Pest Control</option>
+                                <option>Irrigation</option>
+                                <option>Organic Farming</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Content</label>
+                            <textarea class="form-control" rows="6" placeholder="Describe your question or topic..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Tags (optional)</label>
+                            <input type="text" class="form-control" placeholder="e.g., tomatoes, organic, irrigation">
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="expertHelp">
+                            <label class="form-check-label" for="expertHelp">
+                                Request expert help (Experts will be notified)
+                            </label>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="urgentQuestion">
+                            <label class="form-check-label" for="urgentQuestion">
+                                Mark as urgent (For time-sensitive issues)
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">Post Discussion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ask Expert Modal -->
+    <div class="modal fade" id="askExpertModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ask Agricultural Expert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="askExpertForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Expert Category</label>
+                            <select class="form-select" required>
+                                <option value="">Choose expertise...</option>
+                                <option>Crops & Vegetables</option>
+                                <option>Livestock & Animals</option>
+                                <option>Soil Science</option>
+                                <option>Pest Management</option>
+                                <option>Organic Farming</option>
+                                <option>Irrigation Systems</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Your Question</label>
+                            <textarea class="form-control" rows="4" placeholder="Describe your problem or question..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Upload Photos (optional)</label>
+                            <input type="file" class="form-control" accept="image/*">
+                            <small class="text-muted">Upload images of affected crops or animals for better diagnosis</small>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Experts typically respond within 24 hours. Urgent queries are prioritized.
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">Submit to Experts</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check login
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+        
+        // Form submissions
+        document.getElementById('newTopicForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Discussion posted successfully!');
+            document.querySelector('#newTopicModal .btn-close').click();
+            this.reset();
+        });
+        
+        document.getElementById('askExpertForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Question submitted to experts! You will be notified when they respond.');
+            document.querySelector('#askExpertModal .btn-close').click();
+            this.reset();
+        });
+        
+        // Style category cards on hover
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+            });
+        });
+        
+        // Add CSS for discussion items
+        const style = document.createElement('style');
+        style.textContent = `
+            .discussion-item {
+                padding: 1.5rem;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+                transition: all 0.3s ease;
+            }
+            .discussion-item:hover {
+                border-color: #28a745;
+                background-color: #f8fff9;
+            }
+            .category-card {
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            .category-card:hover {
+                border-color: #28a745;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
