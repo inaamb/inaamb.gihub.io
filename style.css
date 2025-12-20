@@ -13,17 +13,38 @@
     --soft-green: #e8f5e9;        /* Soft green */
     --warm-beige: #fafafa;        /* Off-white */
     --grey-blue: #e8eaf6;         /* Grey-blue */
+    --very-light-green: #f8fdf8;  /* Very light green */
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
-    padding-top: 76px;
-    background-color: var(--sky-blue);
+    padding-top: 60px; /* Reduced from 76px to match navbar height */
     color: var(--secondary);
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Specific background for index page */
+body.index-page {
+    background-color: var(--very-light-green);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(129, 199, 132, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(200, 230, 201, 0.15) 0%, transparent 20%);
+}
+
+/* Backgrounds for other pages */
+body:not(.index-page) {
+    background-color: var(--sky-blue);
     background-image: 
         radial-gradient(circle at 10% 20%, rgba(129, 199, 132, 0.1) 0%, transparent 20%),
         radial-gradient(circle at 90% 80%, rgba(200, 230, 201, 0.1) 0%, transparent 20%);
-    min-height: 100vh;
+}
+
+/* Remove body padding for farmer page since navbar is fixed-top */
+body.farmer-page,
+body.buyer-page,
+body.login-page {
+    padding-top: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -139,17 +160,33 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent);
 }
 
-/* Navbar */
+/* NAVBAR FIX - This is the key fix */
 .navbar {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    border-bottom: 3px solid var(--accent);
+    background: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+    border-bottom: 3px solid var(--accent) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1030 !important;
+    width: 100% !important;
+}
+
+.navbar.fixed-top {
+    position: fixed !important;
+    top: 0 !important;
 }
 
 .navbar-brand {
     color: var(--primary) !important;
     font-weight: 700;
     padding: 10px 0;
+}
+
+/* Ensure content doesn't hide behind fixed navbar */
+.container, .container-fluid {
+    padding-top: 20px;
 }
 
 /* Alerts and notifications */
@@ -367,7 +404,7 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
     body {
-        padding-top: 70px;
+        padding-top: 56px; /* Smaller padding for mobile */
     }
     
     .card, .dashboard-card {
@@ -375,15 +412,11 @@ footer {
     }
 }
 
-/* Specific page backgrounds */
-body[class*="login"] {
-    background-color: var(--sky-blue);
-}
-
-body[class*="farmer"] {
-    background-color: var(--cream);
-}
-
-body[class*="buyer"] {
-    background-color: var(--sky-blue);
+/* Hero section specific for index page */
+.index-hero {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    background: linear-gradient(135deg, var(--very-light-green) 0%, #ffffff 100%);
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 40px;
 }
