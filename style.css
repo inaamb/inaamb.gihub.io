@@ -18,12 +18,21 @@
     --separator-color: #e0e0e0;   /* Separator color */
 }
 
+/* RESET - Remove body padding since we'll handle it per page */
 body {
     font-family: 'Open Sans', sans-serif;
-    padding-top: 60px; /* Reduced from 76px */
     color: var(--secondary);
     min-height: 100vh;
     margin: 0;
+    padding-top: 0 !important; /* Remove global padding */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content wrapper to push footer down */
+#main-content {
+    flex: 1;
+    padding-top: 60px; /* Space for fixed navbar */
 }
 
 /* Specific background for index page */
@@ -42,11 +51,11 @@ body:not(.index-page) {
         radial-gradient(circle at 90% 80%, rgba(200, 230, 201, 0.1) 0%, transparent 20%);
 }
 
-/* Remove body padding for pages with fixed-top navbar */
+/* Fix for farmer and buyer pages - REMOVE body padding */
 body.farmer-page,
 body.buyer-page,
 body.login-page {
-    padding-top: 0;
+    padding-top: 0 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -106,15 +115,35 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0 !important;
 }
 
+/* FIX FOR FARMER PAGE - Sidebar menu spacing */
+.farmer-page .col-md-3 {
+    padding-top: 70px !important; /* Push sidebar below navbar */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+}
+
+.farmer-page .col-md-9 {
+    margin-left: 25%; /* Account for fixed sidebar */
+    padding-top: 70px !important; /* Push content below navbar */
+    min-height: calc(100vh - 60px);
+}
+
+/* FIX FOR BUYER PAGE - Main content spacing */
+.buyer-page .container {
+    padding-top: 70px !important; /* Push content below navbar */
+    min-height: calc(100vh - 200px); /* Make room for footer */
+}
+
 /* Login/Signup page separator fix */
 .login-container {
-    margin-top: 40px !important; /* Add space below navbar */
-    padding-top: 30px !important;
+    padding-top: 80px !important; /* Add space below navbar */
+    min-height: calc(100vh - 150px); /* Make room for footer */
 }
 
 .login-card {
     border-top: 3px solid var(--accent) !important;
-    margin-top: 20px !important;
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
 }
@@ -125,11 +154,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 25px;
 }
 
-/* Add space between navbar and content for all pages */
-.main-content {
-    padding-top: 70px; /* Space for fixed navbar */
-}
-
 /* Cards */
 .card {
     border: none;
@@ -138,7 +162,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background-color: white;
     border-top: 4px solid var(--accent);
-    margin-top: 15px;
 }
 
 .card:hover {
@@ -240,8 +263,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Ensure content doesn't hide behind fixed navbar */
-.container, .container-fluid {
-    padding-top: 20px;
+.index-page .container,
+.login-page .container {
+    padding-top: 80px !important;
 }
 
 /* Alerts and notifications */
@@ -364,12 +388,25 @@ h1, h2, h3, h4, h5, h6 {
     border-left: 4px solid var(--primary);
 }
 
-/* Footer */
+/* FOOTER FIX - Make sure footer is visible */
 footer {
     background: linear-gradient(135deg, var(--primary) 0%, #1b5e20 100%);
     border-top: 5px solid var(--accent);
-    margin-top: 50px;
     padding: 30px 0;
+    color: white;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-top: auto; /* Push to bottom */
+}
+
+footer p {
+    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+footer .small {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Badges */
@@ -449,19 +486,10 @@ footer {
     font-size: 1.3em;
 }
 
-/* Custom background classes */
-.bg-grey-blue {
-    background-color: var(--grey-blue) !important;
-}
-
-.bg-light-blue {
-    background-color: var(--sky-blue) !important;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     body {
-        padding-top: 56px; /* Smaller padding for mobile */
+        padding-top: 0 !important;
     }
     
     .navbar {
@@ -476,19 +504,35 @@ footer {
         padding: 15px;
     }
     
-    .main-content {
-        padding-top: 60px;
+    /* Mobile fixes for farmer page */
+    .farmer-page .col-md-3 {
+        position: relative;
+        height: auto;
+        padding-top: 60px !important;
+        width: 100%;
+    }
+    
+    .farmer-page .col-md-9 {
+        margin-left: 0;
+        padding-top: 20px !important;
+        width: 100%;
+    }
+    
+    .buyer-page .container,
+    .login-page .container,
+    .index-page .container {
+        padding-top: 70px !important;
     }
     
     .login-container {
-        margin-top: 30px !important;
-        padding-top: 20px !important;
+        padding-top: 70px !important;
+        min-height: calc(100vh - 120px);
     }
 }
 
 /* Hero section specific for index page */
 .index-hero {
-    padding-top: 80px;
+    padding-top: 20px;
     padding-bottom: 60px;
     background: linear-gradient(135deg, var(--very-light-green) 0%, #ffffff 100%);
     border-radius: 0 0 20px 20px;
@@ -505,10 +549,15 @@ footer {
 
 /* Login page specific spacing */
 .login-page .card {
-    margin-top: 30px;
     border-top: 3px solid var(--accent);
 }
 
-.login-page .container {
-    padding-top: 40px;
+/* Ensure all pages have proper spacing */
+.index-page .container {
+    min-height: calc(100vh - 200px);
+}
+
+.buyer-page .container,
+.farmer-page .container-fluid {
+    min-height: calc(100vh - 200px);
 }
