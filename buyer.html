@@ -57,7 +57,7 @@
                             <h5>🥗 Vegetarian Delight</h5>
                             <p class="text-muted">3 plant-based meals for 2 people</p>
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="h4 text-success">$34.99</span>
+                                <span class="h4 text-success">OMR 13.46</span>
                                 <span class="badge bg-info">30 min</span>
                             </div>
                             <button class="btn btn-success w-100" onclick="orderMealKit('Vegetarian Delight')">
@@ -74,7 +74,7 @@
                             <h5>💪 Protein Power Pack</h5>
                             <p class="text-muted">High-protein meals for athletes</p>
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="h4 text-success">$42.99</span>
+                                <span class="h4 text-success">OMR 16.53</span>
                                 <span class="badge bg-info">25 min</span>
                             </div>
                             <button class="btn btn-success w-100" onclick="orderMealKit('Protein Power Pack')">
@@ -159,7 +159,7 @@
                     <!-- Cart items loaded by JavaScript -->
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-3">
-                    <h5 class="mb-0">Total: $<span id="cartTotal">0.00</span></h5>
+                    <h5 class="mb-0">Total: OMR <span id="cartTotal">0.00</span></h5>
                     <button class="btn btn-success btn-lg" onclick="checkout()">
                         <i class="fas fa-credit-card me-1"></i> Checkout
                     </button>
@@ -176,14 +176,14 @@
             window.location.href = 'login.html';
         }
 
-        // Sample products data
+        // Sample products data with OMR prices
         const products = [
-            { id: 1, name: 'Organic Tomatoes', price: 2.75, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
-            { id: 2, name: 'Fresh Carrots', price: 1.90, farmer: 'Sunny Acres', category: 'vegetables', organic: false },
-            { id: 3, name: 'Potatoes', price: 1.40, farmer: 'Riverbend Farm', category: 'vegetables', organic: false },
-            { id: 4, name: 'Lettuce', price: 3.00, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
-            { id: 5, name: 'Apples', price: 2.20, farmer: 'Orchard Hills', category: 'fruits', organic: true },
-            { id: 6, name: 'Fresh Milk', price: 4.50, farmer: 'Happy Cows Dairy', category: 'dairy', organic: true }
+            { id: 1, name: 'Organic Tomatoes', price: 1.06, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
+            { id: 2, name: 'Fresh Carrots', price: 0.73, farmer: 'Sunny Acres', category: 'vegetables', organic: false },
+            { id: 3, name: 'Potatoes', price: 0.54, farmer: 'Riverbend Farm', category: 'vegetables', organic: false },
+            { id: 4, name: 'Lettuce', price: 1.15, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
+            { id: 5, name: 'Apples', price: 0.85, farmer: 'Orchard Hills', category: 'fruits', organic: true },
+            { id: 6, name: 'Fresh Milk', price: 1.73, farmer: 'Happy Cows Dairy', category: 'dairy', organic: true }
         ];
 
         // Load products on page load
@@ -209,7 +209,7 @@
                                 <p class="card-text text-muted small">From ${product.farmer}</p>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <div>
-                                        <span class="h4 text-success">$${product.price}</span>
+                                        <span class="h4 text-success">OMR ${product.price}</span>
                                         <span class="text-muted">/kg</span>
                                     </div>
                                     <span class="badge bg-warning">⭐ 4.5</span>
@@ -283,10 +283,10 @@
                         <div>
                             <strong>${item.name}</strong>
                             <br>
-                            <small class="text-muted">${item.quantity} kg × $${item.price}/kg</small>
+                            <small class="text-muted">${item.quantity} kg × OMR ${item.price}/kg</small>
                         </div>
                         <div class="text-end">
-                            <div class="h6 mb-0">$${item.total.toFixed(2)}</div>
+                            <div class="h6 mb-0">OMR ${item.total.toFixed(2)}</div>
                             <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -355,7 +355,7 @@
             
             const total = cart.reduce((sum, item) => sum + item.total, 0);
             
-            if (confirm(`Confirm purchase for $${total.toFixed(2)}?`)) {
+            if (confirm(`Confirm purchase for OMR ${total.toFixed(2)}?`)) {
                 // Simulate order placement
                 const order = {
                     id: Date.now(),
