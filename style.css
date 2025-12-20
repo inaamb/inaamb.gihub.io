@@ -70,6 +70,19 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 8px !important;
 }
 
+/* Custom navbar for better height control */
+.navbar-custom {
+    min-height: 60px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.navbar-custom .navbar-brand {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-size: 1.3rem !important;
+}
+
 /* Make navbar brand align better */
 .navbar-brand {
     color: var(--primary) !important;
@@ -77,6 +90,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.3rem !important;
     padding: 5px 0 !important;
     line-height: 1.2 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 44px !important;
+}
+
+.navbar-brand i {
+    margin-top: -2px !important; /* Adjust icon alignment */
+    font-size: 1.4rem !important;
 }
 
 /* Navbar container spacing */
@@ -94,6 +115,8 @@ h1, h2, h3, h4, h5, h6 {
 .login-card {
     border-top: 3px solid var(--accent) !important;
     margin-top: 20px !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
 }
 
 /* Add separator for tabs in login/signup */
@@ -445,12 +468,21 @@ footer {
         min-height: 56px !important;
     }
     
+    .navbar-custom {
+        min-height: 56px !important;
+    }
+    
     .card, .dashboard-card {
         padding: 15px;
     }
     
     .main-content {
         padding-top: 60px;
+    }
+    
+    .login-container {
+        margin-top: 30px !important;
+        padding-top: 20px !important;
     }
 }
 
@@ -461,4 +493,22 @@ footer {
     background: linear-gradient(135deg, var(--very-light-green) 0%, #ffffff 100%);
     border-radius: 0 0 20px 20px;
     margin-bottom: 40px;
+}
+
+/* Separator line */
+.separator {
+    height: 1px;
+    background-color: var(--separator-color);
+    margin: 25px 0;
+    width: 100%;
+}
+
+/* Login page specific spacing */
+.login-page .card {
+    margin-top: 30px;
+    border-top: 3px solid var(--accent);
+}
+
+.login-page .container {
+    padding-top: 40px;
 }
