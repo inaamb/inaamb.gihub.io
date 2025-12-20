@@ -5,6 +5,7 @@
     --primary: #2e7d32;           /* Dark green */
     --secondary: #5d4037;         /* Earth brown */
     --accent: #81c784;            /* Light green accent */
+    --nav-green: #c8e6c9;         /* Lighter green for navbar */
     --light-bg: #f1f8e9;          /* Light green background */
     --light-green: #c8e6c9;       /* Pastel green */
     --earth-brown: #8d6e63;       /* Warm brown */
@@ -14,11 +15,12 @@
     --warm-beige: #fafafa;        /* Off-white */
     --grey-blue: #e8eaf6;         /* Grey-blue */
     --very-light-green: #f8fdf8;  /* Very light green */
+    --separator-color: #e0e0e0;   /* Separator color */
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
-    padding-top: 60px; /* Reduced from 76px to match navbar height */
+    padding-top: 60px; /* Reduced from 76px */
     color: var(--secondary);
     min-height: 100vh;
     margin: 0;
@@ -40,7 +42,7 @@ body:not(.index-page) {
         radial-gradient(circle at 90% 80%, rgba(200, 230, 201, 0.1) 0%, transparent 20%);
 }
 
-/* Remove body padding for farmer page since navbar is fixed-top */
+/* Remove body padding for pages with fixed-top navbar */
 body.farmer-page,
 body.buyer-page,
 body.login-page {
@@ -52,6 +54,59 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary);
 }
 
+/* NAVBAR FIXES - Lighter green and smaller height */
+.navbar {
+    background: var(--nav-green) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+    border-bottom: 2px solid var(--accent) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1030 !important;
+    width: 100% !important;
+    min-height: 60px !important; /* Reduced height */
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+/* Make navbar brand align better */
+.navbar-brand {
+    color: var(--primary) !important;
+    font-weight: 700;
+    font-size: 1.3rem !important;
+    padding: 5px 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Navbar container spacing */
+.navbar .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Login/Signup page separator fix */
+.login-container {
+    margin-top: 40px !important; /* Add space below navbar */
+    padding-top: 30px !important;
+}
+
+.login-card {
+    border-top: 3px solid var(--accent) !important;
+    margin-top: 20px !important;
+}
+
+/* Add separator for tabs in login/signup */
+.nav-tabs {
+    border-bottom: 2px solid var(--separator-color);
+    margin-bottom: 25px;
+}
+
+/* Add space between navbar and content for all pages */
+.main-content {
+    padding-top: 70px; /* Space for fixed navbar */
+}
+
 /* Cards */
 .card {
     border: none;
@@ -60,6 +115,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background-color: white;
     border-top: 4px solid var(--accent);
+    margin-top: 15px;
 }
 
 .card:hover {
@@ -160,30 +216,6 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent);
 }
 
-/* NAVBAR FIX - This is the key fix */
-.navbar {
-    background: white !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
-    border-bottom: 3px solid var(--accent) !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1030 !important;
-    width: 100% !important;
-}
-
-.navbar.fixed-top {
-    position: fixed !important;
-    top: 0 !important;
-}
-
-.navbar-brand {
-    color: var(--primary) !important;
-    font-weight: 700;
-    padding: 10px 0;
-}
-
 /* Ensure content doesn't hide behind fixed navbar */
 .container, .container-fluid {
     padding-top: 20px;
@@ -265,11 +297,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px 20px;
     border-radius: 8px 8px 0 0;
     transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
 }
 
 .nav-tabs .nav-link:hover {
     background-color: var(--soft-green);
     color: var(--primary);
+    border-bottom: 2px solid var(--accent);
 }
 
 .nav-tabs .nav-link.active {
@@ -407,8 +441,16 @@ footer {
         padding-top: 56px; /* Smaller padding for mobile */
     }
     
+    .navbar {
+        min-height: 56px !important;
+    }
+    
     .card, .dashboard-card {
         padding: 15px;
+    }
+    
+    .main-content {
+        padding-top: 60px;
     }
 }
 
