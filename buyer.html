@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyer Marketplace | Agrivision</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-success fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>Agrivision
+            </a>
+            <div class="navbar-nav ms-auto align-items-center">
+                <span class="nav-link me-3">
+                    <i class="fas fa-shopping-basket me-1"></i> Marketplace
+                </span>
+                <button class="btn btn-outline-danger btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-4">
+        <h2 class="mb-4">🛒 Fresh Produce Marketplace</h2>
+        
+        <!-- Search Bar -->
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" placeholder="Search products..." id="searchInput">
+            <button class="btn btn-success" onclick="searchProducts()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- Special Offer -->
+        <div class="alert alert-success mb-4">
+            <h5><i class="fas fa-gift me-2"></i>Weekend Special!</h5>
+            <p class="mb-0">20% off all organic vegetables. Code: <strong>WEEKEND20</strong></p>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="row" id="productsGrid">
+            <!-- Products loaded by JavaScript -->
+        </div>
+        
+        <!-- Meal Kits Section -->
+        <div class="mt-5">
+            <h4 class="mb-4"><i class="fas fa-utensils text-success me-2"></i>Meal Kits</h4>
+            <div class="row">
+                <!-- Meal Kit 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5>🥗 Vegetarian Delight</h5>
+                            <p class="text-muted">3 plant-based meals for 2 people</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h4 text-success">$34.99</span>
+                                <span class="badge bg-info">30 min</span>
+                            </div>
+                            <button class="btn btn-success w-100" onclick="orderMealKit('Vegetarian Delight')">
+                                <i class="fas fa-shopping-cart me-1"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Meal Kit 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5>💪 Protein Power Pack</h5>
+                            <p class="text-muted">High-protein meals for athletes</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h4 text-success">$42.99</span>
+                                <span class="badge bg-info">25 min</span>
+                            </div>
+                            <button class="btn btn-success w-100" onclick="orderMealKit('Protein Power Pack')">
+                                <i class="fas fa-shopping-cart me-1"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customize Meal Kit -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-sliders-h text-success me-2"></i>Customize Your Meal Kit</h5>
+                    <form id="customMealForm" onsubmit="return customizeMealKit(event)">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Base Meal Kit</label>
+                                <select class="form-select" id="baseMeal" required>
+                                    <option>Vegetarian Delight</option>
+                                    <option>Protein Power Pack</option>
+                                    <option>Family Feast</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Portion Size</label>
+                                <select class="form-select" id="portionSize" required>
+                                    <option>Single (1 serving)</option>
+                                    <option>Couple (2 servings)</option>
+                                    <option>Family (4 servings)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Delivery</label>
+                                <select class="form-select" id="deliveryFrequency" required>
+                                    <option>One-time</option>
+                                    <option>Weekly</option>
+                                    <option>Bi-weekly</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Dietary Preferences</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="vegetarian">
+                                        <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="glutenFree">
+                                        <label class="form-check-label" for="glutenFree">Gluten-Free</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="vegan">
+                                        <label class="form-check-label" for="vegan">Vegan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="dairyFree">
+                                        <label class="form-check-label" for="dairyFree">Dairy-Free</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="fas fa-cogs me-1"></i> Create Custom Kit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Shopping Cart -->
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5 class="mb-3"><i class="fas fa-shopping-cart text-success me-2"></i>Shopping Cart</h5>
+                <div id="cartItems">
+                    <!-- Cart items loaded by JavaScript -->
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <h5 class="mb-0">Total: $<span id="cartTotal">0.00</span></h5>
+                    <button class="btn btn-success btn-lg" onclick="checkout()">
+                        <i class="fas fa-credit-card me-1"></i> Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.type !== 'buyer') {
+            window.location.href = 'login.html';
+        }
+
+        // Sample products data
+        const products = [
+            { id: 1, name: 'Organic Tomatoes', price: 2.75, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
+            { id: 2, name: 'Fresh Carrots', price: 1.90, farmer: 'Sunny Acres', category: 'vegetables', organic: false },
+            { id: 3, name: 'Potatoes', price: 1.40, farmer: 'Riverbend Farm', category: 'vegetables', organic: false },
+            { id: 4, name: 'Lettuce', price: 3.00, farmer: 'Green Valley Farm', category: 'vegetables', organic: true },
+            { id: 5, name: 'Apples', price: 2.20, farmer: 'Orchard Hills', category: 'fruits', organic: true },
+            { id: 6, name: 'Fresh Milk', price: 4.50, farmer: 'Happy Cows Dairy', category: 'dairy', organic: true }
+        ];
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+            loadCart();
+        });
+
+        // Display products
+        function displayProducts(productsArray) {
+            const grid = document.getElementById('productsGrid');
+            let html = '';
+            
+            productsArray.forEach(product => {
+                html += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 product-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title">${product.name}</h5>
+                                    ${product.organic ? '<span class="badge bg-success">Organic</span>' : ''}
+                                </div>
+                                <p class="card-text text-muted small">From ${product.farmer}</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <span class="h4 text-success">$${product.price}</span>
+                                        <span class="text-muted">/kg</span>
+                                    </div>
+                                    <span class="badge bg-warning">⭐ 4.5</span>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control" id="qty${product.id}" value="1" min="1">
+                                    <span class="input-group-text">kg</span>
+                                </div>
+                                <button class="btn btn-success w-100" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        // Search products
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.farmer.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            displayProducts(filtered);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const quantity = parseFloat(document.getElementById(`qty${productId}`).value) || 1;
+            
+            const cartItem = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: quantity,
+                total: product.price * quantity
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('buyerCart') || '[]');
+            cart.push(cartItem);
+            localStorage.setItem('buyerCart', JSON.stringify(cart));
+            
+            showNotification(`${product.name} added to cart!`, 'success');
+            loadCart();
+        }
+
+        // Load cart
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('buyerCart') || '[]');
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p class="text-muted">Your cart is empty</p>';
+                cartTotalSpan.textContent = '0.00';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                html += `
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <br>
+                            <small class="text-muted">${item.quantity} kg × $${item.price}/kg</small>
+                        </div>
+                        <div class="text-end">
+                            <div class="h6 mb-0">$${item.total.toFixed(2)}</div>
+                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                total += item.total;
+            });
+            
+            cartItemsDiv.innerHTML = html;
+            cartTotalSpan.textContent = total.toFixed(2);
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('buyerCart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('buyerCart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Order meal kit
+        function orderMealKit(kitName) {
+            const customize = confirm(`Order ${kitName}? Customize it first?`);
+            
+            if (customize) {
+                document.getElementById('baseMeal').value = kitName;
+                document.getElementById('customMealForm').scrollIntoView();
+            } else {
+                showNotification(`${kitName} ordered! Delivery in 2-3 days.`, 'success');
+            }
+        }
+
+        // Customize meal kit
+        function customizeMealKit(e) {
+            e.preventDefault();
+            
+            const baseMeal = document.getElementById('baseMeal').value;
+            const portionSize = document.getElementById('portionSize').value;
+            const frequency = document.getElementById('deliveryFrequency').value;
+            
+            // Get dietary preferences
+            const preferences = [];
+            if (document.getElementById('vegetarian').checked) preferences.push('Vegetarian');
+            if (document.getElementById('vegan').checked) preferences.push('Vegan');
+            if (document.getElementById('glutenFree').checked) preferences.push('Gluten-Free');
+            if (document.getElementById('dairyFree').checked) preferences.push('Dairy-Free');
+            
+            showNotification(
+                `Custom ${baseMeal} ordered! (${portionSize}, ${frequency}, ${preferences.join(', ') || 'No preferences'})`,
+                'success'
+            );
+            
+            e.target.reset();
+            return false;
+        }
+
+        // Checkout
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('buyerCart') || '[]');
+            
+            if (cart.length === 0) {
+                showNotification('Your cart is empty', 'warning');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + item.total, 0);
+            
+            if (confirm(`Confirm purchase for $${total.toFixed(2)}?`)) {
+                // Simulate order placement
+                const order = {
+                    id: Date.now(),
+                    items: cart,
+                    total: total,
+                    date: new Date().toISOString(),
+                    status: 'pending'
+                };
+                
+                let orders = JSON.parse(localStorage.getItem('buyerOrders') || '[]');
+                orders.push(order);
+                localStorage.setItem('buyerOrders', JSON.stringify(orders));
+                
+                // Clear cart
+                localStorage.setItem('buyerCart', '[]');
+                
+                showNotification('Order placed successfully! Thank you for your purchase.', 'success');
+                loadCart();
+            }
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Initialize FontAwesome
+        const faScript = document.createElement('script');
+        faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
+        faScript.crossOrigin = 'anonymous';
+        document.head.appendChild(faScript);
+    </script>
+</body>
+
+</html>

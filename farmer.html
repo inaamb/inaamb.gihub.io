@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Dashboard | Agrivision</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-success fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>Agrivision
+            </a>
+            <div class="navbar-nav ms-auto align-items-center">
+                <span class="nav-link me-3">
+                    <i class="fas fa-user me-1"></i> Farmer Dashboard
+                </span>
+                <button class="btn btn-outline-success btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 pt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 bg-light min-vh-100">
+                <div class="p-3">
+                    <h5 class="mb-4">Menu</h5>
+                    <div class="list-group list-group-flush">
+                        <button class="list-group-item list-group-item-action active" onclick="showSection('dashboard')">
+                            <i class="fas fa-home me-2"></i>Dashboard
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('weather')">
+                            <i class="fas fa-cloud-sun-rain me-2"></i>Weather Alerts
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('prices')">
+                            <i class="fas fa-chart-line me-2"></i>Market Prices
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('products')">
+                            <i class="fas fa-seedling me-2"></i>My Products
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('forum')">
+                            <i class="fas fa-users me-2"></i>Community
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 p-4">
+                <!-- Dashboard Section -->
+                <div id="dashboardSection" class="section">
+                    <h3 class="mb-4">Welcome to Your Farm Dashboard</h3>
+                    
+                    <!-- Quick Stats -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success" id="productCount">0</h4>
+                                <p>Active Products</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">$850</h4>
+                                <p>Monthly Revenue</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">12</h4>
+                                <p>Orders This Month</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">2</h4>
+                                <p>Weather Alerts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-plus text-success me-2"></i>Add New Product</h5>
+                                <form id="addProductForm" onsubmit="return addProduct(event)">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Product Name" required>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <input type="number" class="form-control" placeholder="Quantity" step="0.01" required>
+                                        </div>
+                                        <div class="col">
+                                            <select class="form-select">
+                                                <option>kg</option>
+                                                <option>g</option>
+                                                <option>piece</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" placeholder="Price per unit" step="0.01" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Add Product</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-bell text-warning me-2"></i>Recent Alerts</h5>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    Heavy rain expected tomorrow
+                                </div>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-temperature-high me-2"></i>
+                                    Heat wave in 3 days - water crops early
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Section -->
+                <div id="weatherSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-cloud-sun-rain text-primary me-2"></i>Weather Alerts</h3>
+                    <div class="dashboard-card">
+                        <h5>Current Weather</h5>
+                        <div class="row text-center mt-3">
+                            <div class="col">
+                                <i class="fas fa-sun fa-2x text-warning mb-2"></i>
+                                <h5>28°C</h5>
+                                <p>Temperature</p>
+                            </div>
+                            <div class="col">
+                                <i class="fas fa-tint fa-2x text-info mb-2"></i>
+                                <h5>65%</h5>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="col">
+                                <i class="fas fa-cloud-rain fa-2x text-primary mb-2"></i>
+                                <h5>10%</h5>
+                                <p>Rain Chance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h5>Active Alerts</h5>
+                        <div id="alertsContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Market Prices Section -->
+                <div id="pricesSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-chart-line text-success me-2"></i>Market Prices</h3>
+                    <div class="dashboard-card">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Current Price</th>
+                                    <th>Trend</th>
+                                    <th>AI Suggestion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Tomatoes</strong></td>
+                                    <td>$2.75/kg</td>
+                                    <td><span class="badge bg-success">Increasing</span></td>
+                                    <td><span class="badge bg-info">Wait 1 week</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Potatoes</strong></td>
+                                    <td>$1.40/kg</td>
+                                    <td><span class="badge bg-danger">Decreasing</span></td>
+                                    <td><span class="badge bg-warning">Sell now</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Carrots</strong></td>
+                                    <td>$1.90/kg</td>
+                                    <td><span class="badge bg-success">Increasing</span></td>
+                                    <td><span class="badge bg-info">Wait 3 days</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div id="productsSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-seedling text-success me-2"></i>My Products</h3>
+                    <div id="productsContainer">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Forum Section -->
+                <div id="forumSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-users text-success me-2"></i>Community Forum</h3>
+                    <div class="dashboard-card">
+                        <h5>Recent Questions</h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6>How to control aphids organically?</h6>
+                                <p class="small">Expert answer: Use neem oil solution...</p>
+                            </div>
+                        </div>
+                        <textarea class="form-control mb-2" placeholder="Ask a question..." rows="2"></textarea>
+                        <button class="btn btn-success">Post Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.type !== 'farmer') {
+            window.location.href = 'login.html';
+        }
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            loadWeatherAlerts();
+            updateProductCount();
+        });
+
+        // Section switching
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(div => {
+                div.style.display = 'none';
+            });
+            document.getElementById(section + 'Section').style.display = 'block';
+            
+            document.querySelectorAll('.list-group-item').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Add product function
+        function addProduct(e) {
+            e.preventDefault();
+            const form = e.target;
+            const product = {
+                name: form.querySelector('input[placeholder="Product Name"]').value,
+                quantity: form.querySelector('input[placeholder="Quantity"]').value,
+                price: form.querySelector('input[placeholder="Price per unit"]').value,
+                unit: form.querySelector('select').value
+            };
+            
+            let products = JSON.parse(localStorage.getItem('farmerProducts') || '[]');
+            products.push(product);
+            localStorage.setItem('farmerProducts', JSON.stringify(products));
+            
+            form.reset();
+            loadProducts();
+            updateProductCount();
+            alert('Product added successfully!');
+            return false;
+        }
+
+        function loadProducts() {
+            const products = JSON.parse(localStorage.getItem('farmerProducts') || '[]');
+            const container = document.getElementById('productsContainer');
+            
+            if (products.length === 0) {
+                container.innerHTML = '<div class="alert alert-info">No products yet. Add your first product!</div>';
+                return;
+            }
+            
+            let html = '';
+            products.forEach((product, index) => {
+                html += `
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>${product.name}</h5>
+                                <p class="mb-0">${product.quantity} ${product.unit} • $${product.price}/${product.unit}</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function deleteProduct(index) {
+            let products = JSON.parse(localStorage.getItem('farmerProducts') || '[]');
+            products.splice(index, 1);
+            localStorage.setItem('farmerProducts', JSON.stringify(products));
+            loadProducts();
+            updateProductCount();
+        }
+
+        function updateProductCount() {
+            const products = JSON.parse(localStorage.getItem('farmerProducts') || '[]');
+            document.getElementById('productCount').textContent = products.length;
+        }
+
+        function loadWeatherAlerts() {
+            const alerts = [
+                { type: 'warning', message: 'Heavy rain expected tomorrow - prepare drainage' },
+                { type: 'danger', message: 'Heat wave warning: 35°C expected in 3 days' },
+                { type: 'info', message: 'Wind speeds up to 40 km/h tonight' }
+            ];
+            
+            const container = document.getElementById('alertsContainer');
+            let html = '';
+            alerts.forEach(alert => {
+                html += `
+                    <div class="alert alert-${alert.type}">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        ${alert.message}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
