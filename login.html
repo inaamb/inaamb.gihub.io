@@ -117,6 +117,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Admin Fields -->
+<div id="adminFields" style="display: none;">
+    <div class="mb-3">
+        <label class="form-label">Admin Code</label>
+        <input type="password" class="form-control" id="adminCode" placeholder="Enter admin access code">
+        <small class="text-muted">Required for admin registration</small>
+    </div>
+</div>
                             
                             <button type="submit" class="btn btn-success w-100">Create Account</button>
                         </form>
@@ -155,9 +163,10 @@
         });
 
         function showUserTypeFields(type) {
-            document.getElementById('farmerFields').style.display = type === 'farmer' ? 'block' : 'none';
-            document.getElementById('buyerFields').style.display = type === 'buyer' ? 'block' : 'none';
-        }
+    document.getElementById('farmerFields').style.display = type === 'farmer' ? 'block' : 'none';
+    document.getElementById('buyerFields').style.display = type === 'buyer' ? 'block' : 'none';
+    document.getElementById('adminFields').style.display = type === 'admin' ? 'block' : 'none';
+}
 
         // Form handlers
         function handleLogin(e) {
@@ -189,42 +198,54 @@
         }
 
         function handleSignup(e) {
-            e.preventDefault();
-            
-            const userType = document.querySelector('input[name="userType"]:checked').value;
-            const formData = {
-                email: document.getElementById('signupEmail').value,
-                password: document.getElementById('signupPassword').value,
-                phone: document.getElementById('signupPhone').value,
-                name: document.getElementById('signupName').value
-            };
-            
-            const errors = Validation.validateForm(formData);
-            if (errors.length > 0) {
-                alert(errors.join('\n'));
-                return false;
-            }
-            
-            // Create user based on type
-            if (userType === 'farmer') {
-                const farmer = new Farmer(
-                    formData.name,
-                    formData.email,
-                    document.getElementById('farmName').value,
-                    document.getElementById('farmType').value
-                );
-                farmer.login();
-                localStorage.setItem('farmerProducts', JSON.stringify([]));
-            } else {
-                const buyer = new Buyer(formData.name, formData.email);
-                buyer.login();
-                localStorage.setItem('buyerCart', JSON.stringify([]));
-            }
-            
-            showNotification('Account created successfully!', 'success');
-            setTimeout(() => redirectToDashboard(userType), 1000);
-            return true;
+    e.preventDefault();
+    
+    const userType = document.querySelector('input[name="userType"]:checked').value;
+    const formData = {
+        email: document.getElementById('signupEmail').value,
+        password: document.getElementById('signupPassword').value,
+        phone: document.getElementById('signupPhone').value,
+        name: document.getElementById('signupName').value
+    };
+    
+    // Admin specific validation
+    if (userType === 'admin') {
+        const adminCode = document.getElementById('adminCode').value;
+        if (adminCode !== 'admin123') { // Simple demo code
+            alert('Invalid admin access code');
+            return false;
         }
+    }
+    
+    const errors = Validation.validateForm(formData);
+    if (errors.length > 0) {
+        alert(errors.join('\n'));
+        return false;
+    }
+    
+    // Create user based on type
+    if (userType === 'farmer') {
+        const farmer = new Farmer(
+            formData.name,
+            formData.email,
+            document.getElementById('farmName').value,
+            document.getElementById('farmType').value
+        );
+        farmer.login();
+        localStorage.setItem('farmerProducts', JSON.stringify([]));
+    } else if (userType === 'buyer') {
+        const buyer = new Buyer(formData.name, formData.email);
+        buyer.login();
+        localStorage.setItem('buyerCart', JSON.stringify([]));
+    } else if (userType === 'admin') {
+        const admin = new User('admin', formData.name, formData.email);
+        admin.login();
+    }
+    
+    showNotification('Account created successfully!', 'success');
+    setTimeout(() => redirectToDashboard(userType), 1000);
+    return true;
+}
     </script>
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container text-center">
@@ -235,5 +256,6 @@
 </body>
 
 </html>
+
 
 
