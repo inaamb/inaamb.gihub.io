@@ -1,4 +1,29 @@
 // FarmConnect - Main JavaScript File
+class User {
+    constructor(type, name, email) {
+        this.type = type; // Can be 'farmer', 'buyer', or 'admin'
+        this.name = name;
+        this.email = email;
+        this.isLoggedIn = false;
+    }
+
+    login() {
+        this.isLoggedIn = true;
+        localStorage.setItem('currentUser', JSON.stringify(this));
+        return true;
+    }
+
+    logout() {
+        this.isLoggedIn = false;
+        localStorage.removeItem('currentUser');
+        return true;
+    }
+
+    static getCurrentUser() {
+        const user = localStorage.getItem('currentUser');
+        return user ? JSON.parse(user) : null;
+    }
+}
 class Validation {
     static validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -141,4 +166,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentUser && window.location.pathname.includes('login.html')) {
         redirectToDashboard(currentUser.type);
     }
+
 });
