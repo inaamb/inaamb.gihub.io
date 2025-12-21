@@ -150,10 +150,18 @@ function showNotification(message, type = 'success') {
 }
 
 function redirectToDashboard(userType) {
-    if (userType === 'farmer') {
-        window.location.href = 'farmer.html';
-    } else {
-        window.location.href = 'buyer.html';
+    switch(userType) {
+        case 'farmer':
+            window.location.href = 'farmer.html';
+            break;
+        case 'buyer':
+            window.location.href = 'buyer.html';
+            break;
+        case 'admin':
+            window.location.href = 'admin.html';
+            break;
+        default:
+            window.location.href = 'index.html';
     }
 }
 
@@ -168,3 +176,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
