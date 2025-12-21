@@ -58,6 +58,28 @@ class Validation {
     }
 }
 
+// Add this at the end of script.js or in admin.js
+function createDefaultAdmin() {
+    const defaultAdmin = {
+        type: 'admin',
+        name: 'System Admin',
+        email: 'admin@agrivision.com',
+        password: 'admin123',
+        isLoggedIn: false
+    };
+    
+    // Store in localStorage
+    localStorage.setItem('defaultAdmin', JSON.stringify(defaultAdmin));
+    
+    // Also create in users array for easy login
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    users.push(defaultAdmin);
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+// Call this once
+createDefaultAdmin();
+
 class User {
     constructor(type, name, email) {
         this.type = type;
@@ -176,4 +198,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
 
