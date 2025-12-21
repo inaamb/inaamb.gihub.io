@@ -5,34 +5,9 @@
     <title>Admin Dashboard | Agrivision</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .admin-card {
-            border-left: 4px solid #dc3545;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .admin-badge {
-            background: #dc3545;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-        }
-        .pending-request {
-            border-left: 4px solid #ffc107;
-        }
-        .approved-request {
-            border-left: 4px solid #28a745;
-        }
-        .rejected-request {
-            border-left: 4px solid #dc3545;
-        }
-    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand text-danger fw-bold" href="index.html">
@@ -40,7 +15,7 @@
             </a>
             <div class="navbar-nav ms-auto align-items-center">
                 <span class="nav-link me-3">
-                    <i class="fas fa-user-cog me-1"></i> Administrator
+                    <i class="fas fa-user-cog me-1"></i> System Administrator
                 </span>
                 <button class="btn btn-outline-danger btn-sm" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -54,7 +29,7 @@
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 bg-light min-vh-100">
                 <div class="p-3">
-                    <h5 class="mb-4 text-danger">Admin Menu</h5>
+                    <h5 class="mb-4 text-danger">Admin Controls</h5>
                     <div class="list-group list-group-flush">
                         <button class="list-group-item list-group-item-action active" onclick="showSection('dashboard')">
                             <i class="fas fa-tachometer-alt me-2"></i>Dashboard
@@ -78,6 +53,9 @@
                         <button class="list-group-item list-group-item-action" onclick="showSection('monitor')">
                             <i class="fas fa-desktop me-2"></i>Platform Monitor
                         </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('farms')">
+                            <i class="fas fa-tractor me-2"></i>Farm Management
+                        </button>
                     </div>
                 </div>
             </div>
@@ -91,26 +69,26 @@
                     <!-- Quick Stats -->
                     <div class="row mb-4">
                         <div class="col-md-3 mb-3">
-                            <div class="admin-card text-center">
-                                <h2 class="text-danger" id="totalUsers">0</h2>
+                            <div class="dashboard-card" style="border-left-color: #dc3545;">
+                                <h4 class="text-danger" id="totalUsers">0</h4>
                                 <p>Total Users</p>
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <div class="admin-card text-center">
-                                <h2 class="text-danger" id="pendingRequests">3</h2>
+                            <div class="dashboard-card" style="border-left-color: #ffc107;">
+                                <h4 class="text-warning" id="pendingRequests">3</h4>
                                 <p>Pending Requests</p>
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <div class="admin-card text-center">
-                                <h2 class="text-danger" id="activeProducts">0</h2>
+                            <div class="dashboard-card" style="border-left-color: #28a745;">
+                                <h4 class="text-success" id="activeProducts">0</h4>
                                 <p>Active Products</p>
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <div class="admin-card text-center">
-                                <h2 class="text-danger" id="revenue">$0</h2>
+                            <div class="dashboard-card" style="border-left-color: #17a2b8;">
+                                <h4 class="text-info" id="revenue">$0</h4>
                                 <p>Platform Revenue</p>
                             </div>
                         </div>
@@ -118,9 +96,9 @@
 
                     <!-- Quick Actions -->
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-plus-circle text-danger me-2"></i>Quick Actions</h5>
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-bolt text-danger me-2"></i>Quick Actions</h5>
                                 <div class="d-grid gap-2 mt-3">
                                     <button class="btn btn-outline-danger" onclick="showSection('users')">
                                         <i class="fas fa-user-check me-2"></i>Approve New Users
@@ -131,28 +109,43 @@
                                     <button class="btn btn-outline-danger" onclick="showSection('weather')">
                                         <i class="fas fa-cloud-upload-alt me-2"></i>Add Weather Alert
                                     </button>
+                                    <button class="btn btn-outline-danger" onclick="showSection('requests')">
+                                        <i class="fas fa-inbox me-2"></i>Review Farmer Requests
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-md-6 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-exclamation-triangle text-warning me-2"></i>Recent Activity</h5>
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-history text-danger me-2"></i>Recent Activity</h5>
                                 <div class="mt-3">
                                     <div class="alert alert-warning small mb-2">
                                         <i class="fas fa-clock me-2"></i>
-                                        3 pending farmer requests
+                                        <strong>3 pending requests</strong> from farmers
                                     </div>
                                     <div class="alert alert-info small mb-2">
                                         <i class="fas fa-user-plus me-2"></i>
-                                        2 new user registrations
+                                        <strong>2 new users</strong> registered today
                                     </div>
-                                    <div class="alert alert-success small">
-                                        <i class="fas fa-check-circle me-2"></i>
-                                        5 orders completed today
+                                    <div class="alert alert-success small mb-2">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        <strong>8 orders</strong> completed today
+                                    </div>
+                                    <div class="alert alert-primary small">
+                                        <i class="fas fa-cloud me-2"></i>
+                                        <strong>Weather alert</strong> sent to North Region
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Requests -->
+                    <div class="dashboard-card mt-4">
+                        <h5><i class="fas fa-inbox text-danger me-2"></i>Recent Farmer Requests</h5>
+                        <div id="recentRequests" class="mt-3">
+                            <!-- Will be loaded by JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -161,12 +154,35 @@
                 <div id="usersSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-users text-danger me-2"></i>User Management</h3>
                     
-                    <div class="admin-card">
-                        <div class="d-flex justify-content-between mb-3">
-                            <h5>All Users</h5>
-                            <input type="text" class="form-control w-25" placeholder="Search users..." onkeyup="searchUsers()" id="userSearch">
+                    <!-- User Actions -->
+                    <div class="dashboard-card mb-4">
+                        <h5><i class="fas fa-user-cog text-danger me-2"></i>User Actions</h5>
+                        <div class="row mt-3">
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="searchUsers" placeholder="Search users...">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <select class="form-select" id="filterUserType">
+                                    <option value="">All Types</option>
+                                    <option value="farmer">Farmers</option>
+                                    <option value="buyer">Buyers</option>
+                                    <option value="admin">Admins</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <select class="form-select" id="filterUserStatus">
+                                    <option value="">All Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="banned">Banned</option>
+                                </select>
+                            </div>
                         </div>
-                        
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="dashboard-card">
+                        <h5>User List</h5>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -176,6 +192,7 @@
                                         <th>Email</th>
                                         <th>Type</th>
                                         <th>Status</th>
+                                        <th>Registered</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -192,9 +209,9 @@
                     <h3 class="mb-4"><i class="fas fa-seedling text-danger me-2"></i>Product Management</h3>
                     
                     <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-plus text-danger me-2"></i>Add Product</h5>
+                        <div class="col-md-4">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-plus-circle text-danger me-2"></i>Add Product</h5>
                                 <form id="addProductForm" onsubmit="return addProduct(event)">
                                     <div class="mb-3">
                                         <input type="text" class="form-control" placeholder="Product Name" required>
@@ -202,28 +219,52 @@
                                     <div class="mb-3">
                                         <select class="form-select" required>
                                             <option value="">Select Category</option>
-                                            <option>Vegetable</option>
-                                            <option>Fruit</option>
-                                            <option>Grain</option>
+                                            <option>Vegetables</option>
+                                            <option>Fruits</option>
+                                            <option>Grains</option>
                                             <option>Dairy</option>
                                             <option>Meat</option>
+                                            <option>Herbs</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="number" class="form-control" placeholder="Price" step="0.01" required>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <input type="number" class="form-control" placeholder="Price" step="0.01" required>
+                                        </div>
+                                        <div class="col">
+                                            <select class="form-select">
+                                                <option>kg</option>
+                                                <option>g</option>
+                                                <option>liter</option>
+                                                <option>piece</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Farmer Name">
+                                        <input type="text" class="form-control" placeholder="Farmer/Farm Name">
                                     </div>
-                                    <button type="submit" class="btn btn-danger w-100">Add Product</button>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="organicCheck">
+                                        <label class="form-check-label" for="organicCheck">Organic Certified</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger w-100">Add to Catalog</button>
                                 </form>
                             </div>
                         </div>
                         
-                        <div class="col-md-8 mb-3">
-                            <div class="admin-card">
-                                <h5>All Products</h5>
-                                <div id="productsList">
+                        <div class="col-md-8">
+                            <div class="dashboard-card">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>All Products</h5>
+                                    <div class="input-group w-50">
+                                        <input type="text" class="form-control" placeholder="Search products..." id="searchProducts">
+                                        <button class="btn btn-outline-danger" type="button" onclick="searchProducts()">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="productsContainer">
                                     <!-- Products loaded by JavaScript -->
                                 </div>
                             </div>
@@ -233,13 +274,13 @@
 
                 <!-- Market Prices Section -->
                 <div id="pricesSection" class="section" style="display: none;">
-                    <h3 class="mb-4"><i class="fas fa-chart-line text-danger me-2"></i>Market Prices</h3>
+                    <h3 class="mb-4"><i class="fas fa-chart-line text-danger me-2"></i>Market Prices Management</h3>
                     
-                    <div class="admin-card">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
                             <h5>Current Market Prices</h5>
-                            <button class="btn btn-danger btn-sm" onclick="updateAllPrices()">
-                                <i class="fas fa-sync-alt me-1"></i> Update All
+                            <button class="btn btn-danger" onclick="updateAllPrices()">
+                                <i class="fas fa-sync-alt me-1"></i> Update All Prices
                             </button>
                         </div>
                         
@@ -247,9 +288,11 @@
                             <thead>
                                 <tr>
                                     <th>Product</th>
+                                    <th>Market</th>
                                     <th>Current Price</th>
                                     <th>Trend</th>
                                     <th>Last Updated</th>
+                                    <th>AI Suggestion</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -258,26 +301,33 @@
                             </tbody>
                         </table>
                         
-                        <div class="mt-4">
-                            <h6>Add New Price Entry</h6>
-                            <div class="row">
-                                <div class="col-md-4 mb-2">
-                                    <input type="text" class="form-control" placeholder="Product Name" id="newPriceProduct">
+                        <!-- Add New Price -->
+                        <div class="mt-4 p-3 bg-light rounded">
+                            <h6><i class="fas fa-plus text-danger me-2"></i>Add New Price Entry</h6>
+                            <form id="addPriceForm" onsubmit="return addPriceEntry(event)">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2">
+                                        <input type="text" class="form-control" placeholder="Product Name" required>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <input type="text" class="form-control" placeholder="Market" required>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <input type="number" class="form-control" placeholder="Price" step="0.01" required>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <select class="form-select" required>
+                                            <option value="">Trend</option>
+                                            <option>increasing</option>
+                                            <option>decreasing</option>
+                                            <option>stable</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <button type="submit" class="btn btn-danger w-100">Add Price Entry</button>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 mb-2">
-                                    <input type="number" class="form-control" placeholder="Price" step="0.01" id="newPriceValue">
-                                </div>
-                                <div class="col-md-3 mb-2">
-                                    <select class="form-select" id="newPriceTrend">
-                                        <option>stable</option>
-                                        <option>increasing</option>
-                                        <option>decreasing</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2 mb-2">
-                                    <button class="btn btn-danger w-100" onclick="addNewPrice()">Add</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -287,47 +337,75 @@
                     <h3 class="mb-4"><i class="fas fa-cloud-sun-rain text-danger me-2"></i>Weather Data Management</h3>
                     
                     <div class="row">
-                        <div class="col-md-5 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-plus-circle text-danger me-2"></i>Add Weather Alert</h5>
-                                <form id="weatherForm" onsubmit="return addWeatherAlert(event)">
+                        <div class="col-md-5">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-bullhorn text-danger me-2"></i>Create Weather Alert</h5>
+                                <form id="weatherAlertForm" onsubmit="return createWeatherAlert(event)">
                                     <div class="mb-3">
                                         <label class="form-label">Alert Type</label>
                                         <select class="form-select" required>
                                             <option value="">Select Type</option>
                                             <option>Rain</option>
                                             <option>Storm</option>
-                                            <option>Heat</option>
+                                            <option>Heat Wave</option>
                                             <option>Frost</option>
-                                            <option>Wind</option>
+                                            <option>High Winds</option>
+                                            <option>Drought</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Severity</label>
+                                        <label class="form-label">Severity Level</label>
                                         <select class="form-select" required>
+                                            <option value="">Select Severity</option>
                                             <option>Low</option>
                                             <option>Medium</option>
                                             <option>High</option>
+                                            <option>Critical</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Message</label>
-                                        <textarea class="form-control" rows="3" required></textarea>
+                                        <label class="form-label">Affected Regions</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="northRegion" checked>
+                                            <label class="form-check-label" for="northRegion">North Region</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="southRegion">
+                                            <label class="form-check-label" for="southRegion">South Region</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="eastRegion">
+                                            <label class="form-check-label" for="eastRegion">East Region</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="westRegion">
+                                            <label class="form-check-label" for="westRegion">West Region</label>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Affected Region</label>
-                                        <input type="text" class="form-control" required>
+                                        <label class="form-label">Alert Message</label>
+                                        <textarea class="form-control" rows="3" placeholder="Enter detailed alert message..." required></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-danger w-100">Publish Alert</button>
+                                    <div class="mb-3">
+                                        <label class="form-label">Effective Date</label>
+                                        <input type="date" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger w-100">
+                                        <i class="fas fa-paper-plane me-1"></i> Publish Alert
+                                    </button>
                                 </form>
                             </div>
                         </div>
                         
-                        <div class="col-md-7 mb-3">
-                            <div class="admin-card">
-                                <h5>Active Weather Alerts</h5>
-                                <div id="weatherAlerts">
-                                    <!-- Alerts loaded by JavaScript -->
+                        <div class="col-md-7">
+                            <div class="dashboard-card">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Active Weather Alerts</h5>
+                                    <span class="badge bg-danger" id="activeAlertsCount">0</span>
+                                </div>
+                                
+                                <div id="weatherAlertsContainer">
+                                    <!-- Weather alerts loaded by JavaScript -->
                                 </div>
                             </div>
                         </div>
@@ -338,6 +416,11 @@
                 <div id="requestsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-inbox text-danger me-2"></i>Farmer Update Requests</h3>
                     
+                    <div class="alert alert-info mb-4">
+                        <i class="fas fa-info-circle me-2"></i>
+                        These are product update requests submitted by farmers. Approve or reject each request.
+                    </div>
+                    
                     <div id="requestsContainer">
                         <!-- Requests loaded by JavaScript -->
                     </div>
@@ -347,59 +430,145 @@
                 <div id="monitorSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-desktop text-danger me-2"></i>Platform Monitoring</h3>
                     
+                    <!-- System Stats -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <div class="dashboard-card text-center">
+                                <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                                <h4 id="onlineUsers">12</h4>
+                                <p>Online Users</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="dashboard-card text-center">
+                                <i class="fas fa-server fa-2x text-warning mb-2"></i>
+                                <h4 id="serverLoad">45%</h4>
+                                <p>Server Load</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="dashboard-card text-center">
+                                <i class="fas fa-shopping-cart fa-2x text-success mb-2"></i>
+                                <h4 id="dailyOrders">8</h4>
+                                <p>Today's Orders</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="dashboard-card text-center">
+                                <i class="fas fa-database fa-2x text-info mb-2"></i>
+                                <h4 id="storageUsed">65%</h4>
+                                <p>Storage Used</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Controls -->
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-chart-bar text-danger me-2"></i>Platform Stats</h5>
-                                <div class="mt-3">
-                                    <div class="mb-3">
-                                        <label>Online Users: <span class="badge bg-success" id="onlineUsers">12</span></label>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" style="width: 60%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Server Load: <span class="badge bg-warning" id="serverLoad">45%</span></label>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Orders Today: <span class="badge bg-info" id="dailyOrders">8</span></label>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-info" style="width: 40%"></div>
-                                        </div>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-cogs text-danger me-2"></i>System Controls</h5>
+                                <div class="d-grid gap-2 mt-3">
+                                    <button class="btn btn-outline-danger" onclick="backupDatabase()">
+                                        <i class="fas fa-database me-2"></i>Backup Database
+                                    </button>
+                                    <button class="btn btn-outline-danger" onclick="clearCache()">
+                                        <i class="fas fa-broom me-2"></i>Clear System Cache
+                                    </button>
+                                    <button class="btn btn-outline-danger" onclick="sendSystemAlert()">
+                                        <i class="fas fa-broadcast-tower me-2"></i>Send System Notification
+                                    </button>
+                                    <button class="btn btn-outline-danger" onclick="generateReport()">
+                                        <i class="fas fa-chart-pie me-2"></i>Generate Monthly Report
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-md-6 mb-3">
-                            <div class="admin-card">
-                                <h5><i class="fas fa-cogs text-danger me-2"></i>System Controls</h5>
+                        <div class="col-md-6">
+                            <div class="dashboard-card">
+                                <h5><i class="fas fa-shield-alt text-danger me-2"></i>Security</h5>
                                 <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-outline-danger" onclick="clearOldData()">
-                                        <i class="fas fa-trash-alt me-2"></i>Clear Old Data
+                                    <button class="btn btn-outline-danger" onclick="scanSecurity()">
+                                        <i class="fas fa-shield-virus me-2"></i>Security Scan
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="backupDatabase()">
-                                        <i class="fas fa-database me-2"></i>Backup Database
+                                    <button class="btn btn-outline-danger" onclick="viewAuditLog()">
+                                        <i class="fas fa-clipboard-list me-2"></i>View Audit Logs
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="sendSystemAlert()">
-                                        <i class="fas fa-broadcast-tower me-2"></i>Send System Alert
+                                    <button class="btn btn-outline-danger" onclick="updateSystem()">
+                                        <i class="fas fa-download me-2"></i>System Update
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- System Logs -->
+                    <div class="dashboard-card mt-4">
+                        <h5><i class="fas fa-clipboard-list text-danger me-2"></i>Recent System Logs</h5>
+                        <div id="systemLogs" class="mt-3">
+                            <!-- Logs loaded by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farm Management Section -->
+                <div id="farmsSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-tractor text-danger me-2"></i>Farm Management</h3>
                     
-                    <div class="admin-card">
-                        <h5>Recent System Logs</h5>
-                        <div class="small text-muted">
-                            <div class="border-bottom py-2">[10:30] User "john@farm.com" updated product</div>
-                            <div class="border-bottom py-2">[10:15] New order #1005 placed</div>
-                            <div class="border-bottom py-2">[09:45] Weather alert sent to North Region</div>
-                            <div class="border-bottom py-2">[09:30] System backup completed</div>
-                            <div class="py-2">[08:15] 3 new user registrations</div>
+                    <div class="dashboard-card mb-4">
+                        <h5><i class="fas fa-edit text-danger me-2"></i>Update Farm Information</h5>
+                        <form id="updateFarmForm" onsubmit="return updateFarmInfo(event)">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Select Farm</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select a farm...</option>
+                                        <option>Green Valley Farm</option>
+                                        <option>Sunny Acres</option>
+                                        <option>Riverbend Farm</option>
+                                        <option>Orchard Hills</option>
+                                        <option>Happy Cows Dairy</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Farm Type</label>
+                                    <select class="form-select">
+                                        <option value="">Update farm type...</option>
+                                        <option>Crop Farming</option>
+                                        <option>Livestock</option>
+                                        <option>Mixed Farming</option>
+                                        <option>Orchard</option>
+                                        <option>Dairy Farm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Farm Size (acres)</label>
+                                    <input type="number" class="form-control" placeholder="Enter size">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" placeholder="Update location">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Certification</label>
+                                    <select class="form-select">
+                                        <option value="">Select certification</option>
+                                        <option>Organic Certified</option>
+                                        <option>GAP Certified</option>
+                                        <option>Non-Certified</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">Update Farm Information</button>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h5><i class="fas fa-list text-danger me-2"></i>All Farms</h5>
+                        <div id="farmsList" class="mt-3">
+                            <!-- Farms loaded by JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -408,504 +577,6 @@
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script>
-        // ==============================
-        // ADMIN SESSION MANAGEMENT
-        // ==============================
-        
-        // Check if admin is logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser || currentUser.type !== 'admin') {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            // Load all admin data
-            loadUsers();
-            loadProducts();
-            loadMarketPrices();
-            loadWeatherAlerts();
-            loadFarmerRequests();
-            updateDashboardStats();
-            updateRequestBadge();
-        });
-
-        // ==============================
-        // SECTION MANAGEMENT
-        // ==============================
-        
-        function showSection(section) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(div => {
-                div.style.display = 'none';
-            });
-            
-            // Show selected section
-            document.getElementById(section + 'Section').style.display = 'block';
-            
-            // Update active menu item
-            document.querySelectorAll('.list-group-item').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        // ==============================
-        // USER MANAGEMENT
-        // ==============================
-        
-        // Sample users data
-        const allUsers = [
-            { id: 1, name: 'John Farmer', email: 'john@farm.com', type: 'farmer', status: 'active' },
-            { id: 2, name: 'Sarah Grower', email: 'sarah@farm.com', type: 'farmer', status: 'active' },
-            { id: 3, name: 'Mike Customer', email: 'mike@buyer.com', type: 'buyer', status: 'active' },
-            { id: 4, name: 'Lisa Shopper', email: 'lisa@buyer.com', type: 'buyer', status: 'pending' },
-            { id: 5, name: 'New Farmer', email: 'new@farm.com', type: 'farmer', status: 'pending' },
-            { id: 6, name: 'Bob Buyer', email: 'bob@buyer.com', type: 'buyer', status: 'banned' }
-        ];
-
-        function loadUsers() {
-            const table = document.getElementById('usersTable');
-            let html = '';
-            
-            allUsers.forEach(user => {
-                const statusClass = user.status === 'active' ? 'badge bg-success' : 
-                                  user.status === 'pending' ? 'badge bg-warning' : 
-                                  'badge bg-danger';
-                
-                html += `
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td><span class="badge ${user.type === 'farmer' ? 'bg-primary' : 'bg-info'}">${user.type}</span></td>
-                        <td><span class="${statusClass}">${user.status}</span></td>
-                        <td>
-                            ${user.status === 'pending' ? 
-                                `<button class="btn btn-sm btn-success me-1" onclick="approveUser(${user.id})">Approve</button>` : ''}
-                            ${user.status === 'pending' ? 
-                                `<button class="btn btn-sm btn-danger me-1" onclick="rejectUser(${user.id})">Reject</button>` : ''}
-                            ${user.status === 'active' ? 
-                                `<button class="btn btn-sm btn-warning me-1" onclick="banUser(${user.id})">Ban</button>` : ''}
-                            ${user.status === 'banned' ? 
-                                `<button class="btn btn-sm btn-info me-1" onclick="unbanUser(${user.id})">Unban</button>` : ''}
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            table.innerHTML = html;
-            document.getElementById('totalUsers').textContent = allUsers.length;
-        }
-
-        function searchUsers() {
-            const searchTerm = document.getElementById('userSearch').value.toLowerCase();
-            const table = document.getElementById('usersTable');
-            let html = '';
-            
-            allUsers.forEach(user => {
-                if (user.name.toLowerCase().includes(searchTerm) || 
-                    user.email.toLowerCase().includes(searchTerm) || 
-                    user.type.toLowerCase().includes(searchTerm)) {
-                    
-                    const statusClass = user.status === 'active' ? 'badge bg-success' : 
-                                      user.status === 'pending' ? 'badge bg-warning' : 
-                                      'badge bg-danger';
-                    
-                    html += `
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <td><span class="badge ${user.type === 'farmer' ? 'bg-primary' : 'bg-info'}">${user.type}</span></td>
-                            <td><span class="${statusClass}">${user.status}</span></td>
-                            <td>
-                                ${user.status === 'pending' ? 
-                                    `<button class="btn btn-sm btn-success me-1" onclick="approveUser(${user.id})">Approve</button>` : ''}
-                                ${user.status === 'pending' ? 
-                                    `<button class="btn btn-sm btn-danger me-1" onclick="rejectUser(${user.id})">Reject</button>` : ''}
-                                ${user.status === 'active' ? 
-                                    `<button class="btn btn-sm btn-warning me-1" onclick="banUser(${user.id})">Ban</button>` : ''}
-                                ${user.status === 'banned' ? 
-                                    `<button class="btn btn-sm btn-info me-1" onclick="unbanUser(${user.id})">Unban</button>` : ''}
-                            </td>
-                        </tr>
-                    `;
-                }
-            });
-            
-            table.innerHTML = html || '<tr><td colspan="6" class="text-center">No users found</td></tr>';
-        }
-
-        function approveUser(userId) {
-            const user = allUsers.find(u => u.id === userId);
-            if (user) {
-                user.status = 'active';
-                alert(`User ${user.name} approved successfully!`);
-                loadUsers();
-                updateDashboardStats();
-            }
-        }
-
-        function rejectUser(userId) {
-            if (confirm('Are you sure you want to reject this user?')) {
-                const user = allUsers.find(u => u.id === userId);
-                if (user) {
-                    user.status = 'rejected';
-                    alert(`User ${user.name} rejected.`);
-                    loadUsers();
-                }
-            }
-        }
-
-        function banUser(userId) {
-            const reason = prompt('Enter ban reason:');
-            if (reason) {
-                const user = allUsers.find(u => u.id === userId);
-                if (user) {
-                    user.status = 'banned';
-                    alert(`User ${user.name} banned. Reason: ${reason}`);
-                    loadUsers();
-                }
-            }
-        }
-
-        function unbanUser(userId) {
-            const user = allUsers.find(u => u.id === userId);
-            if (user) {
-                user.status = 'active';
-                alert(`User ${user.name} unbanned.`);
-                loadUsers();
-            }
-        }
-
-        // ==============================
-        // PRODUCT MANAGEMENT
-        // ==============================
-        
-        function loadProducts() {
-            const products = [
-                { id: 1, name: 'Organic Tomatoes', price: 2.75, farmer: 'Green Valley Farm', category: 'Vegetable' },
-                { id: 2, name: 'Fresh Carrots', price: 1.90, farmer: 'Sunny Acres', category: 'Vegetable' },
-                { id: 3, name: 'Potatoes', price: 1.40, farmer: 'Riverbend Farm', category: 'Vegetable' },
-                { id: 4, name: 'Apples', price: 2.20, farmer: 'Orchard Hills', category: 'Fruit' }
-            ];
-            
-            const container = document.getElementById('productsList');
-            let html = '<div class="table-responsive"><table class="table table-sm"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Farmer</th><th>Actions</th></tr></thead><tbody>';
-            
-            products.forEach(product => {
-                html += `
-                    <tr>
-                        <td>${product.name}</td>
-                        <td><span class="badge bg-secondary">${product.category}</span></td>
-                        <td>$${product.price}/kg</td>
-                        <td>${product.farmer}</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-danger me-1" onclick="editProduct(${product.id})">Edit</button>
-                            <button class="btn btn-sm btn-outline-dark" onclick="deleteProduct(${product.id})">Delete</button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            html += '</tbody></table></div>';
-            container.innerHTML = html;
-            document.getElementById('activeProducts').textContent = products.length;
-        }
-
-        function addProduct(e) {
-            e.preventDefault();
-            alert('Product added to catalog!');
-            e.target.reset();
-            loadProducts();
-            return false;
-        }
-
-        function editProduct(productId) {
-            const newPrice = prompt('Enter new price:');
-            if (newPrice && !isNaN(newPrice)) {
-                alert(`Product #${productId} price updated to $${newPrice}`);
-            }
-        }
-
-        function deleteProduct(productId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                alert(`Product #${productId} deleted from catalog`);
-                // In real app, you would remove from array and reload
-            }
-        }
-
-        // ==============================
-        // MARKET PRICES MANAGEMENT
-        // ==============================
-        
-        function loadMarketPrices() {
-            const prices = [
-                { product: 'Tomatoes', price: 2.75, trend: 'increasing', updated: 'Today' },
-                { product: 'Potatoes', price: 1.40, trend: 'stable', updated: 'Yesterday' },
-                { product: 'Carrots', price: 1.90, trend: 'increasing', updated: 'Today' },
-                { product: 'Lettuce', price: 3.00, trend: 'decreasing', updated: '2 days ago' }
-            ];
-            
-            const table = document.getElementById('pricesTable');
-            let html = '';
-            
-            prices.forEach(item => {
-                const trendClass = item.trend === 'increasing' ? 'badge bg-success' : 
-                                 item.trend === 'decreasing' ? 'badge bg-danger' : 
-                                 'badge bg-secondary';
-                
-                html += `
-                    <tr>
-                        <td><strong>${item.product}</strong></td>
-                        <td>$${item.price}/kg</td>
-                        <td><span class="${trendClass}">${item.trend}</span></td>
-                        <td>${item.updated}</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-danger" onclick="updatePrice('${item.product}')">Update</button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            table.innerHTML = html;
-        }
-
-        function updatePrice(product) {
-            const newPrice = prompt(`Enter new price for ${product}:`);
-            if (newPrice && !isNaN(newPrice)) {
-                alert(`${product} price updated to $${newPrice}`);
-                loadMarketPrices();
-            }
-        }
-
-        function updateAllPrices() {
-            if (confirm('Update all market prices from latest data?')) {
-                alert('All market prices updated successfully!');
-                loadMarketPrices();
-            }
-        }
-
-        function addNewPrice() {
-            const product = document.getElementById('newPriceProduct').value;
-            const price = document.getElementById('newPriceValue').value;
-            const trend = document.getElementById('newPriceTrend').value;
-            
-            if (product && price) {
-                alert(`New price entry added: ${product} - $${price} (${trend})`);
-                document.getElementById('newPriceProduct').value = '';
-                document.getElementById('newPriceValue').value = '';
-                loadMarketPrices();
-            } else {
-                alert('Please fill all fields');
-            }
-        }
-
-        // ==============================
-        // WEATHER DATA MANAGEMENT
-        // ==============================
-        
-        function loadWeatherAlerts() {
-            const alerts = [
-                { type: 'Rain', severity: 'High', message: 'Heavy rainfall expected', region: 'North Region', date: 'Today' },
-                { type: 'Heat', severity: 'Medium', message: 'Heat wave warning', region: 'South Region', date: 'Tomorrow' },
-                { type: 'Wind', severity: 'Low', message: 'Strong winds expected', region: 'East Region', date: 'Today' }
-            ];
-            
-            const container = document.getElementById('weatherAlerts');
-            let html = '';
-            
-            alerts.forEach(alert => {
-                const severityClass = alert.severity === 'High' ? 'badge bg-danger' : 
-                                    alert.severity === 'Medium' ? 'badge bg-warning' : 
-                                    'badge bg-info';
-                
-                html += `
-                    <div class="alert alert-light border mb-2">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <strong>${alert.type} Alert</strong>
-                                <span class="${severityClass} ms-2">${alert.severity}</span>
-                            </div>
-                            <small class="text-muted">${alert.date}</small>
-                        </div>
-                        <p class="mb-1 small">${alert.message}</p>
-                        <small class="text-muted">Region: ${alert.region}</small>
-                        <div class="mt-2">
-                            <button class="btn btn-sm btn-outline-danger" onclick="removeWeatherAlert('${alert.type}')">Remove</button>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-        }
-
-        function addWeatherAlert(e) {
-            e.preventDefault();
-            alert('Weather alert published to all farmers!');
-            e.target.reset();
-            loadWeatherAlerts();
-            return false;
-        }
-
-        function removeWeatherAlert(alertType) {
-            if (confirm(`Remove ${alertType} alert?`)) {
-                alert(`${alertType} alert removed`);
-                loadWeatherAlerts();
-            }
-        }
-
-        // ==============================
-        // FARMER REQUESTS MANAGEMENT
-        // ==============================
-        
-        function loadFarmerRequests() {
-            const requests = [
-                { id: 1, farmer: 'John Farmer', product: 'Organic Tomatoes', request: 'Update price to $3.00/kg', status: 'pending', date: '2024-01-15' },
-                { id: 2, farmer: 'Sarah Grower', product: 'Carrots', request: 'Add organic certification', status: 'pending', date: '2024-01-14' },
-                { id: 3, farmer: 'John Farmer', product: 'Lettuce', request: 'Increase quantity to 50kg', status: 'pending', date: '2024-01-15' },
-                { id: 4, farmer: 'Riverbend Farm', product: 'Potatoes', request: 'Change category to Organic', status: 'approved', date: '2024-01-13' }
-            ];
-            
-            const container = document.getElementById('requestsContainer');
-            let html = '';
-            
-            requests.forEach(req => {
-                const statusClass = req.status === 'pending' ? 'pending-request' : 
-                                  req.status === 'approved' ? 'approved-request' : 
-                                  'rejected-request';
-                
-                html += `
-                    <div class="admin-card ${statusClass} mb-3">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h6>${req.product}</h6>
-                                <p class="mb-1">Farmer: <strong>${req.farmer}</strong></p>
-                                <p class="mb-1 small">Request: ${req.request}</p>
-                                <small class="text-muted">Date: ${req.date}</small>
-                            </div>
-                            <div>
-                                <span class="badge ${req.status === 'pending' ? 'bg-warning' : 
-                                                 req.status === 'approved' ? 'bg-success' : 
-                                                 'bg-danger'}">${req.status}</span>
-                            </div>
-                        </div>
-                        
-                        ${req.status === 'pending' ? `
-                            <div class="mt-3">
-                                <button class="btn btn-sm btn-success me-2" onclick="approveRequest(${req.id})">
-                                    <i class="fas fa-check me-1"></i> Approve
-                                </button>
-                                <button class="btn btn-sm btn-danger" onclick="rejectRequest(${req.id})">
-                                    <i class="fas fa-times me-1"></i> Reject
-                                </button>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-            
-            // Update pending count
-            const pendingCount = requests.filter(r => r.status === 'pending').length;
-            document.getElementById('pendingRequests').textContent = pendingCount;
-        }
-
-        function approveRequest(requestId) {
-            if (confirm('Approve this farmer request?')) {
-                alert(`Request #${requestId} approved. Farmer has been notified.`);
-                loadFarmerRequests();
-                updateRequestBadge();
-            }
-        }
-
-        function rejectRequest(requestId) {
-            const reason = prompt('Enter rejection reason:');
-            if (reason) {
-                alert(`Request #${requestId} rejected. Reason: ${reason}\nFarmer has been notified.`);
-                loadFarmerRequests();
-                updateRequestBadge();
-            }
-        }
-
-        function updateRequestBadge() {
-            const pendingCount = parseInt(document.getElementById('pendingRequests').textContent);
-            const badge = document.getElementById('requestBadge');
-            badge.textContent = pendingCount;
-            if (pendingCount === 0) {
-                badge.classList.remove('bg-danger');
-                badge.classList.add('bg-secondary');
-            } else {
-                badge.classList.remove('bg-secondary');
-                badge.classList.add('bg-danger');
-            }
-        }
-
-        // ==============================
-        // PLATFORM MONITORING
-        // ==============================
-        
-        function clearOldData() {
-            if (confirm('Clear data older than 30 days?')) {
-                alert('Old data cleared successfully!');
-            }
-        }
-
-        function backupDatabase() {
-            alert('Database backup started... This may take a few minutes.');
-            setTimeout(() => {
-                alert('Database backup completed successfully!');
-            }, 2000);
-        }
-
-        function sendSystemAlert() {
-            const message = prompt('Enter system alert message for all users:');
-            if (message) {
-                alert(`System alert sent: "${message}"`);
-            }
-        }
-
-        // ==============================
-        // DASHBOARD STATS
-        // ==============================
-        
-        function updateDashboardStats() {
-            // Update online users randomly
-            const online = Math.floor(Math.random() * 20) + 5;
-            document.getElementById('onlineUsers').textContent = online;
-            
-            // Update server load randomly
-            const load = Math.floor(Math.random() * 60) + 20;
-            document.getElementById('serverLoad').textContent = load + '%';
-            
-            // Update daily orders
-            const orders = Math.floor(Math.random() * 15) + 3;
-            document.getElementById('dailyOrders').textContent = orders;
-            
-            // Update revenue
-            const revenue = (orders * 25.99).toFixed(2);
-            document.getElementById('revenue').textContent = '$' + revenue;
-        }
-
-        // ==============================
-        // LOGOUT FUNCTION
-        // ==============================
-        
-        function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
-        }
-
-        // ==============================
-        // AUTO REFRESH STATS
-        // ==============================
-        
-        // Refresh dashboard stats every 30 seconds
-        setInterval(updateDashboardStats, 30000);
-    </script>
+    <script src="admin.js"></script>
 </body>
 </html>
