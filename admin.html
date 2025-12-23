@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--Navigation-->
+    <!--navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand text-danger fw-bold" href="index.html">
@@ -17,7 +17,7 @@
                 <span class="nav-link me-3">
                     <i class="fas fa-user-cog me-1"></i> System Administrator
                 </span>
-                <button class="btn btn-outline-danger btn-sm" onclick="logout()">
+                <button class="btn btn-danger btn-sm" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
@@ -26,7 +26,7 @@
 
     <div class="container-fluid mt-5 pt-4">
         <div class="row">
-            <!--Sidebar-->
+            <!--sidebar-->
             <div class="col-md-3 col-lg-2 bg-light min-vh-100">
                 <div class="p-3">
                     <h5 class="mb-4 text-danger">Admin Controls</h5>
@@ -60,13 +60,13 @@
                 </div>
             </div>
 
-            <!--Main Content-->
+            <!--main content-->
             <div class="col-md-9 col-lg-10 p-4">
-                <!--Dashboard Section-->
+                <!--dashboard section-->
                 <div id="dashboardSection" class="section">
                     <h3 class="mb-4"><i class="fas fa-tachometer-alt text-danger me-2"></i>Admin Dashboard</h3>
                     
-                    <!--Quick Stats-->
+                    <!--quick stats-->
                     <div class="row mb-4">
                         <div class="col-md-3 mb-3">
                             <div class="dashboard-card" style="border-left-color: #dc3545;">
@@ -94,22 +94,22 @@
                         </div>
                     </div>
 
-                    <!--Quick Actions-->
+                    <!--quick actions-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dashboard-card">
                                 <h5><i class="fas fa-bolt text-danger me-2"></i>Quick Actions</h5>
                                 <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-outline-danger" onclick="showSection('users')">
+                                    <button class="btn btn-danger" onclick="showSection('users')">
                                         <i class="fas fa-user-check me-2"></i>Approve New Users
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="showSection('prices')">
+                                    <button class="btn btn-danger" onclick="showSection('prices')">
                                         <i class="fas fa-edit me-2"></i>Update Market Prices
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="showSection('weather')">
+                                    <button class="btn btn-danger" onclick="showSection('weather')">
                                         <i class="fas fa-cloud-upload-alt me-2"></i>Add Weather Alert
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="showSection('requests')">
+                                    <button class="btn btn-danger" onclick="showSection('requests')">
                                         <i class="fas fa-inbox me-2"></i>Review Farmer Requests
                                     </button>
                                 </div>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
 
-                    <!--Recent Requests-->
+                    <!--recent requests-->
                     <div class="dashboard-card mt-4">
                         <h5><i class="fas fa-inbox text-danger me-2"></i>Recent Farmer Requests</h5>
                         <div id="recentRequests" class="mt-3">
@@ -150,11 +150,11 @@
                     </div>
                 </div>
 
-                <!--User Management Section-->
+                <!--user management section-->
                 <div id="usersSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-users text-danger me-2"></i>User Management</h3>
                     
-                    <!--User Actions-->
+                    <!--user actions-->
                     <div class="dashboard-card mb-4">
                         <h5><i class="fas fa-user-cog text-danger me-2"></i>User Actions</h5>
                         <div class="row mt-3">
@@ -180,7 +180,7 @@
                         </div>
                     </div>
 
-                    <!--Users Table-->
+                    <!--users table-->
                     <div class="dashboard-card">
                         <h5>User List</h5>
                         <div class="table-responsive">
@@ -204,7 +204,7 @@
                     </div>
                 </div>
 
-                <!--Product Management Section-->
+                <!--product management section-->
                 <div id="productsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-seedling text-danger me-2"></i>Product Management</h3>
                     
@@ -258,7 +258,7 @@
                                     <h5>All Products</h5>
                                     <div class="input-group w-50">
                                         <input type="text" class="form-control" placeholder="Search products..." id="searchProducts">
-                                        <button class="btn btn-outline-danger" type="button" onclick="searchProducts()">
+                                        <button class="btn btn-danger" type="button" onclick="searchProducts()">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -272,7 +272,7 @@
                     </div>
                 </div>
 
-                <!--Market Prices Section-->
+                <!--market prices section-->
                 <div id="pricesSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-chart-line text-danger me-2"></i>Market Prices Management</h3>
                     
@@ -332,7 +332,7 @@
                     </div>
                 </div>
 
-                <!--Weather Data Section-->
+                <!--weather data section-->
                 <div id="weatherSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-cloud-sun-rain text-danger me-2"></i>Weather Data Management</h3>
                     
@@ -412,7 +412,7 @@
                     </div>
                 </div>
 
-                <!--Farmer Requests Section-->
+                <!--farmer requests section-->
                 <div id="requestsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-inbox text-danger me-2"></i>Farmer Update Requests</h3>
                     
@@ -426,11 +426,11 @@
                     </div>
                 </div>
 
-                <!--Platform Monitor Section-->
+                <!--platform monitor section-->
                 <div id="monitorSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-desktop text-danger me-2"></i>Platform Monitoring</h3>
                     
-                    <!--System Stats-->
+                    <!--system stats-->
                     <div class="row mb-4">
                         <div class="col-md-3 mb-3">
                             <div class="dashboard-card text-center">
@@ -462,22 +462,22 @@
                         </div>
                     </div>
 
-                    <!--System Controls-->
+                    <!--system controls-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dashboard-card">
                                 <h5><i class="fas fa-cogs text-danger me-2"></i>System Controls</h5>
                                 <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-outline-danger" onclick="backupDatabase()">
+                                    <button class="btn btn-danger" onclick="backupDatabase()">
                                         <i class="fas fa-database me-2"></i>Backup Database
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="clearCache()">
+                                    <button class="btn btn-danger" onclick="clearCache()">
                                         <i class="fas fa-broom me-2"></i>Clear System Cache
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="sendSystemAlert()">
+                                    <button class="btn btn-danger" onclick="sendSystemAlert()">
                                         <i class="fas fa-broadcast-tower me-2"></i>Send System Notification
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="generateReport()">
+                                    <button class="btn btn-danger" onclick="generateReport()">
                                         <i class="fas fa-chart-pie me-2"></i>Generate Monthly Report
                                     </button>
                                 </div>
@@ -488,13 +488,13 @@
                             <div class="dashboard-card">
                                 <h5><i class="fas fa-shield-alt text-danger me-2"></i>Security</h5>
                                 <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-outline-danger" onclick="scanSecurity()">
+                                    <button class="btn btn-danger" onclick="scanSecurity()">
                                         <i class="fas fa-shield-virus me-2"></i>Security Scan
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="viewAuditLog()">
+                                    <button class="btn btn-danger" onclick="viewAuditLog()">
                                         <i class="fas fa-clipboard-list me-2"></i>View Audit Logs
                                     </button>
-                                    <button class="btn btn-outline-danger" onclick="updateSystem()">
+                                    <button class="btn btn-danger" onclick="updateSystem()">
                                         <i class="fas fa-download me-2"></i>System Update
                                     </button>
                                 </div>
@@ -502,7 +502,7 @@
                         </div>
                     </div>
 
-                    <!--System Logs-->
+                    <!--system logs-->
                     <div class="dashboard-card mt-4">
                         <h5><i class="fas fa-clipboard-list text-danger me-2"></i>Recent System Logs</h5>
                         <div id="systemLogs" class="mt-3">
@@ -511,7 +511,7 @@
                     </div>
                 </div>
 
-                <!--Farm Management Section-->
+                <!--farm management section-->
                 <div id="farmsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-tractor text-danger me-2"></i>Farm Management</h3>
                     
@@ -538,45 +538,3 @@
                                         <option>Livestock</option>
                                         <option>Mixed Farming</option>
                                         <option>Orchard</option>
-                                        <option>Dairy Farm</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Farm Size (acres)</label>
-                                    <input type="number" class="form-control" placeholder="Enter size">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Location</label>
-                                    <input type="text" class="form-control" placeholder="Update location">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Certification</label>
-                                    <select class="form-select">
-                                        <option value="">Select certification</option>
-                                        <option>Organic Certified</option>
-                                        <option>GAP Certified</option>
-                                        <option>Non-Certified</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-danger w-100">Update Farm Information</button>
-                        </form>
-                    </div>
-
-                    <div class="dashboard-card">
-                        <h5><i class="fas fa-list text-danger me-2"></i>All Farms</h5>
-                        <div id="farmsList" class="mt-3">
-                            <!--Farms loaded by JavaScript-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="admin.js"></script>
-</body>
-</html>
