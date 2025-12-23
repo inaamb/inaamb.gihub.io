@@ -22,7 +22,7 @@
                     <div class="card-body p-4">
                         <h3 class="text-center mb-4">Welcome to Agrivision</h3>
                         
-                        <!-- tabs -->
+                        <!--tabs-->
                         <ul class="nav nav-tabs mb-4" id="loginTabs">
                             <li class="nav-item w-50 text-center">
                                 <button class="nav-link active w-100" onclick="showTab('login')">Sign In</button>
@@ -32,7 +32,7 @@
                             </li>
                         </ul>
 
-                        <!-- login form -->
+                        <!--login form-->
                         <form id="loginForm" onsubmit="return handleLogin(event)">
                             <div class="mb-3">
                                 <label class="form-label">Email Address</label>
@@ -46,7 +46,7 @@
                             <button type="submit" class="btn btn-success w-100">Sign In</button>
                         </form>
 
-                        <!-- signup form -->
+                        <!--signup form-->
                         <form id="signupForm" style="display: none;" onsubmit="return handleSignup(event)">
                             <div class="mb-3">
                                 <label class="form-label">I am a:</label>
@@ -91,7 +91,7 @@
                                 <small class="text-muted">minimum 6 characters</small>
                             </div>
                             
-                            <!-- farmer fields -->
+                            <!--farmer fields-->
                             <div id="farmerFields">
                                 <div class="mb-3">
                                     <label class="form-label">Farm Name</label>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             
-                            <!-- buyer fields -->
+                            <!--buyer fields-->
                             <div id="buyerFields" style="display: none;">
                                 <div class="mb-3">
                                     <label class="form-label">Dietary Preferences</label>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             
-                            <!-- admin fields -->
+                            <!--admin fields-->
                             <div id="adminFields" style="display: none;">
                                 <div class="mb-3">
                                     <label class="form-label">Admin Code</label>
@@ -137,7 +137,7 @@
 
     <script src="script.js"></script>
     <script>
-        // check url for role parameter
+        //check url for role parameter
         const urlParams = new URLSearchParams(window.location.search);
         const role = urlParams.get('role');
         
@@ -149,7 +149,7 @@
             showUserTypeFields('admin');
         }
 
-        // tab switching
+        //tab switching
         function showTab(tabName) {
             document.getElementById('loginForm').style.display = tabName === 'login' ? 'block' : 'none';
             document.getElementById('signupForm').style.display = tabName === 'signup' ? 'block' : 'none';
@@ -160,14 +160,14 @@
             event.target.classList.add('active');
         }
 
-        // user type selection
+        //user type selection
         function showUserTypeFields(type) {
             document.getElementById('farmerFields').style.display = type === 'farmer' ? 'block' : 'none';
             document.getElementById('buyerFields').style.display = type === 'buyer' ? 'block' : 'none';
             document.getElementById('adminFields').style.display = type === 'admin' ? 'block' : 'none';
         }
 
-        // form handlers
+        //form handlers
         function handleLogin(e) {
             e.preventDefault();
             
@@ -182,12 +182,12 @@
                 return false;
             }
             
-            // simple demo login - check against stored users
+            //simple demo login - check against stored users
             let users = JSON.parse(localStorage.getItem('users') || '[]');
             const user = users.find(u => u.email === formData.email && u.password === formData.password);
             
             if (user) {
-                // create appropriate user object
+                //create appropriate user object
                 let loggedInUser;
                 if (user.type === 'farmer') {
                     loggedInUser = new Farmer(user.name, user.email, user.farmName || 'My Farm', user.farmType || 'Mixed');
@@ -218,7 +218,7 @@
                 name: document.getElementById('signupName').value
             };
             
-            // admin specific validation
+            //admin specific validation
             if (userType === 'admin') {
                 const adminCode = document.getElementById('adminCode').value;
                 if (adminCode !== 'admin123') {
@@ -233,14 +233,14 @@
                 return false;
             }
             
-            // check if user already exists
+            //check if user already exists
             let users = JSON.parse(localStorage.getItem('users') || '[]');
             if (users.find(u => u.email === formData.email)) {
                 alert('user with this email already exists');
                 return false;
             }
             
-            // create user object
+            //create user object
             const newUser = {
                 type: userType,
                 name: formData.name,
@@ -249,17 +249,17 @@
                 phone: formData.phone
             };
             
-            // add type-specific data
+            //add type-specific data
             if (userType === 'farmer') {
                 newUser.farmName = document.getElementById('farmName').value;
                 newUser.farmType = document.getElementById('farmType').value;
             }
             
-            // save user
+            //save user
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
             
-            // create user object and login
+            //create user object and login
             let userObj;
             if (userType === 'farmer') {
                 userObj = new Farmer(newUser.name, newUser.email, newUser.farmName, newUser.farmType);
@@ -278,9 +278,9 @@
             return true;
         }
         
-        // initialize user type fields on page load
+        //initialize user type fields on page load
         document.addEventListener('DOMContentLoaded', function() {
-            showUserTypeFields('farmer'); // default to farmer
+            showUserTypeFields('farmer'); //default to farmer
         });
     </script>
     <footer class="bg-dark text-white py-4 mt-5">
