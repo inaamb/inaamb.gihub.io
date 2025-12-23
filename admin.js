@@ -9,25 +9,25 @@ class Admin extends User {
         this.permissions = ['all'];
     }
 
-    //Approve or reject user registration
+    //approve or reject user registration
     approveUser(userId, approve = true, reason = '') {
-        console.log(`Admin ${this.name} ${approve ? 'approved' : 'rejected'} user ${userId}. Reason: ${reason}`);
+        console.log(`admin ${this.name} ${approve ? 'approved' : 'rejected'} user ${userId}. reason: ${reason}`);
         return true;
     }
 
-    //Update market prices
+    //update market prices
     updateMarketPrices(product, newPrice) {
-        console.log(`Admin ${this.name} updated ${product} price to ${newPrice}`);
+        console.log(`admin ${this.name} updated ${product} price to ${newPrice}`);
         return true;
     }
 
-    //Add/modify weather information
+    //add/modify weather information
     updateWeatherData(alert) {
-        console.log(`Admin ${this.name} added weather alert: ${JSON.stringify(alert)}`);
+        console.log(`admin ${this.name} added weather alert: ${JSON.stringify(alert)}`);
         return true;
     }
 
-    //Monitor platform activity
+    //monitor platform activity
     monitorPlatform() {
         const stats = {
             onlineUsers: Math.floor(Math.random() * 50) + 20,
@@ -38,59 +38,59 @@ class Admin extends User {
         return stats;
     }
 
-    //Ban or restrict user account
+    //ban or restrict user account
     banUser(userId, reason = 'Violation of terms') {
-        console.log(`Admin ${this.name} banned user ${userId}. Reason: ${reason}`);
+        console.log(`admin ${this.name} banned user ${userId}. reason: ${reason}`);
         return true;
     }
 
-    //Directly modify product information
+    //directly modify product information
     updateProduct(productId, updates) {
-        console.log(`Admin ${this.name} updated product ${productId}:`, updates);
+        console.log(`admin ${this.name} updated product ${productId}:`, updates);
         return true;
     }
 
-    //Add new product directly to catalog
+    //add new product directly to catalog
     addProduct(productData) {
-        console.log(`Admin ${this.name} added product:`, productData);
+        console.log(`admin ${this.name} added product:`, productData);
         return productData;
     }
 
-    //Remove product from catalog
+    //remove product from catalog
     removeProduct(productId) {
-        console.log(`Admin ${this.name} removed product ${productId}`);
+        console.log(`admin ${this.name} removed product ${productId}`);
         return true;
     }
 
-    //Update farm information
+    //update farm information
     updateFarmInfo(farmId, updates) {
-        console.log(`Admin ${this.name} updated farm ${farmId}:`, updates);
+        console.log(`admin ${this.name} updated farm ${farmId}:`, updates);
         return true;
     }
 
-    //Handle farmer requests
+    //handle farmer requests
     handleFarmRequest(requestId, action, comments = '') {
-        console.log(`Admin ${this.name} ${action} farmer request ${requestId}. Comments: ${comments}`);
+        console.log(`admin ${this.name} ${action} farmer request ${requestId}. comments: ${comments}`);
         return true;
     }
 }
 
 //============================================
-//ADMIN SESSION MANAGEMENT
+//admin session management
 //============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    //Check if admin is logged in
+    //check if admin is logged in
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || currentUser.type !== 'admin') {
         window.location.href = 'login.html';
         return;
     }
 
-    //Initialize admin
+    //initialize admin
     const admin = new Admin(currentUser.name, currentUser.email);
     
-    //Load all sections
+    //load all sections
     loadDashboard();
     loadUsers();
     loadProducts();
@@ -100,35 +100,35 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSystemLogs();
     loadFarms();
     
-    //Start monitoring
+    //start monitoring
     startPlatformMonitoring();
     
     console.log('Admin dashboard initialized for:', admin.name);
 });
 
 //============================================
-//SECTION MANAGEMENT
+//section management
 //============================================
 
 function showSection(section) {
-    //Hide all sections
+    //hide all sections
     document.querySelectorAll('.section').forEach(div => {
         div.style.display = 'none';
     });
     
-    //Show selected section
+    //show selected section
     const sectionElement = document.getElementById(section + 'Section');
     if (sectionElement) {
         sectionElement.style.display = 'block';
     }
     
-    //Update active menu item
+    //update active menu item
     document.querySelectorAll('.list-group-item').forEach(btn => {
         btn.classList.remove('active');
     });
     event.target.classList.add('active');
     
-    //Refresh section data
+    //refresh section data
     switch(section) {
         case 'dashboard':
             loadDashboard();
@@ -158,19 +158,19 @@ function showSection(section) {
 }
 
 //============================================
-//DASHBOARD FUNCTIONS
+//dashboard functions
 //============================================
 
 function loadDashboard() {
-    //Update quick stats
+    //update quick stats
     updateDashboardStats();
     
-    //Load recent requests
+    //load recent requests
     loadRecentRequests();
 }
 
 function updateDashboardStats() {
-    //Simulate data - in real app, fetch from API
+    //simulate data - in real app, fetch from API
     const stats = {
         totalUsers: 42,
         pendingRequests: 3,
@@ -183,7 +183,7 @@ function updateDashboardStats() {
     document.getElementById('activeProducts').textContent = stats.activeProducts;
     document.getElementById('revenue').textContent = stats.revenue;
     
-    //Update request badge
+    //update request badge
     updateRequestBadge();
 }
 
@@ -207,7 +207,7 @@ function loadRecentRequests() {
                     </div>
                     <div class="text-end">
                         <small class="text-muted">${req.time}</small><br>
-                        <button class="btn btn-sm btn-outline-danger mt-1" onclick="showSection('requests')">Review</button>
+                        <button class="btn btn-sm btn-danger mt-1" onclick="showSection('requests')">Review</button>
                     </div>
                 </div>
             </div>
@@ -232,13 +232,13 @@ function updateRequestBadge() {
 }
 
 //============================================
-//USER MANAGEMENT FUNCTIONS
+//user management functions
 //============================================
 
 let allUsers = [];
 
 function loadUsers() {
-    //Sample users data
+    //sample users data
     allUsers = [
         { id: 1, name: 'John Farmer', email: 'john@greenvalley.com', type: 'farmer', status: 'active', registered: '2024-01-10' },
         { id: 2, name: 'Sarah Grower', email: 'sarah@sunnyacres.com', type: 'farmer', status: 'active', registered: '2024-01-12' },
@@ -249,12 +249,12 @@ function loadUsers() {
         { id: 7, name: 'Admin User', email: 'admin@agrivision.com', type: 'admin', status: 'active', registered: '2024-01-01' }
     ];
     
-    //Set up event listeners for filters
+    //set up event listeners for filters
     document.getElementById('searchUsers').addEventListener('input', filterUsers);
     document.getElementById('filterUserType').addEventListener('change', filterUsers);
     document.getElementById('filterUserStatus').addEventListener('change', filterUsers);
     
-    //Initial display
+    //initial display
     displayUsers(allUsers);
 }
 
@@ -299,7 +299,7 @@ function displayUsers(users) {
                     ` : ''}
                     
                     ${user.status === 'active' && user.type !== 'admin' ? `
-                        <button class="btn btn-sm btn-warning me-1 mb-1" onclick="banUser(${user.id})">
+                        <button class="btn btn-sm btn-danger me-1 mb-1" onclick="banUser(${user.id})">
                             <i class="fas fa-ban"></i>
                         </button>
                     ` : ''}
@@ -310,7 +310,7 @@ function displayUsers(users) {
                         </button>
                     ` : ''}
                     
-                    <button class="btn btn-sm btn-outline-secondary mb-1" onclick="viewUserDetails(${user.id})">
+                    <button class="btn btn-sm btn-secondary mb-1" onclick="viewUserDetails(${user.id})">
                         <i class="fas fa-eye"></i>
                     </button>
                 </td>
@@ -389,13 +389,13 @@ function viewUserDetails(userId) {
 }
 
 //============================================
-//PRODUCT MANAGEMENT FUNCTIONS
+//product management functions
 //============================================
 
 let allProducts = [];
 
 function loadProducts() {
-    //Sample products data
+    //sample products data
     allProducts = [
         { id: 1, name: 'Organic Tomatoes', category: 'Vegetables', price: 1.06, farmer: 'Green Valley Farm', organic: true, stock: 50 },
         { id: 2, name: 'Fresh Carrots', category: 'Vegetables', price: 0.73, farmer: 'Sunny Acres', organic: false, stock: 100 },
@@ -439,10 +439,10 @@ function displayProducts(products) {
                                 <span class="text-muted">/kg</span>
                             </div>
                             <div>
-                                <button class="btn btn-sm btn-outline-danger me-1" onclick="editProduct(${product.id})">
+                                <button class="btn btn-sm btn-danger me-1" onclick="editProduct(${product.id})">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-outline-dark" onclick="deleteProduct(${product.id})">
+                                <button class="btn btn-sm btn-dark" onclick="deleteProduct(${product.id})">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -456,7 +456,7 @@ function displayProducts(products) {
     html += '</div>';
     container.innerHTML = html;
     
-    //Update product count
+    //update product count
     document.getElementById('activeProducts').textContent = products.length;
 }
 
@@ -516,7 +516,7 @@ function deleteProduct(productId) {
 }
 
 //============================================
-//MARKET PRICES FUNCTIONS
+//market prices functions
 //============================================
 
 function loadMarketPrices() {
@@ -550,7 +550,7 @@ function loadMarketPrices() {
                 <td><small class="text-muted">${item.updated}</small></td>
                 <td><span class="${suggestionClass}">${item.suggestion}</span></td>
                 <td>
-                    <button class="btn btn-sm btn-outline-danger" onclick="updatePrice('${item.product}')">
+                    <button class="btn btn-sm btn-danger" onclick="updatePrice('${item.product}')">
                         <i class="fas fa-edit"></i>
                     </button>
                 </td>
@@ -565,7 +565,7 @@ function updatePrice(product) {
     const newPrice = prompt(`Enter new price for ${product} (OMR):`);
     if (newPrice && !isNaN(newPrice)) {
         alert(`${product} price updated to OMR ${newPrice}`);
-        loadMarketPrices(); //Refresh the table
+        loadMarketPrices(); //refresh the table
     }
 }
 
@@ -596,7 +596,7 @@ function addPriceEntry(e) {
 }
 
 //============================================
-//WEATHER ALERTS FUNCTIONS
+//weather alerts functions
 //============================================
 
 let weatherAlerts = [];
@@ -644,7 +644,7 @@ function displayWeatherAlerts() {
                     </div>
                     <div class="text-end">
                         <span class="badge ${severityClass.replace('alert-', 'bg-')}">${alert.severity}</span><br>
-                        <button class="btn btn-sm btn-outline-dark mt-2" onclick="removeWeatherAlert(${alert.id})">
+                        <button class="btn btn-sm btn-dark mt-2" onclick="removeWeatherAlert(${alert.id})">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -663,7 +663,7 @@ function createWeatherAlert(e) {
     const type = form.querySelector('select').value;
     const severity = form.querySelectorAll('select')[1].value;
     
-    //Get checked regions
+    //get checked regions
     const regions = [];
     if (document.getElementById('northRegion').checked) regions.push('North');
     if (document.getElementById('southRegion').checked) regions.push('South');
@@ -703,7 +703,7 @@ function removeWeatherAlert(alertId) {
 }
 
 //============================================
-//FARMER REQUESTS FUNCTIONS
+//farmer requests functions
 //============================================
 
 let farmerRequests = [];
@@ -769,7 +769,7 @@ function displayFarmerRequests() {
     
     container.innerHTML = html;
     
-    //Update pending count
+    //update pending count
     document.getElementById('pendingRequests').textContent = pendingRequests.length;
     updateRequestBadge();
 }
@@ -783,7 +783,7 @@ function approveRequest(requestId) {
     if (confirm(`Approve this request from ${request.farmer}?\n\nProduct: ${request.product}\nRequest: ${request.request}`)) {
         request.status = 'approved';
         
-        //Simulate product update
+        //simulate product update
         const product = allProducts.find(p => p.name === request.product);
         if (product) {
             if (request.request.includes('price')) {
@@ -796,7 +796,7 @@ function approveRequest(requestId) {
         
         alert(`Request approved! ${request.farmer} has been notified.\n\nProduct has been updated accordingly.`);
         displayFarmerRequests();
-        loadProducts(); //Refresh product list
+        loadProducts(); //refresh product list
     }
 }
 
@@ -817,21 +817,21 @@ function rejectRequest(requestId) {
 }
 
 //============================================
-//PLATFORM MONITORING FUNCTIONS
+//platform monitoring functions
 //============================================
 
 function startPlatformMonitoring() {
-    //Initial update
+    //initial update
     updateSystemStats();
     updateSystemLogs();
     
-    //Update every 30 seconds
+    //update every 30 seconds
     setInterval(updateSystemStats, 30000);
-    setInterval(addSystemLog, 60000); //Add log every minute
+    setInterval(addSystemLog, 60000); //add log every minute
 }
 
 function updateSystemStats() {
-    //Simulate dynamic stats
+    //simulate dynamic stats
     const onlineUsers = Math.floor(Math.random() * 30) + 10;
     const serverLoad = Math.floor(Math.random() * 60) + 20;
     const dailyOrders = Math.floor(Math.random() * 15) + 5;
@@ -859,7 +859,7 @@ function loadSystemLogs() {
 function updateSystemLogs() {
     const container = document.getElementById('systemLogs');
     
-    //Simulate new log entries
+    //simulate new log entries
     const logTypes = ['info', 'success', 'warning'];
     const logActions = [
         'User login', 'Order placed', 'Product updated', 'Weather alert sent',
@@ -880,7 +880,7 @@ function updateSystemLogs() {
         });
     }
     
-    //Sort by time (newest first)
+    //sort by time (newest first)
     logs.sort((a, b) => b.time.localeCompare(a.time));
     
     let html = '';
@@ -902,13 +902,13 @@ function updateSystemLogs() {
 }
 
 function addSystemLog() {
-    //This would be called periodically to add new logs
+    //this would be called periodically to add new logs
     console.log('System log updated');
 }
 
 function backupDatabase() {
     alert('Database backup initiated... This may take a few minutes.');
-    //Simulate backup process
+    //simulate backup process
     setTimeout(() => {
         alert('Database backup completed successfully! Backup file: farmconnect_backup_' + new Date().toISOString().split('T')[0] + '.sql');
         addSystemLog();
@@ -932,7 +932,7 @@ function sendSystemAlert() {
 
 function generateReport() {
     alert('Monthly report generation started... Report will be available in the reports section.');
-    //Simulate report generation
+    //simulate report generation
     setTimeout(() => {
         alert('Monthly report generated successfully! Download link: /reports/monthly_2024_01.pdf');
         addSystemLog();
@@ -958,7 +958,7 @@ function updateSystem() {
 }
 
 //============================================
-//FARM MANAGEMENT FUNCTIONS
+//farm management functions
 //============================================
 
 function loadFarms() {
@@ -983,10 +983,10 @@ function loadFarms() {
                 <td>${farm.farmer}</td>
                 <td><span class="badge bg-success">${farm.products}</span></td>
                 <td>
-                    <button class="btn btn-sm btn-outline-danger me-1" onclick="editFarm('${farm.name}')">
+                    <button class="btn btn-sm btn-danger me-1" onclick="editFarm('${farm.name}')">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-dark" onclick="viewFarmDetails('${farm.name}')">
+                    <button class="btn btn-sm btn-dark" onclick="viewFarmDetails('${farm.name}')">
                         <i class="fas fa-eye"></i>
                     </button>
                 </td>
@@ -1023,7 +1023,7 @@ function viewFarmDetails(farmName) {
 }
 
 //============================================
-//LOGOUT FUNCTION
+//logout function
 //============================================
 
 function logout() {
