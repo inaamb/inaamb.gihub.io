@@ -359,6 +359,7 @@ function redirectToDashboard(userType) {
 }
 
 // initialize demo data
+// simplified demo data initialization
 if (!localStorage.getItem('users')) {
     const defaultUsers = [
         {
@@ -421,3 +422,4 @@ document.addEventListener('DOMContentLoaded', function() {
         redirectToDashboard(currentUser.type);
     }
 });
+
