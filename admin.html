@@ -538,3 +538,45 @@
                                         <option>Livestock</option>
                                         <option>Mixed Farming</option>
                                         <option>Orchard</option>
+                                        <option>Dairy Farm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Farm Size (acres)</label>
+                                    <input type="number" class="form-control" placeholder="Enter size">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" placeholder="Update location">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Certification</label>
+                                    <select class="form-select">
+                                        <option value="">Select certification</option>
+                                        <option>Organic Certified</option>
+                                        <option>GAP Certified</option>
+                                        <option>Non-Certified</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">Update Farm Information</button>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h5><i class="fas fa-list text-danger me-2"></i>All Farms</h5>
+                        <div id="farmsList" class="mt-3">
+                            <!--Farms loaded by JavaScript-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
