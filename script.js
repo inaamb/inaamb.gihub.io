@@ -1,7 +1,7 @@
-// FarmConnect - Main JavaScript File
+//FarmConnect - Main JavaScript File
 class User {
     constructor(type, name, email) {
-        this.type = type; // can be 'farmer', 'buyer', or 'admin'
+        this.type = type; //can be 'farmer', 'buyer', or 'admin'
         this.name = name;
         this.email = email;
         this.isLoggedIn = false;
@@ -103,7 +103,7 @@ class Farmer extends User {
     }
 
     getAIDecisionSupport(crop, soil, season) {
-        // simple AI logic
+        //simple AI logic
         const recommendations = {
             planting: 'Plant in well-drained soil with full sun exposure',
             irrigation: 'Water deeply once a week, more frequently in hot weather',
@@ -159,7 +159,7 @@ class Buyer extends User {
     }
 
     browseProduct() {
-        // returns available products
+        //returns available products
         const products = JSON.parse(localStorage.getItem('products') || '[]');
         return products;
     }
@@ -245,7 +245,7 @@ class MealKit {
     }
 
     calculatePrice() {
-        // simple price calculation
+        //simple price calculation
         this.price = 10 + (this.ingredients.length * 2);
         return this.price;
     }
@@ -326,7 +326,7 @@ class Farm {
     }
 }
 
-// UI Helper Functions
+//UI Helper Functions
 function showNotification(message, type = 'success') {
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
@@ -358,8 +358,8 @@ function redirectToDashboard(userType) {
     }
 }
 
-// initialize demo data
-// simplified demo data initialization
+//initialize demo data
+//simplified demo data initialization
 if (!localStorage.getItem('users')) {
     const defaultUsers = [
         {
@@ -389,7 +389,7 @@ if (!localStorage.getItem('users')) {
     localStorage.setItem('users', JSON.stringify(defaultUsers));
 }
 
-// initialize forum posts
+//initialize forum posts
 if (!localStorage.getItem('forumPosts')) {
     const defaultPosts = [
         {
@@ -412,14 +412,13 @@ if (!localStorage.getItem('forumPosts')) {
     localStorage.setItem('forumPosts', JSON.stringify(defaultPosts));
 }
 
-// initialize on page load
+//initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     console.log('FarmConnect initialized');
     
-    // check if user is already logged in
+    //check if user is already logged in
     const currentUser = User.getCurrentUser();
     if (currentUser && window.location.pathname.includes('login.html')) {
         redirectToDashboard(currentUser.type);
     }
 });
-
