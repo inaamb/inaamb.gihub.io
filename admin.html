@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand text-danger fw-bold" href="index.html">
@@ -26,7 +26,7 @@
 
     <div class="container-fluid mt-5 pt-4">
         <div class="row">
-            <!-- Sidebar -->
+            <!--Sidebar-->
             <div class="col-md-3 col-lg-2 bg-light min-vh-100">
                 <div class="p-3">
                     <h5 class="mb-4 text-danger">Admin Controls</h5>
@@ -60,13 +60,13 @@
                 </div>
             </div>
 
-            <!-- Main Content -->
+            <!--Main Content-->
             <div class="col-md-9 col-lg-10 p-4">
-                <!-- Dashboard Section -->
+                <!--Dashboard Section-->
                 <div id="dashboardSection" class="section">
                     <h3 class="mb-4"><i class="fas fa-tachometer-alt text-danger me-2"></i>Admin Dashboard</h3>
                     
-                    <!-- Quick Stats -->
+                    <!--Quick Stats-->
                     <div class="row mb-4">
                         <div class="col-md-3 mb-3">
                             <div class="dashboard-card" style="border-left-color: #dc3545;">
@@ -88,13 +88,13 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <div class="dashboard-card" style="border-left-color: #17a2b8;">
-                                <h4 class="text-info" id="revenue">$0</h4>
+                                <h4 class="text-info" id="revenue">OMR 0</h4>
                                 <p>Platform Revenue</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
+                    <!--Quick Actions-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dashboard-card">
@@ -141,20 +141,20 @@
                         </div>
                     </div>
 
-                    <!-- Recent Requests -->
+                    <!--Recent Requests-->
                     <div class="dashboard-card mt-4">
                         <h5><i class="fas fa-inbox text-danger me-2"></i>Recent Farmer Requests</h5>
                         <div id="recentRequests" class="mt-3">
-                            <!-- Will be loaded by JavaScript -->
+                            <!--Will be loaded by JavaScript-->
                         </div>
                     </div>
                 </div>
 
-                <!-- User Management Section -->
+                <!--User Management Section-->
                 <div id="usersSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-users text-danger me-2"></i>User Management</h3>
                     
-                    <!-- User Actions -->
+                    <!--User Actions-->
                     <div class="dashboard-card mb-4">
                         <h5><i class="fas fa-user-cog text-danger me-2"></i>User Actions</h5>
                         <div class="row mt-3">
@@ -180,7 +180,7 @@
                         </div>
                     </div>
 
-                    <!-- Users Table -->
+                    <!--Users Table-->
                     <div class="dashboard-card">
                         <h5>User List</h5>
                         <div class="table-responsive">
@@ -197,14 +197,14 @@
                                     </tr>
                                 </thead>
                                 <tbody id="usersTable">
-                                    <!-- Users loaded by JavaScript -->
+                                    <!--Users loaded by JavaScript-->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product Management Section -->
+                <!--Product Management Section-->
                 <div id="productsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-seedling text-danger me-2"></i>Product Management</h3>
                     
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col">
-                                            <input type="number" class="form-control" placeholder="Price" step="0.01" required>
+                                            <input type="number" class="form-control" placeholder="Price (OMR)" step="0.01" required>
                                         </div>
                                         <div class="col">
                                             <select class="form-select">
@@ -265,14 +265,14 @@
                                 </div>
                                 
                                 <div id="productsContainer">
-                                    <!-- Products loaded by JavaScript -->
+                                    <!--Products loaded by JavaScript-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Market Prices Section -->
+                <!--Market Prices Section-->
                 <div id="pricesSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-chart-line text-danger me-2"></i>Market Prices Management</h3>
                     
@@ -297,11 +297,11 @@
                                 </tr>
                             </thead>
                             <tbody id="pricesTable">
-                                <!-- Prices loaded by JavaScript -->
+                                <!--Prices loaded by JavaScript-->
                             </tbody>
                         </table>
                         
-                        <!-- Add New Price -->
+                        <!--Add New Price-->
                         <div class="mt-4 p-3 bg-light rounded">
                             <h6><i class="fas fa-plus text-danger me-2"></i>Add New Price Entry</h6>
                             <form id="addPriceForm" onsubmit="return addPriceEntry(event)">
@@ -313,7 +313,7 @@
                                         <input type="text" class="form-control" placeholder="Market" required>
                                     </div>
                                     <div class="col-md-2 mb-2">
-                                        <input type="number" class="form-control" placeholder="Price" step="0.01" required>
+                                        <input type="number" class="form-control" placeholder="Price (OMR)" step="0.01" required>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <select class="form-select" required>
@@ -332,7 +332,7 @@
                     </div>
                 </div>
 
-                <!-- Weather Data Section -->
+                <!--Weather Data Section-->
                 <div id="weatherSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-cloud-sun-rain text-danger me-2"></i>Weather Data Management</h3>
                     
@@ -405,14 +405,14 @@
                                 </div>
                                 
                                 <div id="weatherAlertsContainer">
-                                    <!-- Weather alerts loaded by JavaScript -->
+                                    <!--Weather alerts loaded by JavaScript-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Farmer Requests Section -->
+                <!--Farmer Requests Section-->
                 <div id="requestsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-inbox text-danger me-2"></i>Farmer Update Requests</h3>
                     
@@ -422,15 +422,15 @@
                     </div>
                     
                     <div id="requestsContainer">
-                        <!-- Requests loaded by JavaScript -->
+                        <!--Requests loaded by JavaScript-->
                     </div>
                 </div>
 
-                <!-- Platform Monitor Section -->
+                <!--Platform Monitor Section-->
                 <div id="monitorSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-desktop text-danger me-2"></i>Platform Monitoring</h3>
                     
-                    <!-- System Stats -->
+                    <!--System Stats-->
                     <div class="row mb-4">
                         <div class="col-md-3 mb-3">
                             <div class="dashboard-card text-center">
@@ -462,7 +462,7 @@
                         </div>
                     </div>
 
-                    <!-- System Controls -->
+                    <!--System Controls-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dashboard-card">
@@ -502,16 +502,16 @@
                         </div>
                     </div>
 
-                    <!-- System Logs -->
+                    <!--System Logs-->
                     <div class="dashboard-card mt-4">
                         <h5><i class="fas fa-clipboard-list text-danger me-2"></i>Recent System Logs</h5>
                         <div id="systemLogs" class="mt-3">
-                            <!-- Logs loaded by JavaScript -->
+                            <!--Logs loaded by JavaScript-->
                         </div>
                     </div>
                 </div>
 
-                <!-- Farm Management Section -->
+                <!--Farm Management Section-->
                 <div id="farmsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-tractor text-danger me-2"></i>Farm Management</h3>
                     
@@ -568,7 +568,7 @@
                     <div class="dashboard-card">
                         <h5><i class="fas fa-list text-danger me-2"></i>All Farms</h5>
                         <div id="farmsList" class="mt-3">
-                            <!-- Farms loaded by JavaScript -->
+                            <!--Farms loaded by JavaScript-->
                         </div>
                     </div>
                 </div>
