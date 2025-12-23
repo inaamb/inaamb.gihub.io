@@ -22,7 +22,7 @@
                     <div class="card-body p-4">
                         <h3 class="text-center mb-4">Welcome to Agrivision</h3>
                         
-                        <!-- Tabs -->
+                        <!-- tabs -->
                         <ul class="nav nav-tabs mb-4" id="loginTabs">
                             <li class="nav-item w-50 text-center">
                                 <button class="nav-link active w-100" onclick="showTab('login')">Sign In</button>
@@ -32,7 +32,7 @@
                             </li>
                         </ul>
 
-                        <!-- Login Form -->
+                        <!-- login form -->
                         <form id="loginForm" onsubmit="return handleLogin(event)">
                             <div class="mb-3">
                                 <label class="form-label">Email Address</label>
@@ -46,26 +46,26 @@
                             <button type="submit" class="btn btn-success w-100">Sign In</button>
                         </form>
 
-                        <!-- Signup Form -->
+                        <!-- signup form -->
                         <form id="signupForm" style="display: none;" onsubmit="return handleSignup(event)">
                             <div class="mb-3">
                                 <label class="form-label">I am a:</label>
                                 <div class="d-flex gap-3 mb-3">
                                     <div class="form-check flex-grow-1 text-center">
                                         <input class="form-check-input" type="radio" name="userType" 
-                                               id="farmerType" value="farmer" checked>
+                                               id="farmerType" value="farmer" checked onclick="showUserTypeFields('farmer')">
                                         <label class="form-check-label" for="farmerType">Farmer</label>
                                     </div>
                                     <div class="form-check flex-grow-1 text-center">
                                         <input class="form-check-input" type="radio" name="userType" 
-                                               id="buyerType" value="buyer">
+                                               id="buyerType" value="buyer" onclick="showUserTypeFields('buyer')">
                                         <label class="form-check-label" for="buyerType">Buyer</label>
                                     </div>
                                     <div class="form-check flex-grow-1 text-center">
-    <input class="form-check-input" type="radio" name="userType" 
-           id="adminType" value="admin">
-    <label class="form-check-label" for="adminType">Admin</label>
-</div>
+                                        <input class="form-check-input" type="radio" name="userType" 
+                                               id="adminType" value="admin" onclick="showUserTypeFields('admin')">
+                                        <label class="form-check-label" for="adminType">Admin</label>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -82,16 +82,16 @@
                             <div class="mb-3">
                                 <label class="form-label">Phone Number</label>
                                 <input type="tel" class="form-control" id="signupPhone" pattern="[0-9]{10}">
-                                <small class="text-muted">Optional - 10 digits</small>
+                                <small class="text-muted">optional - 10 digits</small>
                             </div>
                             
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <input type="password" class="form-control" id="signupPassword" minlength="6" required>
-                                <small class="text-muted">Minimum 6 characters</small>
+                                <small class="text-muted">minimum 6 characters</small>
                             </div>
                             
-                            <!-- Farmer Fields -->
+                            <!-- farmer fields -->
                             <div id="farmerFields">
                                 <div class="mb-3">
                                     <label class="form-label">Farm Name</label>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Buyer Fields -->
+                            <!-- buyer fields -->
                             <div id="buyerFields" style="display: none;">
                                 <div class="mb-3">
                                     <label class="form-label">Dietary Preferences</label>
@@ -117,14 +117,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Admin Fields -->
-<div id="adminFields" style="display: none;">
-    <div class="mb-3">
-        <label class="form-label">Admin Code</label>
-        <input type="password" class="form-control" id="adminCode" placeholder="Enter admin access code">
-        <small class="text-muted">Required for admin registration</small>
-    </div>
-</div>
+                            
+                            <!-- admin fields -->
+                            <div id="adminFields" style="display: none;">
+                                <div class="mb-3">
+                                    <label class="form-label">Admin Code</label>
+                                    <input type="password" class="form-control" id="adminCode" placeholder="Enter admin access code">
+                                    <small class="text-muted">use "admin123" for demo</small>
+                                </div>
+                            </div>
                             
                             <button type="submit" class="btn btn-success w-100">Create Account</button>
                         </form>
@@ -136,15 +137,19 @@
 
     <script src="script.js"></script>
     <script>
-        // Check URL for role parameter
+        // check url for role parameter
         const urlParams = new URLSearchParams(window.location.search);
         const role = urlParams.get('role');
+        
         if (role === 'buyer') {
             document.getElementById('buyerType').checked = true;
             showUserTypeFields('buyer');
+        } else if (role === 'admin') {
+            document.getElementById('adminType').checked = true;
+            showUserTypeFields('admin');
         }
 
-        // Tab switching
+        // tab switching
         function showTab(tabName) {
             document.getElementById('loginForm').style.display = tabName === 'login' ? 'block' : 'none';
             document.getElementById('signupForm').style.display = tabName === 'signup' ? 'block' : 'none';
@@ -155,20 +160,14 @@
             event.target.classList.add('active');
         }
 
-        // User type selection
-        document.querySelectorAll('input[name="userType"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                showUserTypeFields(this.value);
-            });
-        });
-
+        // user type selection
         function showUserTypeFields(type) {
-    document.getElementById('farmerFields').style.display = type === 'farmer' ? 'block' : 'none';
-    document.getElementById('buyerFields').style.display = type === 'buyer' ? 'block' : 'none';
-    document.getElementById('adminFields').style.display = type === 'admin' ? 'block' : 'none';
-}
+            document.getElementById('farmerFields').style.display = type === 'farmer' ? 'block' : 'none';
+            document.getElementById('buyerFields').style.display = type === 'buyer' ? 'block' : 'none';
+            document.getElementById('adminFields').style.display = type === 'admin' ? 'block' : 'none';
+        }
 
-        // Form handlers
+        // form handlers
         function handleLogin(e) {
             e.preventDefault();
             
@@ -183,69 +182,106 @@
                 return false;
             }
             
-            // Simulate login - in real app, this would be API call
-            const userType = role || 'farmer'; // Default to farmer
-            if (userType === 'farmer') {
-                const farmer = new Farmer('Demo Farmer', formData.email, 'Green Valley', 'Crop Farming');
-                farmer.login();
+            // simple demo login - check against stored users
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === formData.email && u.password === formData.password);
+            
+            if (user) {
+                // create appropriate user object
+                let loggedInUser;
+                if (user.type === 'farmer') {
+                    loggedInUser = new Farmer(user.name, user.email, user.farmName || 'My Farm', user.farmType || 'Mixed');
+                } else if (user.type === 'buyer') {
+                    loggedInUser = new Buyer(user.name, user.email);
+                } else if (user.type === 'admin') {
+                    loggedInUser = new User('admin', user.name, user.email);
+                }
+                
+                loggedInUser.login();
+                showNotification('Login successful!', 'success');
+                setTimeout(() => redirectToDashboard(user.type), 500);
             } else {
-                const buyer = new Buyer('Demo Buyer', formData.email);
-                buyer.login();
+                alert('Invalid email or password');
             }
             
-            redirectToDashboard(userType);
             return true;
         }
 
         function handleSignup(e) {
-    e.preventDefault();
-    
-    const userType = document.querySelector('input[name="userType"]:checked').value;
-    const formData = {
-        email: document.getElementById('signupEmail').value,
-        password: document.getElementById('signupPassword').value,
-        phone: document.getElementById('signupPhone').value,
-        name: document.getElementById('signupName').value
-    };
-    
-    // Admin specific validation
-    if (userType === 'admin') {
-        const adminCode = document.getElementById('adminCode').value;
-        if (adminCode !== 'admin123') { // Simple demo code
-            alert('Invalid admin access code');
-            return false;
+            e.preventDefault();
+            
+            const userType = document.querySelector('input[name="userType"]:checked').value;
+            const formData = {
+                email: document.getElementById('signupEmail').value,
+                password: document.getElementById('signupPassword').value,
+                phone: document.getElementById('signupPhone').value,
+                name: document.getElementById('signupName').value
+            };
+            
+            // admin specific validation
+            if (userType === 'admin') {
+                const adminCode = document.getElementById('adminCode').value;
+                if (adminCode !== 'admin123') {
+                    alert('invalid admin access code. use "admin123" for demo');
+                    return false;
+                }
+            }
+            
+            const errors = Validation.validateForm(formData);
+            if (errors.length > 0) {
+                alert(errors.join('\n'));
+                return false;
+            }
+            
+            // check if user already exists
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.find(u => u.email === formData.email)) {
+                alert('user with this email already exists');
+                return false;
+            }
+            
+            // create user object
+            const newUser = {
+                type: userType,
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                phone: formData.phone
+            };
+            
+            // add type-specific data
+            if (userType === 'farmer') {
+                newUser.farmName = document.getElementById('farmName').value;
+                newUser.farmType = document.getElementById('farmType').value;
+            }
+            
+            // save user
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // create user object and login
+            let userObj;
+            if (userType === 'farmer') {
+                userObj = new Farmer(newUser.name, newUser.email, newUser.farmName, newUser.farmType);
+                localStorage.setItem('farmerProducts', JSON.stringify([]));
+            } else if (userType === 'buyer') {
+                userObj = new Buyer(newUser.name, newUser.email);
+                localStorage.setItem('buyerCart', JSON.stringify([]));
+            } else if (userType === 'admin') {
+                userObj = new User('admin', newUser.name, newUser.email);
+            }
+            
+            userObj.login();
+            
+            showNotification('account created successfully!', 'success');
+            setTimeout(() => redirectToDashboard(userType), 1000);
+            return true;
         }
-    }
-    
-    const errors = Validation.validateForm(formData);
-    if (errors.length > 0) {
-        alert(errors.join('\n'));
-        return false;
-    }
-    
-    // Create user based on type
-    if (userType === 'farmer') {
-        const farmer = new Farmer(
-            formData.name,
-            formData.email,
-            document.getElementById('farmName').value,
-            document.getElementById('farmType').value
-        );
-        farmer.login();
-        localStorage.setItem('farmerProducts', JSON.stringify([]));
-    } else if (userType === 'buyer') {
-        const buyer = new Buyer(formData.name, formData.email);
-        buyer.login();
-        localStorage.setItem('buyerCart', JSON.stringify([]));
-    } else if (userType === 'admin') {
-        const admin = new User('admin', formData.name, formData.email);
-        admin.login();
-    }
-    
-    showNotification('Account created successfully!', 'success');
-    setTimeout(() => redirectToDashboard(userType), 1000);
-    return true;
-}
+        
+        // initialize user type fields on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showUserTypeFields('farmer'); // default to farmer
+        });
     </script>
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container text-center">
@@ -254,8 +290,4 @@
         </div>
     </footer>
 </body>
-
 </html>
-
-
-
