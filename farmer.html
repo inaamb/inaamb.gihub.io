@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand text-success fw-bold" href="index.html">
@@ -26,7 +26,7 @@
 
     <div class="container-fluid mt-5 pt-4">
         <div class="row">
-            <!-- Sidebar -->
+            <!-- sidebar -->
             <div class="col-md-3 col-lg-2 bg-light min-vh-100">
                 <div class="p-3">
                     <h5 class="mb-4">Menu</h5>
@@ -43,20 +43,29 @@
                         <button class="list-group-item list-group-item-action" onclick="showSection('products')">
                             <i class="fas fa-seedling me-2"></i>My Products
                         </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('ai')">
+                            <i class="fas fa-robot me-2"></i>AI Decision Support
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('inventory')">
+                            <i class="fas fa-boxes me-2"></i>Inventory Alerts
+                        </button>
                         <button class="list-group-item list-group-item-action" onclick="showSection('forum')">
-                            <i class="fas fa-users me-2"></i>Community
+                            <i class="fas fa-users me-2"></i>Community Forum
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="showSection('farm')">
+                            <i class="fas fa-tractor me-2"></i>Farm Performance
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Main Content -->
+            <!-- main content -->
             <div class="col-md-9 col-lg-10 p-4">
-                <!-- Dashboard Section -->
+                <!-- dashboard section -->
                 <div id="dashboardSection" class="section">
                     <h3 class="mb-4">Welcome to Your Farm Dashboard</h3>
                     
-                    <!-- Quick Stats -->
+                    <!-- quick stats -->
                     <div class="row mb-4">
                         <div class="col-md-3">
                             <div class="dashboard-card text-center">
@@ -66,25 +75,25 @@
                         </div>
                         <div class="col-md-3">
                             <div class="dashboard-card text-center">
-                                <h4 class="text-success">OMR 327</h4>
+                                <h4 class="text-success" id="monthlyRevenue">OMR 327</h4>
                                 <p>Monthly Revenue</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="dashboard-card text-center">
-                                <h4 class="text-success">12</h4>
+                                <h4 class="text-success" id="monthlyOrders">12</h4>
                                 <p>Orders This Month</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="dashboard-card text-center">
-                                <h4 class="text-success">2</h4>
+                                <h4 class="text-success" id="weatherAlertsCount">2</h4>
                                 <p>Weather Alerts</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
+                    <!-- quick actions -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dashboard-card">
@@ -118,22 +127,26 @@
                                 <h5><i class="fas fa-bell text-warning me-2"></i>Recent Alerts</h5>
                                 <div class="alert alert-warning">
                                     <i class="fas fa-exclamation-triangle me-2"></i>
-                                    Heavy rain expected tomorrow
+                                    heavy rain expected tomorrow
                                 </div>
                                 <div class="alert alert-info">
                                     <i class="fas fa-temperature-high me-2"></i>
-                                    Heat wave in 3 days - water crops early
+                                    heat wave in 3 days - water crops early
+                                </div>
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-bug me-2"></i>
+                                    aphid warning in north region
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Weather Section -->
+                <!-- weather section -->
                 <div id="weatherSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-cloud-sun-rain text-primary me-2"></i>Weather Alerts</h3>
                     <div class="dashboard-card">
-                        <h5>Current Weather</h5>
+                        <h5>current weather</h5>
                         <div class="row text-center mt-3">
                             <div class="col">
                                 <i class="fas fa-sun fa-2x text-warning mb-2"></i>
@@ -154,12 +167,12 @@
                     </div>
                     
                     <div class="dashboard-card">
-                        <h5>Active Alerts</h5>
+                        <h5>active alerts</h5>
                         <div id="alertsContainer"></div>
                     </div>
                 </div>
 
-                <!-- Market Prices Section -->
+                <!-- market prices section -->
                 <div id="pricesSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-chart-line text-success me-2"></i>Market Prices</h3>
                     <div class="dashboard-card">
@@ -170,6 +183,7 @@
                                     <th>Current Price</th>
                                     <th>Trend</th>
                                     <th>AI Suggestion</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,45 +192,305 @@
                                     <td>OMR 1.06/kg</td>
                                     <td><span class="badge bg-success">Increasing</span></td>
                                     <td><span class="badge bg-info">Wait 1 week</span></td>
+                                    <td><button class="btn btn-sm btn-success">Hold</button></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Potatoes</strong></td>
                                     <td>OMR 0.54/kg</td>
                                     <td><span class="badge bg-danger">Decreasing</span></td>
                                     <td><span class="badge bg-warning">Sell now</span></td>
+                                    <td><button class="btn btn-sm btn-warning">Sell</button></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Carrots</strong></td>
                                     <td>OMR 0.73/kg</td>
                                     <td><span class="badge bg-success">Increasing</span></td>
                                     <td><span class="badge bg-info">Wait 3 days</span></td>
+                                    <td><button class="btn btn-sm btn-success">Hold</button></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Products Section -->
+                <!-- products section -->
                 <div id="productsSection" class="section" style="display: none;">
                     <h3 class="mb-4"><i class="fas fa-seedling text-success me-2"></i>My Products</h3>
                     <div id="productsContainer">
-                        <!-- Products will be loaded here -->
+                        <!-- products loaded by javascript -->
                     </div>
                 </div>
 
-                <!-- Forum Section -->
-                <div id="forumSection" class="section" style="display: none;">
-                    <h3 class="mb-4"><i class="fas fa-users text-success me-2"></i>Community Forum</h3>
-                    <div class="dashboard-card">
-                        <h5>Recent Questions</h5>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h6>How to control aphids organically?</h6>
-                                <p class="small">Expert answer: Use neem oil solution...</p>
+                <!-- ai decision support section -->
+                <div id="aiSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-robot text-success me-2"></i>AI Decision Support</h3>
+                    
+                    <div class="dashboard-card mb-4">
+                        <h5>get AI recommendations</h5>
+                        <p class="text-muted">select your crop and get smart farming suggestions</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">select crop</label>
+                                    <select class="form-select" id="cropSelect">
+                                        <option>Tomatoes</option>
+                                        <option>Potatoes</option>
+                                        <option>Carrots</option>
+                                        <option>Lettuce</option>
+                                        <option>Apples</option>
+                                        <option>Wheat</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">soil type</label>
+                                    <select class="form-select" id="soilType">
+                                        <option>Loamy</option>
+                                        <option>Clay</option>
+                                        <option>Sandy</option>
+                                        <option>Chalky</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">farm size (acres)</label>
+                                    <input type="number" class="form-control" id="farmSize" value="50" min="1">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">current season</label>
+                                    <select class="form-select" id="seasonSelect">
+                                        <option>Winter</option>
+                                        <option>Spring</option>
+                                        <option>Summer</option>
+                                        <option>Fall</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">irrigation type</label>
+                                    <select class="form-select" id="irrigationType">
+                                        <option>Drip</option>
+                                        <option>Sprinkler</option>
+                                        <option>Flood</option>
+                                        <option>Manual</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">current market price (OMR/kg)</label>
+                                    <input type="number" class="form-control" id="marketPrice" step="0.01" value="1.06">
+                                </div>
                             </div>
                         </div>
-                        <textarea class="form-control mb-2" placeholder="Ask a question..." rows="2"></textarea>
-                        <button class="btn btn-success">Post Question</button>
+                        
+                        <button class="btn btn-success w-100" onclick="getAIRecommendations()">
+                            <i class="fas fa-brain me-2"></i> Get AI Recommendations
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h5>AI recommendations</h5>
+                        <div id="aiRecommendations">
+                            <p class="text-muted">select your crop and click "Get AI Recommendations" to see suggestions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- inventory alerts section -->
+                <div id="inventorySection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-boxes text-success me-2"></i>Inventory Alerts</h3>
+                    
+                    <div class="dashboard-card">
+                        <h5>inventory status</h5>
+                        
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>low inventory alert:</strong> seeds running low (15% remaining)
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>fertilizer status:</strong> enough for 2 weeks
+                        </div>
+                        
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <strong>feed alert:</strong> livestock feed critical (5% remaining)
+                        </div>
+                        
+                        <table class="table table-hover mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Type</th>
+                                    <th>Current Stock</th>
+                                    <th>Status</th>
+                                    <th>Reorder</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tomato Seeds</td>
+                                    <td>Seeds</td>
+                                    <td>15%</td>
+                                    <td><span class="badge bg-warning">Low</span></td>
+                                    <td><button class="btn btn-sm btn-success">Order Now</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Organic Fertilizer</td>
+                                    <td>Fertilizer</td>
+                                    <td>40%</td>
+                                    <td><span class="badge bg-info">Medium</span></td>
+                                    <td><button class="btn btn-sm btn-outline-success">Soon</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Livestock Feed</td>
+                                    <td>Feed</td>
+                                    <td>5%</td>
+                                    <td><span class="badge bg-danger">Critical</span></td>
+                                    <td><button class="btn btn-sm btn-danger">Urgent</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- forum section -->
+                <div id="forumSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-users text-success me-2"></i>Community Forum</h3>
+                    
+                    <div class="dashboard-card mb-4">
+                        <h5>ask a question to experts</h5>
+                        <textarea class="form-control mb-3" id="forumQuestion" placeholder="Type your farming question here..." rows="3"></textarea>
+                        <div class="mb-3">
+                            <label class="form-label">category</label>
+                            <select class="form-select" id="forumCategory">
+                                <option>Crops</option>
+                                <option>Livestock</option>
+                                <option>Weather</option>
+                                <option>Market</option>
+                                <option>Pest Control</option>
+                                <option>General</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-success" onclick="postForumQuestion()">
+                            <i class="fas fa-paper-plane me-2"></i> Post Question
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h5>recent questions & answers</h5>
+                        
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="text-success">Q: how to control aphids organically?</h6>
+                                <p class="small mb-2">Posted by: Ahmed • Category: Pest Control</p>
+                                <div class="alert alert-light">
+                                    <strong>Expert answer:</strong> Use neem oil solution (5ml per liter) sprayed early morning. Also introduce ladybugs to your farm.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="text-success">Q: best irrigation schedule for tomatoes in summer?</h6>
+                                <p class="small mb-2">Posted by: Fatima • Category: Crops</p>
+                                <div class="alert alert-light">
+                                    <strong>Expert answer:</strong> Drip irrigation daily for 30 minutes in early morning. Avoid watering leaves to prevent fungus.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="forumPosts"></div>
+                    </div>
+                </div>
+
+                <!-- farm performance section -->
+                <div id="farmSection" class="section" style="display: none;">
+                    <h3 class="mb-4"><i class="fas fa-tractor text-success me-2"></i>Farm Performance</h3>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">85%</h4>
+                                <p>Crop Health</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">92%</h4>
+                                <p>Yield Efficiency</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dashboard-card text-center">
+                                <h4 class="text-success">78%</h4>
+                                <p>Water Efficiency</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h5>risk warnings</h5>
+                        
+                        <div class="alert alert-warning">
+                            <i class="fas fa-temperature-high me-2"></i>
+                            <strong>climate risk:</strong> temperature expected to rise 5°C next week
+                        </div>
+                        
+                        <div class="alert alert-danger">
+                            <i class="fas fa-chart-line me-2"></i>
+                            <strong>price drop risk:</strong> potato prices dropping 15% in market
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-bug me-2"></i>
+                            <strong>disease warning:</strong> fungal infection reported in nearby farms
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h5>smart irrigation schedule</h5>
+                        <p class="text-muted">AI suggested irrigation times based on weather forecast</p>
+                        
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Crop</th>
+                                    <th>Today</th>
+                                    <th>Tomorrow</th>
+                                    <th>Duration</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tomatoes</td>
+                                    <td>6:00 AM</td>
+                                    <td>6:30 AM</td>
+                                    <td>45 mins</td>
+                                    <td><span class="badge bg-success">Scheduled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lettuce</td>
+                                    <td>5:30 AM</td>
+                                    <td>6:00 AM</td>
+                                    <td>30 mins</td>
+                                    <td><span class="badge bg-warning">Adjusted</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Carrots</td>
+                                    <td>7:00 AM</td>
+                                    <td>7:15 AM</td>
+                                    <td>20 mins</td>
+                                    <td><span class="badge bg-success">Scheduled</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -225,20 +499,20 @@
 
     <script src="script.js"></script>
     <script>
-        // Check if user is logged in
+        // check if user is logged in
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser || currentUser.type !== 'farmer') {
             window.location.href = 'login.html';
         }
 
-        // Load products on page load
+        // load products on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadProducts();
             loadWeatherAlerts();
             updateProductCount();
         });
 
-        // Section switching
+        // section switching
         function showSection(section) {
             document.querySelectorAll('.section').forEach(div => {
                 div.style.display = 'none';
@@ -251,7 +525,7 @@
             event.target.classList.add('active');
         }
 
-        // Add product function
+        // add product function
         function addProduct(e) {
             e.preventDefault();
             const form = e.target;
@@ -269,7 +543,7 @@
             form.reset();
             loadProducts();
             updateProductCount();
-            alert('Product added successfully!');
+            alert('product added successfully!');
             return false;
         }
 
@@ -278,7 +552,7 @@
             const container = document.getElementById('productsContainer');
             
             if (products.length === 0) {
-                container.innerHTML = '<div class="alert alert-info">No products yet. Add your first product!</div>';
+                container.innerHTML = '<div class="alert alert-info">no products yet. add your first product!</div>';
                 return;
             }
             
@@ -332,6 +606,139 @@
                 `;
             });
             container.innerHTML = html;
+            
+            // update alert count
+            document.getElementById('weatherAlertsCount').textContent = alerts.length;
+        }
+
+        // AI decision support
+        function getAIRecommendations() {
+            const crop = document.getElementById('cropSelect').value;
+            const soil = document.getElementById('soilType').value;
+            const season = document.getElementById('seasonSelect').value;
+            const irrigation = document.getElementById('irrigationType').value;
+            const size = document.getElementById('farmSize').value;
+            const price = document.getElementById('marketPrice').value;
+            
+            // simulate AI processing
+            const recommendations = generateAIRecommendations(crop, soil, season, irrigation, size, price);
+            
+            const container = document.getElementById('aiRecommendations');
+            container.innerHTML = `
+                <div class="alert alert-success">
+                    <h6><i class="fas fa-check-circle me-2"></i>AI Analysis Complete</h6>
+                    <p><strong>Crop:</strong> ${crop} | <strong>Season:</strong> ${season} | <strong>Soil:</strong> ${soil}</p>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-calendar-alt text-primary me-2"></i>Planting Schedule</h6>
+                                <p>${recommendations.planting}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-tint text-info me-2"></i>Irrigation Advice</h6>
+                                <p>${recommendations.irrigation}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-chart-line text-success me-2"></i>Market Strategy</h6>
+                                <p>${recommendations.market}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-shield-alt text-warning me-2"></i>Risk Management</h6>
+                                <p>${recommendations.risk}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateAIRecommendations(crop, soil, season, irrigation, size, price) {
+            // simple AI logic based on inputs
+            const recommendations = {
+                planting: '',
+                irrigation: '',
+                market: '',
+                risk: ''
+            };
+            
+            // planting recommendations
+            if (season === 'Winter') {
+                recommendations.planting = 'Plant now for spring harvest. Use greenhouse for protection.';
+            } else if (season === 'Summer') {
+                recommendations.planting = 'Plant early morning. Provide shade for young plants.';
+            } else {
+                recommendations.planting = 'Ideal planting season. Maintain regular schedule.';
+            }
+            
+            // irrigation recommendations
+            if (irrigation === 'Drip') {
+                recommendations.irrigation = 'Continue drip irrigation. Increase frequency by 20% in current season.';
+            } else if (irrigation === 'Sprinkler') {
+                recommendations.irrigation = 'Water early morning to reduce evaporation.';
+            } else {
+                recommendations.irrigation = 'Consider switching to drip irrigation for 30% water savings.';
+            }
+            
+            // market recommendations
+            if (parseFloat(price) > 1.5) {
+                recommendations.market = 'Good price. Sell 70% now, hold 30% for potential increase.';
+            } else if (parseFloat(price) < 0.8) {
+                recommendations.market = 'Low price. Hold crops for 2 weeks, market expected to improve.';
+            } else {
+                recommendations.market = 'Stable market. Sell as needed, consider bulk orders.';
+            }
+            
+            // risk recommendations
+            if (crop === 'Tomatoes' && season === 'Summer') {
+                recommendations.risk = 'High heat risk. Increase watering frequency. Watch for blossom end rot.';
+            } else if (crop === 'Potatoes' && soil === 'Clay') {
+                recommendations.risk = 'Clay soil risk. Ensure proper drainage to prevent rot.';
+            } else {
+                recommendations.risk = 'Low risk conditions. Monitor regularly for pests.';
+            }
+            
+            return recommendations;
+        }
+
+        // forum functions
+        function postForumQuestion() {
+            const question = document.getElementById('forumQuestion').value;
+            const category = document.getElementById('forumCategory').value;
+            
+            if (!question.trim()) {
+                alert('please enter a question');
+                return;
+            }
+            
+            const forumPosts = JSON.parse(localStorage.getItem('forumPosts') || '[]');
+            const newPost = {
+                id: Date.now(),
+                question: question,
+                category: category,
+                author: currentUser.name,
+                date: new Date().toLocaleDateString(),
+                answers: []
+            };
+            
+            forumPosts.unshift(newPost);
+            localStorage.setItem('forumPosts', JSON.stringify(forumPosts));
+            
+            document.getElementById('forumQuestion').value = '';
+            alert('question posted successfully! Experts will answer soon.');
         }
 
         function logout() {
@@ -346,7 +753,4 @@
         </div>
     </footer>
 </body>
-   
-
 </html>
-
