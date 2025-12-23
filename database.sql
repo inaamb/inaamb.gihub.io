@@ -1,15 +1,15 @@
--- ============================================
--- FarmConnect Database Schema
--- Simple SQL structure for student project
--- ============================================
+--===========================================
+--FarmConnect Database Schema
+--Simple SQL structure for student project
+--===========================================
 
--- Create database
+--Create database
 CREATE DATABASE IF NOT EXISTS farmconnect;
 USE farmconnect;
 
--- ============================================
--- 1. USERS TABLE (Base User class)
--- ============================================
+--===========================================
+--1. USERS TABLE (Base User class)
+--===========================================
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     user_type ENUM('farmer', 'buyer', 'admin') NOT NULL,
@@ -24,9 +24,9 @@ CREATE TABLE users (
     INDEX idx_user_type (user_type)
 );
 
--- ============================================
--- 2. FARMERS TABLE (Farmer class - extends User)
--- ============================================
+--===========================================
+--2. FARMERS TABLE (Farmer class - extends User)
+--===========================================
 CREATE TABLE farmers (
     farmer_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT UNIQUE NOT NULL,
@@ -41,9 +41,9 @@ CREATE TABLE farmers (
     INDEX idx_location (location)
 );
 
--- ============================================
--- 3. PRODUCTS TABLE (Product class)
--- ============================================
+--===========================================
+--3. PRODUCTS TABLE (Product class)
+--===========================================
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     farmer_id INT NOT NULL,
@@ -62,9 +62,9 @@ CREATE TABLE products (
     INDEX idx_farmer_product (farmer_id, product_name)
 );
 
--- ============================================
--- 4. WEATHER ALERTS TABLE
--- ============================================
+--===========================================
+--4. WEATHER ALERTS TABLE
+--===========================================
 CREATE TABLE weather_alerts (
     alert_id INT PRIMARY KEY AUTO_INCREMENT,
     farmer_id INT NOT NULL,
@@ -79,9 +79,9 @@ CREATE TABLE weather_alerts (
     INDEX idx_severity (severity)
 );
 
--- ============================================
--- 5. MARKET PRICES TABLE
--- ============================================
+--===========================================
+--5. MARKET PRICES TABLE
+--===========================================
 CREATE TABLE market_prices (
     price_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(100) NOT NULL,
@@ -95,9 +95,9 @@ CREATE TABLE market_prices (
     INDEX idx_market (market_name)
 );
 
--- ============================================
--- 6. ORDERS TABLE (Order class)
--- ============================================
+--===========================================
+--6. ORDERS TABLE (Order class)
+--===========================================
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     buyer_id INT NOT NULL,
@@ -114,9 +114,9 @@ CREATE TABLE orders (
     INDEX idx_order_date (order_date)
 );
 
--- ============================================
--- 7. ORDER ITEMS TABLE
--- ============================================
+--===========================================
+--7. ORDER ITEMS TABLE
+--===========================================
 CREATE TABLE order_items (
     item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT NOT NULL,
@@ -130,9 +130,9 @@ CREATE TABLE order_items (
     INDEX idx_order (order_id)
 );
 
--- ============================================
--- 8. MEAL KITS TABLE
--- ============================================
+--===========================================
+--8. MEAL KITS TABLE
+--===========================================
 CREATE TABLE meal_kits (
     kit_id INT PRIMARY KEY AUTO_INCREMENT,
     kit_name VARCHAR(100) NOT NULL,
@@ -146,9 +146,9 @@ CREATE TABLE meal_kits (
     INDEX idx_price (base_price)
 );
 
--- ============================================
--- 9. FORUM TOPICS TABLE
--- ============================================
+--===========================================
+--9. FORUM TOPICS TABLE
+--===========================================
 CREATE TABLE forum_topics (
     topic_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -164,47 +164,47 @@ CREATE TABLE forum_topics (
     INDEX idx_created_at (created_at)
 );
 
--- ============================================
--- 10. SAMPLE DATA INSERTION
--- ============================================
+--===========================================
+--10. SAMPLE DATA INSERTION
+--===========================================
 
--- Insert sample users
+--Insert sample users
 INSERT INTO users (user_type, full_name, email, phone, password_hash) VALUES
 ('farmer', 'John Farmer', 'john@greenvalley.com', '555-0101', 'hashed_password_1'),
 ('farmer', 'Sarah Grower', 'sarah@sunnyacres.com', '555-0102', 'hashed_password_2'),
 ('buyer', 'Mike Customer', 'mike@email.com', '555-0201', 'hashed_password_3'),
 ('buyer', 'Lisa Shopper', 'lisa@email.com', '555-0202', 'hashed_password_4');
 
--- Insert farmers
+--Insert farmers
 INSERT INTO farmers (user_id, farm_name, farm_type, location, farm_size, years_experience) VALUES
 (1, 'Green Valley Farm', 'crop', 'North Region', 50.5, 15),
 (2, 'Sunny Acres', 'mixed', 'South Region', 120.0, 25);
 
--- Insert products
+--Insert products
 INSERT INTO products (farmer_id, product_name, category, quantity, price_per_unit, unit, organic_certified) VALUES
 (1, 'Organic Tomatoes', 'vegetable', 50.0, 2.75, 'kg', TRUE),
 (1, 'Fresh Lettuce', 'vegetable', 30.0, 3.00, 'kg', TRUE),
 (2, 'Carrots', 'vegetable', 100.0, 1.90, 'kg', FALSE),
 (2, 'Potatoes', 'vegetable', 200.0, 1.40, 'kg', FALSE);
 
--- Insert market prices
+--Insert market prices
 INSERT INTO market_prices (product_name, market_name, price, unit, recorded_date, trend) VALUES
 ('Tomatoes', 'Central Market', 2.75, 'kg', CURDATE(), 'increasing'),
 ('Potatoes', 'Central Market', 1.40, 'kg', CURDATE(), 'stable'),
 ('Carrots', 'Central Market', 1.90, 'kg', CURDATE(), 'increasing'),
 ('Lettuce', 'Central Market', 3.00, 'kg', CURDATE(), 'increasing');
 
--- Insert meal kits
+--Insert meal kits
 INSERT INTO meal_kits (kit_name, description, category, base_price, serves, prep_time) VALUES
 ('Vegetarian Delight', '3 plant-based meals with fresh vegetables', 'vegetarian', 34.99, 2, 30),
 ('Protein Power Pack', 'High-protein meals for active lifestyles', 'protein', 42.99, 2, 25),
 ('Family Feast', 'Hearty meals perfect for family dinners', 'family', 58.99, 4, 40);
 
--- ============================================
--- 11. USEFUL VIEWS FOR REPORTING
--- ============================================
+--===========================================
+--11. USEFUL VIEWS FOR REPORTING
+--===========================================
 
--- View for farmer overview
+--View for farmer overview
 CREATE VIEW farmer_overview AS
 SELECT 
     f.farmer_id,
@@ -221,7 +221,7 @@ LEFT JOIN products p ON f.farmer_id = p.farmer_id
 LEFT JOIN orders o ON f.farmer_id = o.farmer_id
 GROUP BY f.farmer_id;
 
--- View for popular products
+--View for popular products
 CREATE VIEW popular_products AS
 SELECT 
     p.product_name,
@@ -235,47 +235,47 @@ LEFT JOIN order_items oi ON p.product_id = oi.product_id
 GROUP BY p.product_id
 ORDER BY times_ordered DESC;
 
--- ============================================
--- 12. SAMPLE QUERIES FOR DEMONSTRATION
--- ============================================
+--===========================================
+--12. SAMPLE QUERIES FOR DEMONSTRATION
+--===========================================
 
--- Query 1: Get all products from a specific farmer
+--Query 1: Get all products from a specific farmer
 -- SELECT p.* FROM products p 
 -- JOIN farmers f ON p.farmer_id = f.farmer_id 
 -- WHERE f.farm_name = 'Green Valley Farm';
 
--- Query 2: Get current market prices
+--Query 2: Get current market prices
 -- SELECT * FROM market_prices 
 -- WHERE recorded_date = CURDATE() 
 -- ORDER BY product_name;
 
--- Query 3: Get farmer's weather alerts
+--Query 3: Get farmer's weather alerts
 -- SELECT * FROM weather_alerts 
 -- WHERE farmer_id = 1 AND is_read = FALSE 
 -- ORDER BY alert_date DESC;
 
--- Query 4: Get buyer's order history
+--Query 4: Get buyer's order history
 -- SELECT o.*, f.farm_name 
 -- FROM orders o 
 -- JOIN farmers f ON o.farmer_id = f.farmer_id 
 -- WHERE o.buyer_id = 3 
 -- ORDER BY o.order_date DESC;
 
--- ============================================
--- 13. DATABASE COMMENTS
--- ============================================
+--===========================================
+--13. DATABASE COMMENTS
+--===========================================
 
--- This database supports the FarmConnect prototype
--- Created for student project demonstration
--- Tables represent the main classes in the system:
--- 1. users -> User class
--- 2. farmers -> Farmer class (extends User)
--- 3. products -> Product class
--- 4. orders -> Order class
--- 5. meal_kits -> MealKit functionality
+--This database supports the FarmConnect prototype
+--Created for student project demonstration
+--Tables represent the main classes in the system:
+--1. users -> User class
+--2. farmers -> Farmer class (extends User)
+--3. products -> Product class
+--4. orders -> Order class
+--5. meal_kits -> MealKit functionality
 
--- Note: In the actual prototype, LocalStorage is used
--- This SQL file shows the database structure that would
--- be used in a production version
+--Note: In the actual prototype, LocalStorage is used
+--This SQL file shows the database structure that would
+--be used in a production version
 
--- End of SQL Schema
+--End of SQL Schema
