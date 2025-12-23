@@ -1,33 +1,33 @@
-// ============================================
-// FarmConnect Admin JavaScript
-// ============================================
+//============================================
+//FarmConnect Admin JavaScript
+//============================================
 
-// Admin class extending User
+//Admin class extending User
 class Admin extends User {
     constructor(name, email) {
         super('admin', name, email);
         this.permissions = ['all'];
     }
 
-    // Approve or reject user registration
+    //Approve or reject user registration
     approveUser(userId, approve = true, reason = '') {
         console.log(`Admin ${this.name} ${approve ? 'approved' : 'rejected'} user ${userId}. Reason: ${reason}`);
         return true;
     }
 
-    // Update market prices
+    //Update market prices
     updateMarketPrices(product, newPrice) {
         console.log(`Admin ${this.name} updated ${product} price to ${newPrice}`);
         return true;
     }
 
-    // Add/modify weather information
+    //Add/modify weather information
     updateWeatherData(alert) {
         console.log(`Admin ${this.name} added weather alert: ${JSON.stringify(alert)}`);
         return true;
     }
 
-    // Monitor platform activity
+    //Monitor platform activity
     monitorPlatform() {
         const stats = {
             onlineUsers: Math.floor(Math.random() * 50) + 20,
@@ -38,59 +38,59 @@ class Admin extends User {
         return stats;
     }
 
-    // Ban or restrict user account
+    //Ban or restrict user account
     banUser(userId, reason = 'Violation of terms') {
         console.log(`Admin ${this.name} banned user ${userId}. Reason: ${reason}`);
         return true;
     }
 
-    // Directly modify product information
+    //Directly modify product information
     updateProduct(productId, updates) {
         console.log(`Admin ${this.name} updated product ${productId}:`, updates);
         return true;
     }
 
-    // Add new product directly to catalog
+    //Add new product directly to catalog
     addProduct(productData) {
         console.log(`Admin ${this.name} added product:`, productData);
         return productData;
     }
 
-    // Remove product from catalog
+    //Remove product from catalog
     removeProduct(productId) {
         console.log(`Admin ${this.name} removed product ${productId}`);
         return true;
     }
 
-    // Update farm information
+    //Update farm information
     updateFarmInfo(farmId, updates) {
         console.log(`Admin ${this.name} updated farm ${farmId}:`, updates);
         return true;
     }
 
-    // Handle farmer requests
+    //Handle farmer requests
     handleFarmRequest(requestId, action, comments = '') {
         console.log(`Admin ${this.name} ${action} farmer request ${requestId}. Comments: ${comments}`);
         return true;
     }
 }
 
-// ============================================
-// ADMIN SESSION MANAGEMENT
-// ============================================
+//============================================
+//ADMIN SESSION MANAGEMENT
+//============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if admin is logged in
+    //Check if admin is logged in
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || currentUser.type !== 'admin') {
         window.location.href = 'login.html';
         return;
     }
 
-    // Initialize admin
+    //Initialize admin
     const admin = new Admin(currentUser.name, currentUser.email);
     
-    // Load all sections
+    //Load all sections
     loadDashboard();
     loadUsers();
     loadProducts();
@@ -100,35 +100,35 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSystemLogs();
     loadFarms();
     
-    // Start monitoring
+    //Start monitoring
     startPlatformMonitoring();
     
     console.log('Admin dashboard initialized for:', admin.name);
 });
 
-// ============================================
-// SECTION MANAGEMENT
-// ============================================
+//============================================
+//SECTION MANAGEMENT
+//============================================
 
 function showSection(section) {
-    // Hide all sections
+    //Hide all sections
     document.querySelectorAll('.section').forEach(div => {
         div.style.display = 'none';
     });
     
-    // Show selected section
+    //Show selected section
     const sectionElement = document.getElementById(section + 'Section');
     if (sectionElement) {
         sectionElement.style.display = 'block';
     }
     
-    // Update active menu item
+    //Update active menu item
     document.querySelectorAll('.list-group-item').forEach(btn => {
         btn.classList.remove('active');
     });
     event.target.classList.add('active');
     
-    // Refresh section data
+    //Refresh section data
     switch(section) {
         case 'dashboard':
             loadDashboard();
@@ -157,25 +157,25 @@ function showSection(section) {
     }
 }
 
-// ============================================
-// DASHBOARD FUNCTIONS
-// ============================================
+//============================================
+//DASHBOARD FUNCTIONS
+//============================================
 
 function loadDashboard() {
-    // Update quick stats
+    //Update quick stats
     updateDashboardStats();
     
-    // Load recent requests
+    //Load recent requests
     loadRecentRequests();
 }
 
 function updateDashboardStats() {
-    // Simulate data - in real app, fetch from API
+    //Simulate data - in real app, fetch from API
     const stats = {
         totalUsers: 42,
         pendingRequests: 3,
         activeProducts: 28,
-        revenue: '$1,248.75'
+        revenue: 'OMR 1,248.75'
     };
     
     document.getElementById('totalUsers').textContent = stats.totalUsers;
@@ -183,13 +183,13 @@ function updateDashboardStats() {
     document.getElementById('activeProducts').textContent = stats.activeProducts;
     document.getElementById('revenue').textContent = stats.revenue;
     
-    // Update request badge
+    //Update request badge
     updateRequestBadge();
 }
 
 function loadRecentRequests() {
     const requests = [
-        { farmer: 'John Farmer', product: 'Tomatoes', request: 'Price update to $3.00/kg', time: '2 hours ago' },
+        { farmer: 'John Farmer', product: 'Tomatoes', request: 'Price update to OMR 1.15/kg', time: '2 hours ago' },
         { farmer: 'Sarah Grower', product: 'Carrots', request: 'Add organic certification', time: '4 hours ago' },
         { farmer: 'Riverbend Farm', product: 'Potatoes', request: 'Increase quantity to 200kg', time: '1 day ago' }
     ];
@@ -231,14 +231,14 @@ function updateRequestBadge() {
     }
 }
 
-// ============================================
-// USER MANAGEMENT FUNCTIONS
-// ============================================
+//============================================
+//USER MANAGEMENT FUNCTIONS
+//============================================
 
 let allUsers = [];
 
 function loadUsers() {
-    // Sample users data
+    //Sample users data
     allUsers = [
         { id: 1, name: 'John Farmer', email: 'john@greenvalley.com', type: 'farmer', status: 'active', registered: '2024-01-10' },
         { id: 2, name: 'Sarah Grower', email: 'sarah@sunnyacres.com', type: 'farmer', status: 'active', registered: '2024-01-12' },
@@ -249,12 +249,12 @@ function loadUsers() {
         { id: 7, name: 'Admin User', email: 'admin@agrivision.com', type: 'admin', status: 'active', registered: '2024-01-01' }
     ];
     
-    // Set up event listeners for filters
+    //Set up event listeners for filters
     document.getElementById('searchUsers').addEventListener('input', filterUsers);
     document.getElementById('filterUserType').addEventListener('change', filterUsers);
     document.getElementById('filterUserStatus').addEventListener('change', filterUsers);
     
-    // Initial display
+    //Initial display
     displayUsers(allUsers);
 }
 
@@ -388,22 +388,22 @@ function viewUserDetails(userId) {
     }
 }
 
-// ============================================
-// PRODUCT MANAGEMENT FUNCTIONS
-// ============================================
+//============================================
+//PRODUCT MANAGEMENT FUNCTIONS
+//============================================
 
 let allProducts = [];
 
 function loadProducts() {
-    // Sample products data
+    //Sample products data
     allProducts = [
-        { id: 1, name: 'Organic Tomatoes', category: 'Vegetables', price: 2.75, farmer: 'Green Valley Farm', organic: true, stock: 50 },
-        { id: 2, name: 'Fresh Carrots', category: 'Vegetables', price: 1.90, farmer: 'Sunny Acres', organic: false, stock: 100 },
-        { id: 3, name: 'Potatoes', category: 'Vegetables', price: 1.40, farmer: 'Riverbend Farm', organic: false, stock: 200 },
-        { id: 4, name: 'Lettuce', category: 'Vegetables', price: 3.00, farmer: 'Green Valley Farm', organic: true, stock: 30 },
-        { id: 5, name: 'Apples', category: 'Fruits', price: 2.20, farmer: 'Orchard Hills', organic: true, stock: 150 },
-        { id: 6, name: 'Fresh Milk', category: 'Dairy', price: 4.50, farmer: 'Happy Cows Dairy', organic: true, stock: 40 },
-        { id: 7, name: 'Organic Eggs', category: 'Dairy', price: 5.75, farmer: 'Sunny Acres', organic: true, stock: 60 }
+        { id: 1, name: 'Organic Tomatoes', category: 'Vegetables', price: 1.06, farmer: 'Green Valley Farm', organic: true, stock: 50 },
+        { id: 2, name: 'Fresh Carrots', category: 'Vegetables', price: 0.73, farmer: 'Sunny Acres', organic: false, stock: 100 },
+        { id: 3, name: 'Potatoes', category: 'Vegetables', price: 0.54, farmer: 'Riverbend Farm', organic: false, stock: 200 },
+        { id: 4, name: 'Lettuce', category: 'Vegetables', price: 1.15, farmer: 'Green Valley Farm', organic: true, stock: 30 },
+        { id: 5, name: 'Apples', category: 'Fruits', price: 0.85, farmer: 'Orchard Hills', organic: true, stock: 150 },
+        { id: 6, name: 'Fresh Milk', category: 'Dairy', price: 1.73, farmer: 'Happy Cows Dairy', organic: true, stock: 40 },
+        { id: 7, name: 'Organic Eggs', category: 'Dairy', price: 2.21, farmer: 'Sunny Acres', organic: true, stock: 60 }
     ];
     
     displayProducts(allProducts);
@@ -435,7 +435,7 @@ function displayProducts(products) {
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="h5 text-success">$${product.price}</span>
+                                <span class="h5 text-success">OMR ${product.price}</span>
                                 <span class="text-muted">/kg</span>
                             </div>
                             <div>
@@ -456,7 +456,7 @@ function displayProducts(products) {
     html += '</div>';
     container.innerHTML = html;
     
-    // Update product count
+    //Update product count
     document.getElementById('activeProducts').textContent = products.length;
 }
 
@@ -480,7 +480,7 @@ function addProduct(e) {
         id: allProducts.length + 1,
         name: form.querySelector('input[placeholder="Product Name"]').value,
         category: form.querySelector('select').value,
-        price: parseFloat(form.querySelector('input[placeholder="Price"]').value),
+        price: parseFloat(form.querySelector('input[placeholder="Price (OMR)"]').value),
         farmer: form.querySelector('input[placeholder="Farmer/Farm Name"]').value || 'Admin Added',
         organic: form.querySelector('#organicCheck').checked,
         stock: Math.floor(Math.random() * 100) + 20
@@ -499,10 +499,10 @@ function editProduct(productId) {
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
     
-    const newPrice = prompt(`Enter new price for ${product.name} (current: $${product.price}):`, product.price);
+    const newPrice = prompt(`Enter new price for ${product.name} (current: OMR ${product.price}):`, product.price);
     if (newPrice && !isNaN(newPrice)) {
         product.price = parseFloat(newPrice);
-        alert(`Price updated to $${newPrice}`);
+        alert(`Price updated to OMR ${newPrice}`);
         displayProducts(allProducts);
     }
 }
@@ -515,18 +515,18 @@ function deleteProduct(productId) {
     }
 }
 
-// ============================================
-// MARKET PRICES FUNCTIONS
-// ============================================
+//============================================
+//MARKET PRICES FUNCTIONS
+//============================================
 
 function loadMarketPrices() {
     const prices = [
-        { product: 'Tomatoes', market: 'Central Market', price: 2.75, trend: 'increasing', updated: 'Today', suggestion: 'Wait 1 week' },
-        { product: 'Potatoes', market: 'Central Market', price: 1.40, trend: 'stable', updated: 'Today', suggestion: 'Sell now' },
-        { product: 'Carrots', market: 'Central Market', price: 1.90, trend: 'increasing', updated: 'Today', suggestion: 'Wait 3 days' },
-        { product: 'Lettuce', market: 'East Market', price: 3.00, trend: 'increasing', updated: 'Yesterday', suggestion: 'Good price' },
-        { product: 'Apples', market: 'North Market', price: 2.20, trend: 'decreasing', updated: '2 days ago', suggestion: 'Sell immediately' },
-        { product: 'Milk', market: 'West Market', price: 4.50, trend: 'stable', updated: 'Today', suggestion: 'Stable demand' }
+        { product: 'Tomatoes', market: 'Central Market', price: 1.06, trend: 'increasing', updated: 'Today', suggestion: 'Wait 1 week' },
+        { product: 'Potatoes', market: 'Central Market', price: 0.54, trend: 'stable', updated: 'Today', suggestion: 'Sell now' },
+        { product: 'Carrots', market: 'Central Market', price: 0.73, trend: 'increasing', updated: 'Today', suggestion: 'Wait 3 days' },
+        { product: 'Lettuce', market: 'East Market', price: 1.15, trend: 'increasing', updated: 'Yesterday', suggestion: 'Good price' },
+        { product: 'Apples', market: 'North Market', price: 0.85, trend: 'decreasing', updated: '2 days ago', suggestion: 'Sell immediately' },
+        { product: 'Milk', market: 'West Market', price: 1.73, trend: 'stable', updated: 'Today', suggestion: 'Stable demand' }
     ];
     
     const table = document.getElementById('pricesTable');
@@ -545,7 +545,7 @@ function loadMarketPrices() {
             <tr>
                 <td><strong>${item.product}</strong></td>
                 <td>${item.market}</td>
-                <td>$${item.price}/kg</td>
+                <td>OMR ${item.price}/kg</td>
                 <td><span class="${trendClass}">${item.trend}</span></td>
                 <td><small class="text-muted">${item.updated}</small></td>
                 <td><span class="${suggestionClass}">${item.suggestion}</span></td>
@@ -562,10 +562,10 @@ function loadMarketPrices() {
 }
 
 function updatePrice(product) {
-    const newPrice = prompt(`Enter new price for ${product}:`);
+    const newPrice = prompt(`Enter new price for ${product} (OMR):`);
     if (newPrice && !isNaN(newPrice)) {
-        alert(`${product} price updated to $${newPrice}`);
-        loadMarketPrices(); // Refresh the table
+        alert(`${product} price updated to OMR ${newPrice}`);
+        loadMarketPrices(); //Refresh the table
     }
 }
 
@@ -582,11 +582,11 @@ function addPriceEntry(e) {
     const form = e.target;
     const product = form.querySelector('input[placeholder="Product Name"]').value;
     const market = form.querySelector('input[placeholder="Market"]').value;
-    const price = form.querySelector('input[placeholder="Price"]').value;
+    const price = form.querySelector('input[placeholder="Price (OMR)"]').value;
     const trend = form.querySelector('select').value;
     
     if (product && market && price && trend) {
-        alert(`New price entry added:\nProduct: ${product}\nMarket: ${market}\nPrice: $${price}\nTrend: ${trend}`);
+        alert(`New price entry added:\nProduct: ${product}\nMarket: ${market}\nPrice: OMR ${price}\nTrend: ${trend}`);
         form.reset();
     } else {
         alert('Please fill all fields');
@@ -595,9 +595,9 @@ function addPriceEntry(e) {
     return false;
 }
 
-// ============================================
-// WEATHER ALERTS FUNCTIONS
-// ============================================
+//============================================
+//WEATHER ALERTS FUNCTIONS
+//============================================
 
 let weatherAlerts = [];
 
@@ -663,7 +663,7 @@ function createWeatherAlert(e) {
     const type = form.querySelector('select').value;
     const severity = form.querySelectorAll('select')[1].value;
     
-    // Get checked regions
+    //Get checked regions
     const regions = [];
     if (document.getElementById('northRegion').checked) regions.push('North');
     if (document.getElementById('southRegion').checked) regions.push('South');
@@ -702,15 +702,15 @@ function removeWeatherAlert(alertId) {
     }
 }
 
-// ============================================
-// FARMER REQUESTS FUNCTIONS
-// ============================================
+//============================================
+//FARMER REQUESTS FUNCTIONS
+//============================================
 
 let farmerRequests = [];
 
 function loadFarmerRequests() {
     farmerRequests = [
-        { id: 1, farmer: 'John Farmer', farm: 'Green Valley Farm', product: 'Organic Tomatoes', request: 'Update price to $3.00/kg due to increased quality', status: 'pending', date: '2024-01-15', farmerEmail: 'john@greenvalley.com' },
+        { id: 1, farmer: 'John Farmer', farm: 'Green Valley Farm', product: 'Organic Tomatoes', request: 'Update price to OMR 1.15/kg due to increased quality', status: 'pending', date: '2024-01-15', farmerEmail: 'john@greenvalley.com' },
         { id: 2, farmer: 'Sarah Grower', farm: 'Sunny Acres', product: 'Carrots', request: 'Add organic certification badge to product listing', status: 'pending', date: '2024-01-14', farmerEmail: 'sarah@sunnyacres.com' },
         { id: 3, farmer: 'John Farmer', farm: 'Green Valley Farm', product: 'Lettuce', request: 'Increase available quantity to 50kg', status: 'pending', date: '2024-01-15', farmerEmail: 'john@greenvalley.com' },
         { id: 4, farmer: 'Riverbend Farm', product: 'Potatoes', request: 'Change product category from "Vegetables" to "Organic Root Vegetables"', status: 'approved', date: '2024-01-13', farmerEmail: 'contact@riverbend.com' },
@@ -769,7 +769,7 @@ function displayFarmerRequests() {
     
     container.innerHTML = html;
     
-    // Update pending count
+    //Update pending count
     document.getElementById('pendingRequests').textContent = pendingRequests.length;
     updateRequestBadge();
 }
@@ -783,11 +783,11 @@ function approveRequest(requestId) {
     if (confirm(`Approve this request from ${request.farmer}?\n\nProduct: ${request.product}\nRequest: ${request.request}`)) {
         request.status = 'approved';
         
-        // Simulate product update
+        //Simulate product update
         const product = allProducts.find(p => p.name === request.product);
         if (product) {
             if (request.request.includes('price')) {
-                const newPrice = request.request.match(/\$(\d+\.?\d*)/);
+                const newPrice = request.request.match(/OMR (\d+\.?\d*)/);
                 if (newPrice) {
                     product.price = parseFloat(newPrice[1]);
                 }
@@ -796,7 +796,7 @@ function approveRequest(requestId) {
         
         alert(`Request approved! ${request.farmer} has been notified.\n\nProduct has been updated accordingly.`);
         displayFarmerRequests();
-        loadProducts(); // Refresh product list
+        loadProducts(); //Refresh product list
     }
 }
 
@@ -816,22 +816,22 @@ function rejectRequest(requestId) {
     }
 }
 
-// ============================================
-// PLATFORM MONITORING FUNCTIONS
-// ============================================
+//============================================
+//PLATFORM MONITORING FUNCTIONS
+//============================================
 
 function startPlatformMonitoring() {
-    // Initial update
+    //Initial update
     updateSystemStats();
     updateSystemLogs();
     
-    // Update every 30 seconds
+    //Update every 30 seconds
     setInterval(updateSystemStats, 30000);
-    setInterval(addSystemLog, 60000); // Add log every minute
+    setInterval(addSystemLog, 60000); //Add log every minute
 }
 
 function updateSystemStats() {
-    // Simulate dynamic stats
+    //Simulate dynamic stats
     const onlineUsers = Math.floor(Math.random() * 30) + 10;
     const serverLoad = Math.floor(Math.random() * 60) + 20;
     const dailyOrders = Math.floor(Math.random() * 15) + 5;
@@ -859,7 +859,7 @@ function loadSystemLogs() {
 function updateSystemLogs() {
     const container = document.getElementById('systemLogs');
     
-    // Simulate new log entries
+    //Simulate new log entries
     const logTypes = ['info', 'success', 'warning'];
     const logActions = [
         'User login', 'Order placed', 'Product updated', 'Weather alert sent',
@@ -880,7 +880,7 @@ function updateSystemLogs() {
         });
     }
     
-    // Sort by time (newest first)
+    //Sort by time (newest first)
     logs.sort((a, b) => b.time.localeCompare(a.time));
     
     let html = '';
@@ -902,13 +902,13 @@ function updateSystemLogs() {
 }
 
 function addSystemLog() {
-    // This would be called periodically to add new logs
+    //This would be called periodically to add new logs
     console.log('System log updated');
 }
 
 function backupDatabase() {
     alert('Database backup initiated... This may take a few minutes.');
-    // Simulate backup process
+    //Simulate backup process
     setTimeout(() => {
         alert('Database backup completed successfully! Backup file: farmconnect_backup_' + new Date().toISOString().split('T')[0] + '.sql');
         addSystemLog();
@@ -932,7 +932,7 @@ function sendSystemAlert() {
 
 function generateReport() {
     alert('Monthly report generation started... Report will be available in the reports section.');
-    // Simulate report generation
+    //Simulate report generation
     setTimeout(() => {
         alert('Monthly report generated successfully! Download link: /reports/monthly_2024_01.pdf');
         addSystemLog();
@@ -957,9 +957,9 @@ function updateSystem() {
     }
 }
 
-// ============================================
-// FARM MANAGEMENT FUNCTIONS
-// ============================================
+//============================================
+//FARM MANAGEMENT FUNCTIONS
+//============================================
 
 function loadFarms() {
     const farms = [
@@ -1022,9 +1022,9 @@ function viewFarmDetails(farmName) {
     alert(`Farm Details:\n\nName: ${farmName}\n\nViewing detailed farm information and statistics.`);
 }
 
-// ============================================
-// LOGOUT FUNCTION
-// ============================================
+//============================================
+//LOGOUT FUNCTION
+//============================================
 
 function logout() {
     if (confirm('Logout from admin panel?')) {
